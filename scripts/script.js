@@ -57,7 +57,8 @@ function Elimina() {
 }
 /*escribir datos*/
 for (var valor of ListaPeliculas) {
-    var foo =  '<table>'+'<th>'+ListaPeliculas+'</th>' + '<th>'+ListaCalificacion+'</th>'+'<table>'
+    <tr><td></td><td></td></tr>
+    var foo =  '<tr><td>'+ListaPeliculas+'</td><td>' +ListaCalificacion+ '</td></tr>';
     document.getElementById("foo").innerHTML = foo;
   }
   
