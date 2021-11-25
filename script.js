@@ -61,7 +61,6 @@ for (var valor of ListaPeliculas) {
     var foo =  '<tr><td>'+ListaPeliculas+'</td><td>' +ListaCalificacion+ '</td></tr>';
     document.getElementById("foo").innerHTML = foo;
 }
-  
 /* */
 
 
