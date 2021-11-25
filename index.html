@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen_3_XML-II</title>
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+<!--iconos de menu vertical-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!---->
+</head>
+<body>
+    <!-- barra menú lateral izquierda-->
+    <ul class="meuVertical">
+        <!--img avatar-->
+        <div class="divPerfil"><a href="#">
+        <img class="perfil" alt="Avatar" src="imagenes/perfilImg.jpg"></a>
+        <h2 class="perfilTexto">Jonatan Joaquin Hidalgo Ledesma</h2>
+        <h4 class="perfilTexto"><i>Ingeniería en Software</i></h4>
+        </div>
+        <!--links menu vertical-->
+        <li><a class="linkMenu" href="#AcercaDeMi">Acerca de mi</a></li>
+        <li><a class="linkMenu" href="#Educacion">Educación</a></lis>
+        <li><a class="linkMenu" href="#Conocimientos">Conocimiento</a></lis>
+        <li><a class="linkMenu" href="#MiTrabajo">Mis trabajos</a></li>
+        <li><a class="linkMenu" href="/peliculas.html">peliculas</a></li>
+        <li><a class="linkMenu" href="#Contactame">Contactos</a></li>
+        <!--lista redes sociales-->
+        <div class="contenedor">
+        <ul class="luIcon">
+            <li class="liIcon"> <a class="linkIcon" href="https://www.facebook.com/jony.new.3/"><i class="fa fa-facebook-official"style="font-size:20px"></i></a> </li>
+            <li class="liIcon"> <a class="linkIcon" href="#" onclick="alertProximamente();"><i class="fa fa-twitter" style="font-size:20px"></i></a> </li>
+            <li class="liIcon"> <a class="linkIcon" href="https://www.linkedin.com/in/jonatan-j-hidalgo-03694a180/"><i class="fa fa-linkedin" style="font-size:20px"></i></a> </li>
+            <li class="liIcon"> <a class="linkIcon" href="#" onclick="alertProximamente();"><i class="fa fa-dribbble" style="font-size:20px"></i></a> </li>
+            <li class="liIcon"> <a class="linkIcon" href="#" onclick="alertProximamente();"><i class="fa fa-angellist" style="font-size:20px"></i></a> </li>
+        </ul>
+        </div>
+    </ul>
+    <!--******-->
+    <!--***contenido***-->
+    <!--Acerca de mi-->
+    <div id="AcercaDeMi" class="divPrincipal">
+        <h2 style="text-align: center; color: white;">Acerca de mi<hr class="sub" ></h2>
+        <p style="text-align: center; color: white; padding-bottom: 50px;">
+            Hola este es mi portafolio, donde voy a hablar un poco de mi, mis conocimientos y mis trabajos realizados
+        </p>
+        <img class="imgAlignL" src="/imagenes/logoUACM.jpg">
+        <h2 style="color: white;">Perfil </h2>
+        <p style="text-align: center,left;  color: white;">
+            Soy una persona que no le gusta dejar trabajos a medias,
+            me obseciona el encontrar soluciones tecnologicas a los problemas, asi como resolver problemas de software 
+            de la manera mas rapida y facil de usar por el usuario...
+            <br>
+        <button onclick="vermasPerfil('masPerfil');" id="masPerfil"> Leer Mas</button>
+        </p>
+        <p  id="desplegarPerfil" style="display:none; text-align: center,left; color: white;" >
+            Con buenas habilididades para socializar con diversos grupos de gente, asi como la facilidad de aprender nuevas tareas a realizar            
+            <br>
+        <button onclick="vermasPerfil('menosPerfil');" id="menosPerfil"> Leer Menos</button>
+        </p>
+    </div>
+    <hr class="subImg">
+    <!---->
+    <!--Educacion-->
+    <div id="Educacion" class="divPrincipal" >
+        <h2 style="text-align: center; color: white;">Educación<hr class="sub" ></h2>
+        <img class="imgAlignR" src="/imagenes/ConalepLogo.jpg">
+        <h2 style="color: white;">Perfil profecional</h2>
+        <p style="text-align: center,left;  color: white;">
+            Carrera Profesional Técnico - Bachiller en Informática ternimada en
+            El Colegio Nacional de Educación Profesional Técnica plantel Gustavo A. Madero II(CONALEP GAM-II)... 
+            <br>
+        <button onclick="vermas('mas');" id="mas"> Leer Mas</button>
+        </p>
+        <p  id="desplegar" style="display:none; text-align: center,left; color: white;" >
+            Donde desempeñe funciones técnico operativas inherentes al desarrollo e implantación de 
+            soluciones de tecnologías de información basados en la automatización, organización, 
+            codificación, recuperación de la información y optimización de recursos informáticos a fin de 
+            impulsar la competitividad, las buenas prácticas y toma de decisiones en organizaciones o 
+            empresas de cualquier ámbito.
+            <br>
+        <button onclick="vermas('menos');" id="menos"> Leer Menos</button>
+        </p>
+    </div>
+    <hr class="subImg">
+    <!--******-->
+    <!--Conocimientos-->
+    <div id="Conocimientos" class="divPrincipal">
+        <h2 style="text-align: center; color: white;">Conocimientos<hr class="sub" ></h2>
+    </div>
+    <div class="container">
+        <div class="box1">
+            <a>          
+                <h2>Administracion</h2>
+                <p>
+                    Habilidades en la administracion de recursos para la realizacion de algun proyecto de software,
+                    como la creacion de un anteproyecto y generar documentos como URS(User Requirement Specification) y 
+                    SRS(System Sequirement Specification).
+                </p>
+            </a>
+        </div>
+        <div class="box2">
+            <a>
+                <h2>Creacion de videojuegos</h2>
+                <p>
+                    Manejo del motor de desarrollo UNITY, para la creacion de videojuegos multiplataforma, tanto desarrolos 2D y 3D.
+                </p>
+            </a>
+        </div>
+        <div class="box3">
+            <a>
+                <h2>Expereiencia</h2>
+                <p>
+                    Experiencia con conocimiento basico sobre React, mediapipe, python, uso y manejo de js, css y html.
+                </p>
+            </a>
+        </div>
+        <div class="box4">
+            <a>
+                <h2>Proyectos</h2>
+                <p>
+                    Creacion de pagina web, Juego para plataforma android, app creada en appsheet y
+                    neurona detectora de escritura de una letra en especifico
+                </p>
+            </a>
+        </div>
+    </div>
+    <hr class="subImg">
+<!--******-->
+<!-- Mi trabajo -->
+    <div id="MiTrabajo"class="divPrincipal">
+        <h2 style="text-align: center; color: white;">Mi trabajo<hr class="sub" ></h2>
+        <p style="color: white; text-align: center;">Mi trabajo se divide en diferentes areas, 
+            sin embargo se consideran las mas importantes.</p>
+    </div>
+    <div class="topnav"><b>
+        <a href="#">Servicio Social</a>
+        <a href="#">Tesis</a>
+        <a href="#">Maestria</a>
+        <a href="#">Becario</a>
+        <a href="#">Articulos</a>
+    </b>
+    </div>
+    <div class="containerMt">
+        <div class="boxMT">
+            <img  src="/imagenes/appApsheet.jpg" alt="app apsheet" >
+        </div>
+        <div class="boxMT1">
+            <img src="/imagenes/logoMainbit.jpg" alt="empresa mainbit" >
+        </div>
+        <div class="boxMT">
+            <img src="/imagenes/NeuronaMCP.jpg" alt="">
+        </div>
+        <div class="boxMT1">
+            <img src="/imagenes/ReconocimientoEmocion.png" alt="">
+        </div>
+        <div class="boxMT">
+            <img src="/imagenes/WhatsApp Image 2021-11-04 at 11.34.07 AM (1).jpeg" alt="">
+        </div>
+        <div class="boxMT1">
+            <img src="/imagenes/WhatsApp Image 2021-11-04 at 11.34.07 AM (3).jpeg" alt="">
+        </div> 
+    </div>
+    <hr class="subImg">
+  <!--******-->
+    <!-- formulario -->  
+    <div id="Contactame" class="divPrincipal">
+        <h2 style="text-align: center; color: white;">Contactame<hr class="sub" ></h2>
+        <p style="color: white; text-align: center;">Si tienes alguna duda favor de contactarme y responder todas tus dudas.</p>
+    </div>
+    
+    <div>
+        <form>
+            <input name="nombre" type="text"placeholder="Tu Nombre..." required />
+            <input name="correo" type="email"placeholder="Tu email..." required/><br><br>
+            <input name="asunto" type="text"placeholder="Asunto..." required /><br><br>
+            <textarea name="mensaje" placeholder="Tu Mensaje.." required></textarea><br><br>
+            <button style="text-align: center;">Enviar</button>
+        </form>
+    </div>
+    <!--Scripts-->
+    <script src="/scripts/script.js"></script>
+</body>
+</html>
