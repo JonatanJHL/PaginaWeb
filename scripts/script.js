@@ -28,17 +28,39 @@ function alertProximamente(){
 }
 /*Fin alerta para red proxima*/
 /* Agregar contenido pelicula*/
+
+let ListaPeliculas=["Puñales por la espalda","Fragmentado","Dejame salir","Infity War","Shutter Island"];
+let ListaCalificacion=[8,9,9,9,10];
+let ListaURL=["",
+    "",
+    "",
+    "",
+    ""];
 function Agrega() {
     var titulo = prompt("Ingresa el nombre de la pelicula: ");
     var calif = prompt("Ingresa calificacion de pelicula: ");
     var link = prompt("URL de portada de pelicula: ");
-    if (titulo == null && calif == null && link == null) {
+    if (titulo == null || calif == null || link == null) {
         alert("te falto llenar un dato");
     }
     else{
         alert("Agregado");
+        ListaPeliculas.push(titulo);
+        ListaCalificacion.push(calif);
+        ListaURL.push(link);
     }
   }
+function Elimina() {
+    ListaPeliculas.pop();
+    ListaCalificacion.pop();
+    ListaURL.pop();
+}
+/*escribir datos*/
+for (var valor of ListaPeliculas) {
+    var foo =  '<li>'+ListaPeliculas+'</li>' + '<li>'+ListaCalificacion+'</li>'
+    document.getElementById("foo").innerHTML = foo;
+  }
+  
 /* */
 
 
