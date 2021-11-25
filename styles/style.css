@@ -172,7 +172,7 @@ button:hover {
 }
 .box1 {
     background-color:#333;
-    background-image: url("/imagenes/first-white-icon.png") ;
+    background-image: url("https://jonatanjhl.github.io/Practica_Final/imagenes/first-white-icon.png");
     background-repeat:no-repeat;
     color:#fff;
     display:flex;
@@ -187,7 +187,7 @@ button:hover {
     background-position: 10% 10%; 
 }
 .box1:hover {
-    background-image: url("/imagenes/first-main-icon.png") ;
+    background-image: url("https://jonatanjhl.github.io/Practica_Final/imagenes/first-main-icon.png");
     background-repeat:no-repeat;
     background-color:white;
     color:black;
@@ -196,7 +196,7 @@ button:hover {
 }
 .box2 {
     background-color:#333;
-    background-image: url("/imagenes/second-white-icon.png") ;
+    background-image: url("https://jonatanjhl.github.io/Practica_Final/imagenes/second-white-icon.png");
     background-repeat:no-repeat;
     color:#fff;
     display:flex;
@@ -211,7 +211,7 @@ button:hover {
     background-position: 10% 10%; 
 }
 .box2:hover {
-    background-image: url("/imagenes/second-main-icon.png") ;
+    background-image: url("https://jonatanjhl.github.io/Practica_Final/imagenes/second-main-icon.png");
     background-repeat:no-repeat;
     background-color:white;
     color:black;
@@ -220,7 +220,7 @@ button:hover {
 }
 .box3 {
     background-color:#333;
-    background-image: url("/imagenes/third-white-icon.png") ;
+    background-image: url("https://jonatanjhl.github.io/Practica_Final/imagenes/third-white-icon.png");
     background-repeat:no-repeat;
     color:#fff;
     display:flex;
@@ -235,7 +235,7 @@ button:hover {
     background-position: 10% 10%; 
 }
 .box3:hover {
-    background-image: url("/imagenes/third-main-icon.png") ;
+    background-image: url("https://jonatanjhl.github.io/Practica_Final/imagenes/third-main-icon.png");
     background-repeat:no-repeat;
     background-color:white;
     color:black;
@@ -244,7 +244,7 @@ button:hover {
 }
 .box4 {
     background-color:#333;
-    background-image: url("/imagenes/fourth-white-icon.png") ;
+    background-image: url("https://jonatanjhl.github.io/Practica_Final/imagenes/fourth-white-icon.png");
     background-repeat:no-repeat;
     color:#fff;
     display:flex;
@@ -259,7 +259,7 @@ button:hover {
     background-position: 10% 10%; 
 }
 .box4:hover {
-    background-image: url("/imagenes/fourth-main-icon.png") ;
+    background-image: url("https://jonatanjhl.github.io/Practica_Final/imagenes/fourth-main-icon.png");
     background-repeat:no-repeat;
     background-color:white;
     color:black;
