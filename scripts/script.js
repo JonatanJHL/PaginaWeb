@@ -60,7 +60,7 @@ for (var valor of ListaPeliculas) {
     <tr><td></td><td></td></tr>
     var foo =  '<tr><td>'+ListaPeliculas+'</td><td>' +ListaCalificacion+ '</td></tr>';
     document.getElementById("foo").innerHTML = foo;
-  }
+}
   
 /* */
 
