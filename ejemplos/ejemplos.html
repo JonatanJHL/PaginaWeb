@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--**CSS**-->
+    <link rel="stylesheet" type="text/css" href="/ejemplos/stylesPeli.css">
+    <!--**-->
+    <title>Peliculas</title>
+</head>
+<body onload="agregaTabla();">
+    <!--****-->
+    <div class="containericono">
+        <div>
+            <img class="add" src="/imagenes/Add.png" alt="agregar" onclick="agregarFila()">
+        </div>
+        <div>
+            <img class="add" src="/imagenes/delete.png" alt="eleminar" onclick="eliminarFila()">
+        </div>
+    </div>
+    <!---->
+    <div class="containerpeli" >
+        <div class="box1peli">
+            <table id="output1">
+                <thead >
+                    <tr>
+                        <th>Titulo</th>
+                        <th>calificación</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="box2peli">
+            <table id="hovertext1">
+                <thead>
+                    <th>
+                        Portada
+                    </th>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>   
+    </div>
+    <!--**JS**-->
+    <script src="/ejemplos/scriptsPeli.js"></script>
+    <!--****-->
+</body>
+</html>
