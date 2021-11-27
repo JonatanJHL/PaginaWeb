@@ -5,10 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://jonatanjhl.github.io/Practica_Final/styles/style.css">
+    <!--**CSS**-->
+    <link rel="stylesheet" type="text/css" href="/styles/stylesPeli.css">
+    <!--**-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Peliculas</title>
 </head>
-<body>
+<body onload="agregaTabla();">
     <!-- barra menú lateral izquierda-->
     <ul class="meuVertical">
         <!--img avatar-->
@@ -46,7 +49,7 @@
     <div class="containericono">
         <div>
 
-    <img class="add" src="https://jonatanjhl.github.io/Practica_Final/imagenes/Add.png" alt="agregar" onclick="Agrega()">
+            <img class="add" src="https://jonatanjhl.github.io/Practica_Final/imagenes/Add.png" alt="agregar" onload="genera_tabla()">
         </div>
         <div>
             <img class="add" src="https://jonatanjhl.github.io/Practica_Final/imagenes/delete.png" alt="eleminar">
@@ -54,17 +57,43 @@
     </div>
     <br>
     <!--tabla-->
-    <div class="containerpeli">
+    <!--****-->
+    <div class="containericono">
+        <div>
+            <img class="add" src="/imagenes/Add.png" alt="agregar" onclick="agregarFila()">
+        </div>
+        <div>
+            <img class="add" src="/imagenes/delete.png" alt="eleminar" onclick="eliminarFila()">
+        </div>
+    </div>
+    <!---->
+    <div class="containerpeli" >
         <div class="box1peli">
-            <table id="foo">
-                <tr><td>Titulo </td>Calificaicón<td></td><td>Imagen</td></tr>
-
+            <table id="output1">
+                <thead >
+                    <tr>
+                        <th>Titulo</th>
+                        <th>calificación</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
             </table>
         </div>
         <div class="box2peli">
-        </div>
+            <table id="hovertext1">
+                <thead>
+                    <th>
+                        Portada
+                    </th>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>   
     </div>
+    <!--**JS**-->
+    <script src="/scripts/scriptPeli.js"></script>
+    <!--****-->
     <!--Scripts-->
-    <script src="https://jonatanjhl.github.io/Practica_Final/style.css"></script>
+    <script src="https://jonatanjhl.github.io/Practica_Final/scripts/style.css"></script>
 </body>
 </html>
