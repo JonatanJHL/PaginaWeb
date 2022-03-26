@@ -282,47 +282,26 @@ button:hover {
     font-size: 17px;
 }
 .containerMt{
-    box-sizing: border-box;
-    margin-bottom: 10px;
-    margin-top: 8px;
-    margin-left:25%;
-    padding-top: 5px;
-    padding-bottom: 2%;
-    display:grid ;
-    grid-template-columns: 400px 400px;
-    grid-template-rows: 250px 300px 200px;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+  display: flex;
+  margin-left: 200px;
 } 
-.boxMT {
-    display:flex;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-left: 10%;
-    margin-right: 0%;
-    padding-top: 5%;
-    padding-left: 30%;
-    padding-bottom: 0%;
-  }
-.boxMT img{
-    padding-top: 1px;
-    padding-bottom: 5%; 
-    border-bottom: gray 2px solid;
+.boxMT{
+  margin: 0%;
+  margin-left: 10%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding: 0%;
 }
-.boxMT1 {
-    display:flex;
-    margin-bottom: 0px;
-    margin-top: 10px;
-    margin-left: 15%;
-    margin-right: 5%;
-    padding-top: 5%;
-    padding-left: 30%;
-    padding-bottom: 0%;
-  }
-.boxMT1 img{
-    padding-top: 1px;
-    padding-bottom: 5%; 
-    border-bottom: gray 2px solid;
+figcaption{
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  background-color: rgb(71, 69, 69);
+  border: 2px solid rgb(71, 69, 69);
+  margin: 0%;
+  padding: 0%;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 /*******/
 /*estilo Contacto*/
