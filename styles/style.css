@@ -9,6 +9,12 @@ body {
   margin-right: 50px;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
+/*Elemto responsive*/
+@media@media screen and (max-width: 480px) {
+  body {
+    width: calc(100% - 80px);
+  }
+}
 /*estilo para fondo menu vertical*/
 .meuVertical {
   list-style-type: none;
