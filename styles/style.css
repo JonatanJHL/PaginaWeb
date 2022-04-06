@@ -104,6 +104,12 @@ body {
     padding:1px 16px;
     text-align: justify;
 }
+@media@media screen and (max-width: 480px) {
+  .divPrincipal {
+    width: calc(100% - 80px);
+     margin: 50px;
+  }
+}
 /*quitando margenes de hr*/
 hr {
     margin: 0%;
