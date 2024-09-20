@@ -1,185 +1,188 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio-JJHL</title>
+    
+    <!-- Estilos CSS -->
     <link rel="stylesheet" type="text/css" href="https://jonatanjhl.github.io/PaginaWeb/styles/style.css">
     
-<!--iconos de menu vertical-->
+    <!-- Iconos del menú lateral (FontAwesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!---->
+    
+    <!-- Estilos adicionales internos -->
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .perfilTexto {
+            text-align: center;
+            color: #f4b41a;
+        }
+
+        .divPrincipal h2 {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .divPrincipal p {
+            text-align: center;
+            padding: 10px;
+            color: white;
+        }
+
+        .imgAlignL, .imgAlignR {
+            max-width: 100%;
+            height: auto;
+            margin: 20px;
+        }
+
+        /* Botones personalizados */
+        button {
+            background-color: #f4b41a;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #d49415;
+        }
+
+        /* Mejora de las cajas de conocimiento y proyectos */
+        .container .box1, .box2, .box3, .box4 {
+            background-color: #333;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container .box1:hover, .box2:hover, .box3:hover, .box4:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .boxMT {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .divPerfil, .container, .boxMT {
+                display: block;
+            }
+
+            .imgAlignL, .imgAlignR {
+                margin: 10px auto;
+                width: 80%;
+            }
+
+            .perfilTexto {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- barra menú lateral izquierda-->
-        <ul class="meuVertical">
-            <!--img avatar-->
-            <div class="divPerfil"><a href="https://jonatanjhl.github.io/PaginaWeb">
-            <img class="perfil" alt="Avatar" src="https://jonatanjhl.github.io/PaginaWeb/imagenes/perfilImg.jpg"></a>
+
+    <!-- Barra lateral de menú -->
+    <ul class="meuVertical">
+        <div class="divPerfil">
+            <a href="https://jonatanjhl.github.io/PaginaWeb">
+                <img class="perfil" alt="Avatar" src="https://jonatanjhl.github.io/PaginaWeb/imagenes/perfilImg.jpg">
+            </a>
             <h2 class="perfilTexto">Jonatan Joaquin Hidalgo Ledesma</h2>
             <h4 class="perfilTexto"><i>Ingeniería en Software</i></h4>
-            </div>
-            <!--links menu vertical-->
-            <li><a class="linkMenu" href="#AcercaDeMi">Acerca de mi</a></li>
-            <li><a class="linkMenu" href="#Educacion">Educación</a></lis>
-            <li><a class="linkMenu" href="#Conocimientos">Conocimiento</a></lis>
-            <li><a class="linkMenu" href="#MiTrabajo">Mis Experiencias</a></li>
-            <!--<li><a class="linkMenu" href="https://jonatanjhl.github.io/PaginaWeb/peliculas.html">peliculas</a></li>-->
-            <!--lista redes sociales-->
-            <div class="contenedor">
+        </div>
+        <!-- Links del menú -->
+        <li><a class="linkMenu" href="#AcercaDeMi">Acerca de mí</a></li>
+        <li><a class="linkMenu" href="#Educacion">Educación</a></li>
+        <li><a class="linkMenu" href="#Conocimientos">Conocimientos</a></li>
+        <li><a class="linkMenu" href="#MiTrabajo">Experiencias</a></li>
+        
+        <!-- Redes sociales -->
+        <div class="contenedor">
             <ul class="luIcon">
-                <li class="liIcon"> <a class="linkIcon" href="https://www.facebook.com/jony.new.3/"><i class="fa fa-facebook-official"style="font-size:20px"></i></a> </li>
-                <li class="liIcon"> <a class="linkIcon" href="#" onclick="alertProximamente()"><i class="fa fa-twitter" style="font-size:20px"></i></a> </li>
-                <li class="liIcon"> <a class="linkIcon" href="https://www.linkedin.com/in/jonatan-joaquin-hidalgo-ledesma?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fa fa-linkedin" style="font-size:20px"></i></a> </li>
+                <li class="liIcon"><a class="linkIcon" href="https://www.facebook.com/jony.new.3/"><i class="fa fa-facebook-official" style="font-size:20px"></i></a></li>
+                <li class="liIcon"><a class="linkIcon" href="#" onclick="alertProximamente()"><i class="fa fa-twitter" style="font-size:20px"></i></a></li>
+                <li class="liIcon"><a class="linkIcon" href="https://www.linkedin.com/in/jonatan-joaquin-hidalgo-ledesma?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fa fa-linkedin" style="font-size:20px"></i></a></li>
             </ul>
-            </div>
-        </ul>
-    <!--******-->
-<!--***contenido***-->
-    <!--Acerca de mi-->
-        <div id="AcercaDeMi" class="divPrincipal">
-            <h2 style="text-align: center; color: white;">Acerca de mi<hr class="sub" ></h2>
-            <p style="text-align: center; color: white; padding-bottom: 50px;">
-                Hola esta es mi pagina web, donde voy a hablar un poco de mi, mis conocimientos y mis trabajos realizados
-            </p>
-            <img class="imgAlignL" src="https://jonatanjhl.github.io/PaginaWeb/imagenes/logoUACM.jpg">
-            <h2 style="color: white;">Perfil </h2>
-            <p style="text-align: center,left;  color: white;">
-                Soy una persona que no le gusta dejar trabajos a medias,
-                me obseciona el encontrar soluciones tecnologicas a los problemas, asi como resolver problemas de software 
-                de la manera mas rapida y facil de usar por el usuario...
-                <br>
-            <button onclick="vermasPerfil('masPerfil')" id="masPerfil"> Leer Mas</button>
-            </p>
-            <p  id="desplegarPerfil" style="display:none; text-align: center,left; color: white;" >
-                Con buenas habilididades para socializar con diversos grupos de gente, asi como la facilidad de aprender nuevas tareas a realizar            
-                <br>
-            <button onclick="vermasPerfil('menosPerfil')" id="menosPerfil"> Leer Menos</button>
-            </p>
         </div>
-        <hr class="subImg">
-    <!---->
-    <!--Educacion-->
-        <div id="Educacion" class="divPrincipal" >
-            <h2 style="text-align: center; color: white;">Educación<hr class="sub" ></h2>
-            <img class="imgAlignR" src="https://jonatanjhl.github.io/PaginaWeb/imagenes/ConalepLogo.jpg">
-            <h2 style="color: white;">Perfil profecional</h2>
-            <p style="text-align: center,left;  color: white;">
-                Carrera Profesional Técnico - Bachiller en Informática ternimada en
-                El Colegio Nacional de Educación Profesional Técnica plantel Gustavo A. Madero II(CONALEP GAM-II)... 
-                <br>
-            <button onclick="vermas('mas')" id="mas"> Leer Mas</button>
-            </p>
-            <p  id="desplegar" style="display:none; text-align: center,left; color: white;" >
-                Donde desempeñe funciones técnico operativas inherentes al desarrollo e implantación de 
-                soluciones de tecnologías de información basados en la automatización, organización, 
-                codificación, recuperación de la información y optimización de recursos informáticos a fin de 
-                impulsar la competitividad, las buenas prácticas y toma de decisiones en organizaciones o 
-                empresas de cualquier ámbito.
-                <br>
-            <button onclick="vermas('menos')" id="menos"> Leer Menos</button>
-            </p>
-        </div>
-        <hr class="subImg">
-    <!--******-->
-    <!--Conocimientos-->
-        <div id="Conocimientos" class="divPrincipal">
-            <h2 style="text-align: center; color: white;">Conocimientos<hr class="sub" ></h2>
-        </div>
+    </ul>
+
+    <!-- Contenido principal -->
+    <div id="AcercaDeMi" class="divPrincipal">
+        <h2>Acerca de mí</h2>
+        <p>Hola, esta es mi página web, donde comparto mis conocimientos y trabajos realizados en ingeniería de software.</p>
+        <img class="imgAlignL" src="https://jonatanjhl.github.io/PaginaWeb/imagenes/logoUACM.jpg" alt="Logo UACM">
+        <p>Soy una persona dedicada a encontrar soluciones tecnológicas rápidas y eficientes.</p>
+        <button onclick="vermasPerfil('masPerfil')" id="masPerfil">Leer más</button>
+        <p id="desplegarPerfil" style="display:none;">Tengo habilidades para socializar y aprender nuevas tecnologías rápidamente.</p>
+    </div>
+
+    <div id="Educacion" class="divPrincipal">
+        <h2>Educación</h2>
+        <img class="imgAlignR" src="https://jonatanjhl.github.io/PaginaWeb/imagenes/ConalepLogo.jpg" alt="Logo CONALEP">
+        <p>Carrera Técnica en Informática, CONALEP GAM-II.</p>
+        <button onclick="vermas('mas')" id="mas">Leer más</button>
+        <p id="desplegar" style="display:none;">Soluciones tecnológicas, automatización, codificación y optimización de recursos informáticos.</p>
+    </div>
+
+    <!-- Conocimientos -->
+    <div id="Conocimientos" class="divPrincipal">
+        <h2>Conocimientos</h2>
         <div class="container">
             <div class="box1">
-                <a>          
-                    <h2>Administracion</h2>
-                    <p>
-                        Habilidades en la administracion de recursos para la realizacion de algun proyecto de software,
-                        como la creacion de un anteproyecto y generar documentos como URS(User Requirement Specification) y 
-                        SRS(System Sequirement Specification).
-                    </p>
-                </a>
+                <h2>Administración</h2>
+                <p>Gestión de proyectos y documentación técnica (URS, SRS).</p>
             </div>
             <div class="box2">
-                <a>
-                    <h2>Creacion de videojuegos</h2>
-                    <p>
-                        Manejo del motor de desarrollo UNITY, para la creacion de videojuegos multiplataforma, tanto desarrolos 2D y 3D.
-                    </p>
-                </a>
+                <h2>Videojuegos</h2>
+                <p>Desarrollo en Unity para 2D y 3D.</p>
             </div>
             <div class="box3">
-                <a>
-                    <h2>Expereiencia</h2>
-                    <p>
-                        Experiencia con conocimiento basico sobre React, mediapipe, python, uso y manejo de js, css y html.
-                    </p>
-                </a>
+                <h2>Experiencia</h2>
+                <p>Conocimiento en React, Mediapipe, Python, JS, CSS y HTML.</p>
             </div>
             <div class="box4">
-                <a>
-                    <h2>Proyectos</h2>
-                    <p>
-                        Creacion de pagina web, Juego para plataforma android, app creada en appsheet y
-                        neurona detectora de escritura de una letra en especifico
-                    </p>
-                </a>
+                <h2>Proyectos</h2>
+                <p>Creación de páginas web, apps y videojuegos móviles.</p>
             </div>
         </div>
-        <hr class="subImg">
-    <!--******-->
-    <!-- Mi trabajo -->
-        <div id="MiTrabajo"class="divPrincipal">
-            <h2 style="text-align: center; color: white;">Mi Experiencia<hr class="sub" ></h2>
-            <p style="color: white; text-align: center;">Mi trabajo se divide en diferentes areas, 
-                sin embargo se consideran las mas importantes.</p>
-        </div>
-        </div>
+    </div>
+
+    <!-- Mi Trabajo -->
+    <div id="MiTrabajo" class="divPrincipal">
+        <h2>Experiencias</h2>
+        <p>Mi trabajo abarca diversas áreas importantes de desarrollo de software.</p>
         <div class="containerMt">
             <div class="boxMT">
-                <picture>
-                    <source media="(min-width:650px)" srcset="https://jonatanjhl.github.io/PaginaWeb/imagenes/appApsheet.jpg 5x">
-                    <source media="(min-width:465px)" srcset="https://jonatanjhl.github.io/PaginaWeb/imagenes/appApsheet.jpg 4x">
-                    <img src="https://jonatanjhl.github.io/PaginaWeb/imagenes/appApsheet.jpg" alt="Flowers" style="width:230px; height: 300px;">
-                    <figcaption>Uso de la plataforma "AppSheet".</figcaption>
-                </picture>
-                <picture >
-                    <source media="(min-width:650px)" srcset="https://jonatanjhl.github.io/PaginaWeb/imagenes/logoMainbit.jpg 5x">
-                    <source media="(min-width:465px)" srcset="https://jonatanjhl.github.io/PaginaWeb/imagenes/logoMainbit.jpg 4x">
-                    <img src="https://jonatanjhl.github.io/PaginaWeb/imagenes/logoMainbit.jpg" alt="Flowers" style="width: 230px; height: 300px; margin-top: 15px;">
-                    <figcaption>Trabajo como tecnico en informatica para empresas como Mainbit.</figcaption>
-                </picture>
+                <img src="https://jonatanjhl.github.io/PaginaWeb/imagenes/appApsheet.jpg" alt="AppSheet" style="width:230px;">
+                <figcaption>Uso de la plataforma AppSheet.</figcaption>
             </div>
             <div class="boxMT">
-                <picture>
-                    <source media="(min-width:650px)" srcset="https://jonatanjhl.github.io/PaginaWeb/imagenes/NeuronaMCP.jpg 5x">
-                    <source media="(min-width:465px)" srcset="https://jonatanjhl.github.io/PaginaWeb/imagenes/NeuronaMCP.jpg 4x">
-                    <img src="https://jonatanjhl.github.io/PaginaWeb/imagenes/NeuronaMCP.jpg" alt="Flowers" style="width: 230px; height: 300px;">
-                    <figcaption>Creacion de programa sencillo de Neurona MCP.</figcaption>
-                </picture>
-                <picture >
-                    <source media="(min-width:650px)" srcset="https://jonatanjhl.github.io/PaginaWeb/imagenes/ReconocimientoEmocion.png 5x">
-                    <source media="(min-width:465px)" srcset="https://jonatanjhl.github.io/PaginaWeb/imagenes/ReconocimientoEmocion.png 4x">
-                    <img src="https://jonatanjhl.github.io/PaginaWeb/imagenes/ReconocimientoEmocion.png" alt="Flowers" style="width: 230px; height: 300px; margin-top: 15px;">
-                    <figcaption>Proyecto sencillo de reconocimento de emociones.</figcaption>
-                </picture>
+                <img src="https://jonatanjhl.github.io/PaginaWeb/imagenes/logoMainbit.jpg" alt="Mainbit" style="width:230px;">
+                <figcaption>Técnico en informática en Mainbit.</figcaption>
             </div>
-            <div class="boxMT">
-                <picture >
-                    <source media="(min-width:650px)" srcset="https://jonatanjhl.github.io/PaginaWeb/imagenes/WhatsAppImage2021-11-04at11.34.07AM(1).jpeg 2x">
-                    <source media="(min-width:465px)" srcset="https://jonatanjhl.github.io/PaginaWeb/imagenes/WhatsAppImage2021-11-04at11.34.07AM(1).jpeg 4x">
-                    <img src="https://jonatanjhl.github.io/PaginaWeb/imagenes/WhatsAppImage2021-11-04at11.34.07AM(1).jpeg" alt="Flowers" style="width: 280px; height: 300px;">
-                    <figcaption>Proyecto personal creacion de juego plataforma para movil.</figcaption>
-                </picture>
-                <picture >
-                    <source media="(min-width:650px)" srcset="https://jonatanjhl.github.io/PaginaWeb/imagenes/WhatsAppImage2021-11-04at11.34.07AM(3).jpeg 2x">
-                    <source media="(min-width:465px)" srcset="https://jonatanjhl.github.io/PaginaWeb/imagenes/WhatsAppImage2021-11-04at11.34.07AM(3).jpeg 4x">
-                    <img src="https://jonatanjhl.github.io/PaginaWeb/imagenes/WhatsAppImage2021-11-04at11.34.07AM(3).jpeg" alt="Flowers" style="width: 280px; height: 300px; margin-top: 15px;">
-                    <figcaption>con más de 15 niveles.</figcaption>
-                </picture>
-            </div> 
         </div>
-        <hr class="subImg">
-    <!--******-->
-    <!--Scripts-->
-        <script src="https://jonatanjhl.github.io/PaginaWeb/scripts/script.js"></script>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://jonatanjhl.github.io/PaginaWeb/scripts/script.js"></script>
 </body>
 </html>
