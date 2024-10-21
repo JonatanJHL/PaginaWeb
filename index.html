@@ -144,7 +144,7 @@ counters.forEach(counter => {
 <body>
     <header>
         <nav class="navbar">
-            <h1>Jonatan - Desarrollador de Software</h1>
+            <h1>Jonatan Hidalgo Ledesma - Ing. de Software</h1>
             <ul>
                 <li><a href="#experiencia">Experiencia</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -157,17 +157,17 @@ counters.forEach(counter => {
     <div class="container">
         <!-- Foto de perfil y sidebar -->
         <aside class="sidebar">
-            <img src="https://via.placeholder.com/150" alt="Foto de perfil">
+            <img src=" https://github.com/JonatanJHL/PaginaWeb/blob/main/imagenes%2FperfilImg.jpg" alt="Foto de perfil">
             <h2>Jonatan JHL</h2>
-            <p>Ingeniero de Software con 5 años de experiencia desarrollando aplicaciones web modernas.</p>
+            <p>Ingeniero de Software con 3 años de experiencia desarrollando aplicaciones web modernas.</p>
 
             <section id="skills">
                 <h3>Habilidades</h3>
                 <ul>
                     <li>JavaScript: <span class="skill-counter" data-target="95">0</span>%</li>
-                    <li>PHP: <span class="skill-counter" data-target="90">0</span>%</li>
-                    <li>HTML/CSS: <span class="skill-counter" data-target="85">0</span>%</li>
-                    <li>SQL: <span class="skill-counter" data-target="80">0</span>%</li>
+                    <li>PHP: <span class="skill-counter" data-target="95">0</span>%</li>
+                    <li>HTML/CSS: <span class="skill-counter" data-target="100">0</span>%</li>
+                    <li>SQL: <span class="skill-counter" data-target="100">0</span>%</li>
                 </ul>
             </section>
         </aside>
@@ -175,4 +175,58 @@ counters.forEach(counter => {
         <!-- Contenido principal -->
         <main class="main-content">
             <section id="experiencia">
-                <h2
+                <h2>Experiencia Profesional</h2>
+                <p>Aquí puedes detallar tu experiencia como ingeniero de software, trabajos realizados, proyectos destacados, y más.</p>
+                <ul>
+                    <li>Desarrollo de aplicaciones web con HTML, CSS, y JS.</li>
+                    <li>Integración de APIs en proyectos empresariales.</li>
+                    <li>Optimización de rendimiento en aplicaciones de alto tráfico.</li>
+                </ul>
+            </section>
+
+            <section id="js-avanzado">
+                <h2>JavaScript Avanzado</h2>
+                <p>Ejemplos de uso de clases y funciones avanzadas en JavaScript:</p>
+                <h3>Ejemplo de Clases</h3>
+                <pre><code>
+class Usuario {
+    constructor(nombre, rol) {
+        this.nombre = nombre;
+        this.rol = rol;
+    }
+
+    saludar() {
+        console.log(`Hola, soy ${this.nombre} y mi rol es ${this.rol}`);
+    }
+}
+
+const usuario1 = new Usuario('Jonatan', 'Desarrollador');
+usuario1.saludar();
+                </code></pre>
+
+                <h3>Funciones Asíncronas</h3>
+                <pre><code>
+async function obtenerDatos() {
+    try {
+        let respuesta = await fetch('https://jsonplaceholder.typicode.com/posts');
+        let datos = await respuesta.json();
+        console.log(datos);
+    } catch (error) {
+        console.error('Error al obtener datos:', error);
+    }
+}
+
+obtenerDatos();
+                </code></pre>
+            </section>
+        </main>
+    </div>
+
+    <footer id="contacto">
+        <p>Contacto: <a href="mailto:jonatan@example.com">jonatan@example.com</a></p>
+        <p><a href="https://github.com/tuusuario">GitHub</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html
