@@ -1,188 +1,76 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio-JJHL</title>
-    
-    <!-- Estilos CSS -->
-    <link rel="stylesheet" type="text/css" href="https://jonatanjhl.github.io/PaginaWeb/styles/style.css">
-    
-    <!-- Iconos del menú lateral (FontAwesome) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <!-- Estilos adicionales internos -->
-    <style>
-        body {
-            background-color: #1a1a1a;
-            color: white;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        .perfilTexto {
-            text-align: center;
-            color: #f4b41a;
-        }
-
-        .divPrincipal h2 {
-            text-align: center;
-            color: white;
-            padding: 20px;
-            margin-top: 30px;
-        }
-
-        .divPrincipal p {
-            text-align: center;
-            padding: 10px;
-            color: white;
-        }
-
-        .imgAlignL, .imgAlignR {
-            max-width: 100%;
-            height: auto;
-            margin: 20px;
-        }
-
-        /* Botones personalizados */
-        button {
-            background-color: #f4b41a;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #d49415;
-        }
-
-        /* Mejora de las cajas de conocimiento y proyectos */
-        .container .box1, .box2, .box3, .box4 {
-            background-color: #333;
-            padding: 20px;
-            margin: 10px;
-            border-radius: 10px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .container .box1:hover, .box2:hover, .box3:hover, .box4:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .boxMT {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        /* Responsividad */
-        @media (max-width: 768px) {
-            .divPerfil, .container, .boxMT {
-                display: block;
-            }
-
-            .imgAlignL, .imgAlignR {
-                margin: 10px auto;
-                width: 80%;
-            }
-
-            .perfilTexto {
-                font-size: 1.2rem;
-            }
-        }
-    </style>
+    <title>Mi Experiencia en Desarrollo</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <!-- Barra lateral de menú -->
-    <ul class="meuVertical">
-        <div class="divPerfil">
-            <a href="https://jonatanjhl.github.io/PaginaWeb">
-                <img class="perfil" alt="Avatar" src="https://jonatanjhl.github.io/PaginaWeb/imagenes/perfilImg.jpg">
-            </a>
-            <h2 class="perfilTexto">Jonatan Joaquin Hidalgo Ledesma</h2>
-            <h4 class="perfilTexto"><i>Ingeniería en Software</i></h4>
-        </div>
-        <!-- Links del menú -->
-        <li><a class="linkMenu" href="#AcercaDeMi">Acerca de mí</a></li>
-        <li><a class="linkMenu" href="#Educacion">Educación</a></li>
-        <li><a class="linkMenu" href="#Conocimientos">Conocimientos</a></li>
-        <li><a class="linkMenu" href="#MiTrabajo">Experiencias</a></li>
-        
-        <!-- Redes sociales -->
-        <div class="contenedor">
-            <ul class="luIcon">
-                <li class="liIcon"><a class="linkIcon" href="https://www.facebook.com/jony.new.3/"><i class="fa fa-facebook-official" style="font-size:20px"></i></a></li>
-                <li class="liIcon"><a class="linkIcon" href="#" onclick="alertProximamente()"><i class="fa fa-twitter" style="font-size:20px"></i></a></li>
-                <li class="liIcon"><a class="linkIcon" href="https://www.linkedin.com/in/jonatan-joaquin-hidalgo-ledesma?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fa fa-linkedin" style="font-size:20px"></i></a></li>
+    <header>
+        <h1>Mi Experiencia en Desarrollo</h1>
+        <nav>
+            <ul>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#js-avanzado">JS Avanzado</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
-        </div>
-    </ul>
+        </nav>
+    </header>
 
-    <!-- Contenido principal -->
-    <div id="AcercaDeMi" class="divPrincipal">
-        <h2>Acerca de mí</h2>
-        <p>Hola, esta es mi página web, donde comparto mis conocimientos y trabajos realizados en ingeniería de software.</p>
-        <img class="imgAlignL" src="https://jonatanjhl.github.io/PaginaWeb/imagenes/logoUACM.jpg" alt="Logo UACM">
-        <p>Soy una persona dedicada a encontrar soluciones tecnológicas rápidas y eficientes.</p>
-        <button onclick="vermasPerfil('masPerfil')" id="masPerfil">Leer más</button>
-        <p id="desplegarPerfil" style="display:none;">Tengo habilidades para socializar y aprender nuevas tecnologías rápidamente.</p>
-    </div>
+    <section id="experiencia">
+        <h2>Experiencia Profesional</h2>
+        <p>Aquí puedes detallar tu experiencia como ingeniero de software, trabajos realizados, proyectos destacados, y más.</p>
+        <ul>
+            <li>Desarrollo de aplicaciones web con HTML, CSS, y JS.</li>
+            <li>Integración de APIs en proyectos empresariales.</li>
+            <li>Optimización de rendimiento en aplicaciones de alto tráfico.</li>
+            <!-- Añade más puntos -->
+        </ul>
+    </section>
 
-    <div id="Educacion" class="divPrincipal">
-        <h2>Educación</h2>
-        <img class="imgAlignR" src="https://jonatanjhl.github.io/PaginaWeb/imagenes/ConalepLogo.jpg" alt="Logo CONALEP">
-        <p>Carrera Técnica en Informática, CONALEP GAM-II.</p>
-        <button onclick="vermas('mas')" id="mas">Leer más</button>
-        <p id="desplegar" style="display:none;">Soluciones tecnológicas, automatización, codificación y optimización de recursos informáticos.</p>
-    </div>
+    <section id="js-avanzado">
+        <h2>JavaScript Avanzado</h2>
+        <p>Ejemplos de uso de clases y funciones avanzadas en JavaScript:</p>
 
-    <!-- Conocimientos -->
-    <div id="Conocimientos" class="divPrincipal">
-        <h2>Conocimientos</h2>
-        <div class="container">
-            <div class="box1">
-                <h2>Administración</h2>
-                <p>Gestión de proyectos y documentación técnica (URS, SRS).</p>
-            </div>
-            <div class="box2">
-                <h2>Videojuegos</h2>
-                <p>Desarrollo en Unity para 2D y 3D.</p>
-            </div>
-            <div class="box3">
-                <h2>Experiencia</h2>
-                <p>Conocimiento en React, Mediapipe, Python, JS, CSS y HTML.</p>
-            </div>
-            <div class="box4">
-                <h2>Proyectos</h2>
-                <p>Creación de páginas web, apps y videojuegos móviles.</p>
-            </div>
-        </div>
-    </div>
+        <h3>Ejemplo de Clases</h3>
+        <pre><code>
+class Usuario {
+    constructor(nombre, rol) {
+        this.nombre = nombre;
+        this.rol = rol;
+    }
 
-    <!-- Mi Trabajo -->
-    <div id="MiTrabajo" class="divPrincipal">
-        <h2>Experiencias</h2>
-        <p>Mi trabajo abarca diversas áreas importantes de desarrollo de software.</p>
-        <div class="containerMt">
-            <div class="boxMT">
-                <img src="https://jonatanjhl.github.io/PaginaWeb/imagenes/appApsheet.jpg" alt="AppSheet" style="width:230px;">
-                <figcaption>Uso de la plataforma AppSheet.</figcaption>
-            </div>
-            <div class="boxMT">
-                <img src="https://jonatanjhl.github.io/PaginaWeb/imagenes/logoMainbit.jpg" alt="Mainbit" style="width:230px;">
-                <figcaption>Técnico en informática en Mainbit.</figcaption>
-            </div>
-        </div>
-    </div>
+    saludar() {
+        console.log(`Hola, soy ${this.nombre} y mi rol es ${this.rol}`);
+    }
+}
 
-    <!-- Scripts -->
-    <script src="https://jonatanjhl.github.io/PaginaWeb/scripts/script.js"></script>
+const usuario1 = new Usuario('Jonatan', 'Desarrollador');
+usuario1.saludar();  // Hola, soy Jonatan y mi rol es Desarrollador
+        </code></pre>
+
+        <h3>Funciones Asíncronas</h3>
+        <pre><code>
+async function obtenerDatos() {
+    try {
+        let respuesta = await fetch('https://jsonplaceholder.typicode.com/posts');
+        let datos = await respuesta.json();
+        console.log(datos);
+    } catch (error) {
+        console.error('Error al obtener datos:', error);
+    }
+}
+
+obtenerDatos();
+        </code></pre>
+    </section>
+
+    <footer id="contacto">
+        <p>Contacto: <a href="mailto:jonatan@example.com">jonatan@example.com</a></p>
+        <p><a href="https://github.com/tuusuario">GitHub</a></p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
