@@ -204,7 +204,7 @@
             <ul>
                 <li><a href="#experiencia">Experiencia</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#js-avanzado">JS Avanzado</a></li>
+                <li><a href="#js-avanzado">Proyectos y Conocimientos</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
@@ -280,6 +280,176 @@ const client = new APIClient('https://api.example.com/');
 client.fetchData('/users').then(data => console.log(data));
     </pre>
 </section>
+            <section id="proyectos">
+    <h2>Proyectos Destacados</h2>
+    <h3>Sistema de Gestión de Vacaciones</h3>
+    <p>
+        Este proyecto implementa un sistema robusto de gestión de vacaciones desarrollado con **HTML**, **PHP**, y **MySQL**, con integración de Google OAuth para autenticación segura. Los usuarios pueden gestionar sus solicitudes de vacaciones y obtener información relevante directamente desde un panel intuitivo. A continuación, se describen las principales funcionalidades:
+    </p>
+    <h4>Características del Sistema:</h4>
+    <ul>
+        <li>
+            <strong>Autenticación:</strong> Inicio de sesión mediante Google OAuth para garantizar la seguridad y simplificar el acceso.
+        </li>
+        <li>
+            <strong>Panel de usuario:</strong> 
+            <ul>
+                <li>Días de vacaciones usados y restantes.</li>
+                <li>Fecha límite para usar los días disponibles.</li>
+                <li>Visualización de solicitudes previas con estatus: **aprobadas**, **rechazadas**, o **en espera**.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Solicitud de vacaciones:</strong> 
+            <ul>
+                <li>Selección de días directamente en un calendario interactivo.</li>
+                <li>Ordenación automática de días seleccionados (de menor a mayor).</li>
+                <li>Notificación automática al líder mediante **PHPMailer** al completar la solicitud.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Panel de líder:</strong> 
+            <ul>
+                <li>Visualización de todas las solicitudes asignadas.</li>
+                <li>Opciones para aprobar o rechazar solicitudes.</li>
+                <li>Notificación automática al colaborador sobre el estado de su solicitud mediante correo electrónico.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h4>Ejemplo de Código:</h4>
+    <pre>
+    // PHP: Generación de una solicitud de vacaciones
+    session_start();
+    require 'conexion.php';
+    require 'PHPMailer/PHPMailerAutoload.php';
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $userId = $_SESSION['user_id'];
+        $diasSeleccionados = $_POST['dias']; // Ej: ["2024-12-01", "2024-12-02"]
+        $diasOrdenados = implode(", ", array_unique($diasSeleccionados));
+        $liderId = obtenerLider($userId);
+
+        // Insertar en la base de datos
+        $query = "INSERT INTO solicitudes (usuario_id, dias_solicitados, estado, lider_id)
+                  VALUES ('$userId', '$diasOrdenados', 'En espera', '$liderId')";
+        if (mysqli_query($conexion, $query)) {
+            // Enviar notificación por correo
+            $mail = new PHPMailer;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.example.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'tuemail@example.com';
+            $mail->Password = 'tucontraseña';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            $mail->setFrom('tuemail@example.com', 'Sistema de Vacaciones');
+            $mail->addAddress(obtenerCorreoLider($liderId));
+            $mail->Subject = "Nueva solicitud de vacaciones";
+            $mail->Body = "El usuario con ID $userId ha solicitado los días: $diasOrdenados.";
+
+            if (!$mail->send()) {
+                echo "Error al enviar el correo: " . $mail->ErrorInfo;
+            } else {
+                echo "Solicitud enviada exitosamente.";
+            }
+        }
+    }
+    ?>
+    </pre>
+
+    <h4>Panel de Usuario:</h4>
+    <pre>
+    // HTML: Selección de días con un calendario
+    <form action="solicitar_vacaciones.php" method="POST">
+        <label for="dias">Selecciona los días:</label>
+        <input type="date" name="dias[]" multiple>
+        <button type="submit">Enviar Solicitud</button>
+    </form>
+    </pre>
+
+    <h4>Impacto del Proyecto:</h4>
+    <p>
+        Este sistema permitió reducir significativamente el tiempo dedicado a gestionar vacaciones, mejorar la experiencia del usuario, y centralizar la información de los colaboradores en un entorno accesible y seguro.
+    </p>
+</section>
+<section id="proyectos-tecnicos">
+    <h2>Proyectos Técnicos</h2>
+
+    <h3>Reconocimiento Facial con OpenCV</h3>
+    <p>
+        En este proyecto utilicé **OpenCV** para implementar un sistema de reconocimiento facial simple, ideal para aplicaciones básicas de seguridad y acceso. El sistema es capaz de detectar y reconocer rostros en tiempo real, utilizando modelos preentrenados como Haar Cascades o redes neuronales convolucionales ligeras.
+    </p>
+    <h4>Características:</h4>
+    <ul>
+        <li>Detección de rostros en imágenes o video en tiempo real.</li>
+        <li>Identificación de usuarios registrados en una base de datos local.</li>
+        <li>Alertas en caso de intentos de acceso no autorizado.</li>
+    </ul>
+    <h4>Ejemplo de Código:</h4>
+    <pre>
+import cv2
+
+# Cargar el modelo Haar Cascade
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
+# Captura de video
+cap = cv2.VideoCapture(0)
+
+while True:
+    ret, frame = cap.read()
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+
+    for (x, y, w, h) in faces:
+        cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
+
+    cv2.imshow('Reconocimiento Facial', frame)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+    </pre>
+
+    <h3>Desarrollo de Juegos con Unity</h3>
+    <p>
+        Mi experiencia con Unity incluye el desarrollo de videojuegos tanto para PC como para dispositivos móviles. A continuación, se describen dos proyectos destacados:
+    </p>
+
+    <h4>Teaser de Juego de "Dungeons & Dragons" (PC)</h4>
+    <p>
+        Este proyecto fue un teaser de un juego de rol inspirado en "Dungeons & Dragons". Incluyó:
+    </p>
+    <ul>
+        <li>Diseño de un sistema de combate por turnos con animaciones 3D.</li>
+        <li>Creación de escenarios interactivos con iluminación dinámica y efectos visuales.</li>
+        <li>Integración de personajes personalizados con habilidades únicas.</li>
+    </ul>
+    <h4>Características Técnicas:</h4>
+    <ul>
+        <li>Implementación de scripts en C# para manejo de lógica y eventos.</li>
+        <li>Optimización de modelos y texturas para un rendimiento fluido en PC.</li>
+        <li>Uso de Unity Timeline para crear cinemáticas inmersivas.</li>
+    </ul>
+
+    <h4>Juego de "Roll a Ball" (Android)</h4>
+    <p>
+        Desarrollé un juego casual donde el objetivo es controlar una esfera que recolecta objetos mientras evita obstáculos, diseñado para dispositivos Android. 
+    </p>
+    <h4>Características:</h4>
+    <ul>
+        <li>Control por giroscopio del dispositivo para una experiencia inmersiva.</li>
+        <li>Sistema de niveles progresivos con dificultad creciente.</li>
+        <li>Publicación en APK optimizada para múltiples resoluciones de pantalla.</li>
+    </ul>
+    <h4>Impacto:</h4>
+    <p>
+        Ambos proyectos fueron fundamentales para demostrar mis habilidades en el diseño y desarrollo de juegos, así como en la optimización de experiencias para distintas plataformas.
+    </p>
+</section>
+
 
         </main>
     </div>
