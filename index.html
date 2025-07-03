@@ -3,135 +3,471 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Experiencia en Desarrollo</title>
+    <title>Jonatan Hidalgo - Portafolio Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(120deg, #2980b9, #6dd5fa);
-            color: #fff;
+            background-color: var(--light);
+            color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
-
+        
+        /* Header Styles */
         header {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
         }
-
-        .navbar ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .navbar ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-        }
-
-        .navbar ul li a:hover {
-            color: #00c3ff;
-        }
-
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 20px;
-            margin: 20px auto;
+        
+        .header-content {
             max-width: 1200px;
-            gap: 20px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
         }
-
-        .sidebar {
-            flex: 1 1 100%;
-            max-width: 300px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
+        
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
             text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background-color: white;
             border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
             margin: 0 auto;
         }
-
-        .sidebar img {
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid var(--secondary);
+            top: 15px;
             border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            margin-bottom: 15px;
-            border: 3px solid #fff;
-            transition: transform 0.3s ease;
+            z-index: 1;
         }
-
-        .sidebar img:hover {
-            transform: scale(1.1);
+        
+        .left {
+            left: 0;
         }
-
-        .main-content {
-            flex: 1 1 100%;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
+        
+        .right {
+            left: 50%;
         }
-
-        .main-content h2, .sidebar h2 {
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            font-weight: 700;
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid var(--light);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid var(--light);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+        
+        .right::after {
+            left: -16px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            background-color: var(--light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Code Blocks */
+        .code-block {
+            background-color: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            position: relative;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+        
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .copy-btn {
+            background-color: rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 3px;
+            padding: 0.3rem 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.8rem;
+        }
+        
+        .copy-btn:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .skill-category {
+            flex: 1;
+            min-width: 250px;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .skill-category h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
             text-align: center;
-            color: #0d546a;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 0.5rem;
         }
-
-        ul {
-            list-style-type: none;
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 10px;
+        
+        .skill-item {
+            margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
         }
-
-        li::before {
-            content: "✔";
-            margin-right: 10px;
-            color: #0d546a;
+        
+        .skill-name {
+            flex: 1;
         }
-
-        .skill-counter {
-            font-weight: bold;
-            color: #00c3ff;
+        
+        .skill-bar {
+            height: 8px;
+            background-color: var(--light);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.3rem;
         }
-
+        
+        .skill-progress {
+            height: 100%;
+            background-color: var(--secondary);
+            border-radius: 4px;
+        }
+        
+        /* Footer */
         footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
             text-align: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            margin-top: 20px;
         }
-
-        footer a {
-            color: #00c3ff;
-            text-decoration: none;
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
-
-        footer a:hover {
-            text-decoration: underline;
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
-
-        @keyframes fadeIn {
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -141,356 +477,590 @@
                 transform: translateY(0);
             }
         }
-
-        .sidebar, .main-content {
-            animation: fadeIn 1s ease-in-out;
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
-
-        /* Media Query para dispositivos móviles */
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted var(--text-light);
+            cursor: help;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.5rem;
-                padding: 0 10px;
+            .hero h1 {
+                font-size: 2.5rem;
             }
-section {
-width: 400px;
-}
-
-            .navbar ul {
-                flex-direction: column;
-                gap: 5px;
+            
+            .nav-links {
+                gap: 1rem;
             }
-
-            .navbar ul li a {
-                font-size: 1rem;
+            
+            .btn {
+                display: block;
+                margin: 0.5rem auto;
+                width: 80%;
             }
-
-            .sidebar img {
-                width: 120px;
-                height: 120px;
+            
+            .btn-outline {
+                margin-left: 0;
             }
-
-            .main-content, .sidebar {
-                padding: 15px;
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0%;
             }
         }
-
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.2rem;
-            }
-section { 
-width:200px;
-
-            .sidebar img {
-                width: 100px;
-                height: 100px;
-            }
-
-            .navbar ul li a {
-                font-size: 0.9rem;
-            }
-
-            .container {
-                padding: 10px;
-            }
-
-            .main-content, .sidebar {
-                padding: 10px;
-            }
+        
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode section {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .project-card {
+            background-color: #252525;
+            border-color: #444;
+        }
+        
+        body.dark-mode .code-block {
+            background-color: #252525;
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .skill-category {
+            background-color: #252525;
+        }
+        
+        body.dark-mode .timeline-content {
+            background-color: #252525;
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(20px);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <nav class="navbar">
-            <h1>Jonatan Hidalgo Ledesma - Ing. de Software</h1>
-            <ul>
-                <li><a href="#experiencia">Experiencia</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#js-avanzado">Proyectos y Conocimientos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
+        <div class="header-bg"></div>
+        <div class="header-content">
+            <nav>
+                <a href="#" class="logo">Jonatan Hidalgo</a>
+                <div class="nav-links">
+                    <a href="#experience">Experiencia</a>
+                    <a href="#projects">Proyectos</a>
+                    <a href="#skills">Habilidades</a>
+                    <a href="#contact">Contacto</a>
+                </div>
+            </nav>
+            <div class="hero">
+                <h1>Ingeniero de Software</h1>
+                <p>Desarrollo de herramientas para la administración del personal y mejora de procesos en la empresa SERVNET</p>
+                <a href="#projects" class="btn">Ver Proyectos</a>
+                <a href="#contact" class="btn btn-outline">Contactar</a>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <!-- Foto de perfil y sidebar -->
-        <aside class="sidebar">
-            <img src="https://raw.githubusercontent.com/JonatanJHL/PaginaWeb/refs/heads/main/imagenes/perfilImg.jpg" alt="Foto de perfil">
-            <h2>Jonatan JHL</h2>
-            <p>Ingeniero de Software con 3 años de experiencia desarrollando aplicaciones web modernas.</p>
+    <main class="container">
+        <section id="about" class="fade-in">
+            <div class="section-header">
+                <h2>Sobre Mí</h2>
+            </div>
+            <div class="about-content">
+                <p>Licenciado en Ingeniería de Software con más de 3 años de experiencia en el área de Automatización y TI en SERVNET. Especializado en el desarrollo de soluciones tecnológicas para la optimización de procesos internos, gestión de información y mejora de la experiencia de usuarios.</p>
+                
+                <div style="background-color: #f8f9fa; padding: 1.5rem; border-left: 4px solid var(--secondary); margin: 1.5rem 0;">
+                    <h3 style="margin-bottom: 0.5rem; color: var(--primary);">Información Académica:</h3>
+                    <p><strong>Licenciatura en Ingeniería de Software</strong><br>
+                    Universidad Autónoma de la Ciudad de México (UACM)<br>
+                    Matrícula: 15-011-1224</p>
+                </div>
+            </div>
+        </section>
 
-            <section id="skills">
-                <h3>Habilidades</h3>
-                <ul>
-                    <li>JavaScript: <span class="skill-counter" data-target="95">95</span>%</li>
-                    <li>PHP: <span class="skill-counter" data-target="90">90</span>%</li>
-                    <li>HTML/CSS: <span class="skill-counter" data-target="100">100</span>%</li>
-                    <li>SQL: <span class="skill-counter" data-target="100">100</span>%</li>
-                </ul>
-            </section>
-        </aside>
+        <section id="experience" class="fade-in">
+            <div class="section-header">
+                <h2>Trayectoria Profesional</h2>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Marzo 2022 - Presente</div>
+                        <h3>SERVNET - Automatización y TI</h3>
+                        <p>Ingresé como becario y evolucioné a roles más técnicos, desarrollando soluciones para la gestión de clientes y colaboradores.</p>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                            <li>Desarrollo de módulos en WHMCS (WSAS)</li>
+                            <li>Automatización de procesos con scripts PHP</li>
+                            <li>Gestión de bases de datos MySQL</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Primeros Meses</div>
+                        <h3>Aprendizaje y Adaptación</h3>
+                        <p>Tareas iniciales que me permitieron familiarizarme con la infraestructura tecnológica de la empresa:</p>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                            <li>Consultas SQL básicas para informes</li>
+                            <li>Uso de phpMyAdmin y MySQL Workbench</li>
+                            <li>Conexiones SSH con Termius/MobaXterm</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Evolución Profesional</div>
+                        <h3>Proyectos Destacados</h3>
+                        <p>Participación en proyectos más complejos y técnicos:</p>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                            <li>Homologación de información en bases de datos</li>
+                            <li>Scripts SQL complejos para limpieza de datos</li>
+                            <li>Implementación de módulos WHMCS</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Logros Principales</div>
+                        <h3>Impacto en la Organización</h3>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                            <li>Sistema web para gestión integral de colaboradores</li>
+                            <li>Automatización de procesos internos</li>
+                            <li>Mejora de experiencia para clientes y colaboradores</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- Contenido principal -->
-        <main class="main-content">
-            <section id="experiencia">
-                <h2>Experiencia Profesional</h2>
-                <ul>
-                    <li>Desarrollo de aplicaciones web con HTML, CSS, y JS.</li>
-                    <li>Integración de APIs en proyectos empresariales.</li>
-                    <li>Optimización de rendimiento en aplicaciones de alto tráfico.</li>
-                    <li>Uso de SQL para automatización de procesos.</li>
-                    <li>Creación de estructuras de bases de datos para proyectos internos.</li>
-                </ul>
-            </section>
+        <section id="projects" class="fade-in">
+            <div class="section-header">
+                <h2>Proyectos Desarrollados</h2>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400/3498db/ffffff?text=Módulo+WHMCS" alt="Módulo WHMCS" class="project-img">
+                    <div class="project-content">
+                        <h3>Módulo de Actualización de Datos</h3>
+                        <p>Permite a clientes actualizar su información de contacto y fiscal mediante enlaces enviados por correo.</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tech-badge">PHP</span>
+                            <span class="tech-badge">WHMCS API</span>
+                            <span class="tech-badge">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400/e74c3c/ffffff?text=Gestión+Colaboradores" alt="Gestión Colaboradores" class="project-img">
+                    <div class="project-content">
+                        <h3>Sistema de Gestión de Colaboradores</h3>
+                        <p>Sistema interno completo con control de vacaciones, solicitudes y organigramas visuales.</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tech-badge">PHP</span>
+                            <span class="tech-badge">FullCalendar</span>
+                            <span class="tech-badge">GoJS</span>
+                            <span class="tech-badge">OAuth</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400/2ecc71/ffffff?text=Mailchimp+NPS" alt="Mailchimp NPS" class="project-img">
+                    <div class="project-content">
+                        <h3>Encuesta NPS con Mailchimp</h3>
+                        <p>Integración entre Mailchimp y WHMCS para envío de encuestas NPS con visualización en tiempo real.</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tech-badge">Mailchimp API</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">WHMCS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400/f39c12/ffffff?text=Estado+Cuenta" alt="Estado de Cuenta" class="project-img">
+                    <div class="project-content">
+                        <h3>Visualización de Estado de Cuenta</h3>
+                        <p>Vista personalizada del estado de cuenta en el portal de clientes de WHMCS.</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tech-badge">Smarty</span>
+                            <span class="tech-badge">CSS</span>
+                            <span class="tech-badge">WHMCS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400/9b59b6/ffffff?text=Notificaciones" alt="Notificaciones" class="project-img">
+                    <div class="project-content">
+                        <h3>Automatización de Notificaciones</h3>
+                        <p>Scripts PHP ejecutados por cronjobs para recordatorios de facturas próximas a vencer.</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tech-badge">PHP</span>
+                            <span class="tech-badge">Cronjobs</span>
+                            <span class="tech-badge">PHPMailer</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400/1abc9c/ffffff?text=Alta+Clientes" alt="Alta Clientes" class="project-img">
+                    <div class="project-content">
+                        <h3>Módulo de Alta de Clientes</h3>
+                        <p>Sistema para registro de nuevos clientes con validación de datos fiscales mediante JavaScript.</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">PHP</span>
+                            <span class="tech-badge">Validación SAT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem;">
+                <h3 style="color: var(--secondary); margin-bottom: 1rem;">Fragmentos de Código Destacados</h3>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Consulta SQL para Reportes NOC</span>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre>WITH log_tiempos AS (
+    SELECT 
+        ticket_id,
+        MIN(CASE WHEN accion LIKE '%Nuevo%' THEN fecha END) AS fecha_inicio,
+        MAX(CASE WHEN accion LIKE '%Resuelto%' THEN fecha END) AS fecha_fin
+    FROM sistema.logs_tickets
+    GROUP BY ticket_id
+)
+SELECT
+    t.id AS ID_Ticket,
+    c.nombre_empresa AS Cliente,
+    t.prioridad,
+    t.estado,
+    TIMESTAMPDIFF(SECOND, lt.fecha_inicio, lt.fecha_fin) AS tiempo_respuesta_segundos
+FROM 
+    sistema.tickets t
+JOIN sistema.clientes c ON t.cliente_id = c.id
+LEFT JOIN log_tiempos lt ON lt.ticket_id = t.id;</pre>
+                </div>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Plantilla .tpl para Estado de Cuenta</span>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre>&lt;div class="account-status"&gt;
+    {foreach from=$invoices item=invoice}
+        &lt;div class="invoice {if $invoice.status == 'Unpaid'}unpaid{/if}"&gt;
+            &lt;span&gt;{$invoice.date}&lt;/span&gt;
+            &lt;span&gt;{$invoice.total}&lt;/span&gt;
+            &lt;span&gt;{$invoice.status}&lt;/span&gt;
+        &lt;/div&gt;
+    {/foreach}
+&lt;/div&gt;</pre>
+                </div>
+            </div>
+        </section>
 
-            <section id="js-avanzado">
-    <h2>JavaScript Avanzado</h2>
-    <p>
-        Mi experiencia con JavaScript abarca desde la creación de aplicaciones web dinámicas hasta la optimización de sistemas de alto rendimiento. Utilizo frameworks como React y Node.js para construir interfaces interactivas y servidores eficientes. 
-    </p>
-    <h3>Casos de uso destacados:</h3>
-    <ul>
-        <li>
-            <strong>Desarrollo de SPA:</strong> Implementación de aplicaciones de una sola página con React, utilizando hooks y contextos para un manejo eficiente del estado.
-        </li>
-        <li>
-            <strong>Aplicaciones en tiempo real:</strong> Integración de WebSockets para funcionalidades como chat en vivo y actualizaciones en tiempo real.
-        </li>
-        <li>
-            <strong>Optimización del rendimiento:</strong> Reducción de tiempos de carga mediante técnicas como lazy loading y tree shaking en proyectos grandes.
-        </li>
-    </ul>
-    <h3>Ejemplo de clase modular:</h3>
-    <pre>
-class APIClient {
-    constructor(baseURL) {
-        this.baseURL = baseURL;
-    }
+        <section id="skills" class="fade-in">
+            <div class="section-header">
+                <h2>Habilidades Técnicas</h2>
+            </div>
+            
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Lenguajes de Programación</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">PHP</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">JavaScript</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">SQL</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">HTML/CSS</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Tecnologías y Frameworks</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">WHMCS</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 92%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">FullCalendar</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">GoJS</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">PHPMailer</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Herramientas y Metodologías</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">MySQL</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 87%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Git</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 78%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">SSH</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 82%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Cronjobs</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    async fetchData(endpoint) {
-        try {
-            const response = await fetch(`${this.baseURL}${endpoint}`);
-            if (!response.ok) throw new Error(`Error: ${response.statusText}`);
-            return await response.json();
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    }
-}
+        <section id="methodology" class="fade-in">
+            <div class="section-header">
+                <h2>Metodología de Trabajo</h2>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                    <h3 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-terminal" style="margin-right: 0.5rem;"></i> Desarrollo Iterativo</h3>
+                    <p>Enfoque incremental con ciclos cortos de desarrollo y retroalimentación constante.</p>
+                </div>
+                
+                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                    <h3 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-code-branch" style="margin-right: 0.5rem;"></i> Control de Versiones</h3>
+                    <p>Uso de Git para el manejo de versiones y colaboración en equipo.</p>
+                </div>
+                
+                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                    <h3 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-shield-alt" style="margin-right: 0.5rem;"></i> Pruebas Manuales</h3>
+                    <p>Pruebas exhaustivas en entornos controlados antes de implementación.</p>
+                </div>
+                
+                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                    <h3 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-book" style="margin-right: 0.5rem;"></i> Documentación</h3>
+                    <p>Documentación técnica detallada de todos los proyectos desarrollados.</p>
+                </div>
+            </div>
+        </section>
 
-const client = new APIClient('https://api.example.com/');
-client.fetchData('/users').then(data => console.log(data));
-    </pre>
-</section>
-            <section id="proyectos">
-    <h2>Proyectos Destacados</h2>
-    <h3>Sistema de Gestión de Vacaciones</h3>
-    <p>
-        Este proyecto implementa un sistema robusto de gestión de vacaciones desarrollado con **HTML**, **PHP**, y **MySQL**, con integración de Google OAuth para autenticación segura. Los usuarios pueden gestionar sus solicitudes de vacaciones y obtener información relevante directamente desde un panel intuitivo. A continuación, se describen las principales funcionalidades:
-    </p>
-    <h4>Características del Sistema:</h4>
-    <ul>
-        <li>
-            <strong>Autenticación:</strong> Inicio de sesión mediante Google OAuth para garantizar la seguridad y simplificar el acceso.
-        </li>
-        <li>
-            <strong>Panel de usuario:</strong> 
-            <ul>
-                <li>Días de vacaciones usados y restantes.</li>
-                <li>Fecha límite para usar los días disponibles.</li>
-                <li>Visualización de solicitudes previas con estatus: **aprobadas**, **rechazadas**, o **en espera**.</li>
-            </ul>
-        </li>
-        <li>
-            <strong>Solicitud de vacaciones:</strong> 
-            <ul>
-                <li>Selección de días directamente en un calendario interactivo.</li>
-                <li>Ordenación automática de días seleccionados (de menor a mayor).</li>
-                <li>Notificación automática al líder mediante **PHPMailer** al completar la solicitud.</li>
-            </ul>
-        </li>
-        <li>
-            <strong>Panel de líder:</strong> 
-            <ul>
-                <li>Visualización de todas las solicitudes asignadas.</li>
-                <li>Opciones para aprobar o rechazar solicitudes.</li>
-                <li>Notificación automática al colaborador sobre el estado de su solicitud mediante correo electrónico.</li>
-            </ul>
-        </li>
-    </ul>
+        <section id="contact" class="fade-in">
+            <div class="section-header">
+                <h2>Contacto</h2>
+            </div>
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <p>Si estás interesado en mi perfil profesional o deseas más información sobre mis proyectos, no dudes en contactarme.</p>
+                
+                <form id="contact-form" style="margin-top: 2rem;">
+                    <div style="margin-bottom: 1rem;">
+                        <input type="text" placeholder="Tu Nombre" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <input type="email" placeholder="Tu Email" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <textarea placeholder="Tu Mensaje" rows="5" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;"></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Enviar Mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-    <h4>Ejemplo de Código:</h4>
-    <pre>
-    // PHP: Generación de una solicitud de vacaciones
-    session_start();
-    require 'conexion.php';
-    require 'PHPMailer/PHPMailerAutoload.php';
+    <footer>
+        <div class="footer-content">
+            <h2 style="margin-bottom: 1rem;">Jonatan Joaquín Hidalgo Ledesma</h2>
+            <p>Ingeniero de Software | Especialista en Automatización</p>
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Portafolio Profesional. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $userId = $_SESSION['user_id'];
-        $diasSeleccionados = $_POST['dias']; // Ej: ["2024-12-01", "2024-12-02"]
-        $diasOrdenados = implode(", ", array_unique($diasSeleccionados));
-        $liderId = obtenerLider($userId);
-
-        // Insertar en la base de datos
-        $query = "INSERT INTO solicitudes (usuario_id, dias_solicitados, estado, lider_id)
-                  VALUES ('$userId', '$diasOrdenados', 'En espera', '$liderId')";
-        if (mysqli_query($conexion, $query)) {
-            // Enviar notificación por correo
-            $mail = new PHPMailer;
-            $mail->isSMTP();
-            $mail->Host = 'smtp.example.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'tuemail@example.com';
-            $mail->Password = 'tucontraseña';
-            $mail->SMTPSecure = 'tls';
-            $mail->Port = 587;
-
-            $mail->setFrom('tuemail@example.com', 'Sistema de Vacaciones');
-            $mail->addAddress(obtenerCorreoLider($liderId));
-            $mail->Subject = "Nueva solicitud de vacaciones";
-            $mail->Body = "El usuario con ID $userId ha solicitado los días: $diasOrdenados.";
-
-            if (!$mail->send()) {
-                echo "Error al enviar el correo: " . $mail->ErrorInfo;
-            } else {
-                echo "Solicitud enviada exitosamente.";
-            }
-        }
-    }
-    ?>
-    </pre>
-
-    <h4>Panel de Usuario:</h4>
-    <pre>
-    // HTML: Selección de días con un calendario
-    <form action="solicitar_vacaciones.php" method="POST">
-        <label for="dias">Selecciona los días:</label>
-        <input type="date" name="dias[]" multiple>
-    </form>
-    </pre>
-
-    <h4>Impacto del Proyecto:</h4>
-    <p>
-        Este sistema permitió reducir significativamente el tiempo dedicado a gestionar vacaciones, mejorar la experiencia del usuario, y centralizar la información de los colaboradores en un entorno accesible y seguro.
-    </p>
-</section>
-<section id="proyectos-tecnicos">
-    <h2>Proyectos Técnicos</h2>
-
-    <h3>Reconocimiento Facial con OpenCV</h3>
-    <p>
-        En este proyecto utilicé **OpenCV** para implementar un sistema de reconocimiento facial simple. El sistema es capaz de detectar y reconocer rostros, ditingiendo algunas emociones, utilizando modelos preentrenados.
-    </p>
-    <h4>Características:</h4>
-    <ul>
-        <li>Detección de rostros en imágenes y videos.</li>
-        <li>Identificación emociones en una persona.</li>
-        <li>Alertas en caso de intentos de acceso no autorizado.</li>
-    </ul>
-    <h4>Ejemplo de Código:</h4>
-    <pre>
-import cv2
-from deepface import DeepFace
-
-def detectar_emocion_en_imagen(ruta_imagen):
-    # Cargar el modelo de detección de rostros de OpenCV
-    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-
-    # Leer la imagen
-    imagen = cv2.imread(ruta_imagen)
-    if imagen is None:
-        print("Error: No se pudo cargar la imagen.")
-        return
-
-    # Convertir a escala de grises para detección de rostros
-    gray = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
-    rostros = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
-
-    if len(rostros) == 0:
-        print("No se detectaron rostros en la imagen.")
-        return
-
-    for (x, y, w, h) in rostros:
-        # Dibujar un rectángulo alrededor del rostro
-        cv2.rectangle(imagen, (x, y), (x + w, y + h), (255, 0, 0), 2)
-
-        # Recortar la región del rostro
-        rostro = imagen[y:y + h, x:x + w]
-
-        try:
-            # Analizar la emoción usando DeepFace
-            analisis = DeepFace.analyze(rostro, actions=['emotion'], enforce_detection=False)
-
-            # Filtrar emociones solo entre "enojado", "triste" y "feliz"
-            emociones_validas = {key: analisis['emotion'][key] for key in ['angry', 'sad', 'happy']}
-            emocion_predominante = max(emociones_validas, key=emociones_validas.get)
-
-            # Mostrar la emoción detectada
-            cv2.putText(imagen, emocion_predominante, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
-        except Exception as e:
-            print(f"Error al analizar emociones: {e}")
-
-    # Mostrar la imagen con el rostro detectado y la emoción
-    cv2.imshow('Detección de Emociones', imagen)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
-# Ruta de la imagen
-ruta_imagen = "ruta_a_tu_imagen.jpg"
-
-# Detectar emoción en la imagen
-detectar_emocion_en_imagen(ruta_imagen)
-
-    </pre>
-
-    <h3>Desarrollo de Juegos con Unity</h3>
-    <p>
-        Mi experiencia con Unity incluye el desarrollo de videojuegos tanto para PC como para dispositivos móviles. A continuación, se describen dos proyectos destacados:
-    </p>
-
-    <h4>Teaser de Juego de "Dungeons & Dragons" (PC)</h4>
-    <p>
-        Este proyecto fue un teaser de un juego de rol inspirado en "Dungeons & Dragons". Incluyó:
-    </p>
-    <ul>
-        <li>Diseño de un sistema de combate por turnos con animaciones 3D.</li>
-        <li>Creación de escenarios interactivos con iluminación dinámica y efectos visuales.</li>
-        <li>Integración de personajes personalizados con habilidades únicas.</li>
-    </ul>
-    <h4>Características Técnicas:</h4>
-    <ul>
-        <li>Implementación de scripts en C# para manejo de lógica y eventos.</li>
-        <li>Optimización de modelos y texturas para un rendimiento fluido en PC.</li>
-        <li>Uso de Unity Timeline para crear cinemáticas inmersivas.</li>
-    </ul>
-
-    <h4>Juego de "Roll a Ball" (Android)</h4>
-    <p>
-        Desarrollé un juego casual donde el objetivo es controlar una esfera que recolecta objetos mientras evita obstáculos, diseñado para dispositivos Android. 
-    </p>
-    <h4>Características:</h4>
-    <ul>
-        <li>Control por giroscopio del dispositivo para una experiencia inmersiva.</li>
-        <li>Sistema de niveles progresivos con dificultad creciente.</li>
-        <li>Publicación en APK optimizada para múltiples resoluciones de pantalla.</li>
-    </ul>
-    <h4>Impacto:</h4>
-    <p>
-        Ambos proyectos fueron fundamentales para demostrar mis habilidades en el diseño y desarrollo de juegos, así como en la optimización de experiencias para distintas plataformas.
-    </p>
-</section>
-
-
-        </main>
+    <div class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
     </div>
 
-    <footer id="contacto">
-        <p>Contacto: <a href="mailto:jonatanhidalgoledesma@gmail.com">jonatanhidalgoledesma@gmail.com</a></p>
-        <p><a href="https://github.com/jonatanjhl" target="_blank">GitHub</a></p>
-    </footer>
+    <script>
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+        
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+      
+        
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Copy code function
+        function copyCode(button) {
+            const codeBlock = button.parentElement.parentElement;
+            const code = codeBlock.querySelector('pre').textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const originalIcon = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                button.style.backgroundColor = 'rgba(46, 204, 113, 0.2)';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalIcon;
+                    button.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+                }, 2000);
+            });
+        }
+        
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.');
+            contactForm.reset();
+        });
+    </script>
 </body>
 </html>
