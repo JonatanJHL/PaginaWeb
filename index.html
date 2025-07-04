@@ -39,8 +39,9 @@
             overflow: hidden;
         }
 
-        i{
-            padding:10px;
+        i {
+            padding: 10px;
+            transition: transform 0.3s ease;
         }
         
         .header-content {
@@ -74,6 +75,11 @@
             font-weight: 700;
             color: white;
             text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
         }
         
         .nav-links {
@@ -117,6 +123,7 @@
             font-size: 3.5rem;
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         .hero p {
@@ -140,12 +147,32 @@
             cursor: pointer;
             animation: fadeInUp 1s ease 0.4s forwards;
             opacity: 0;
+            position: relative;
+            overflow: hidden;
         }
         
         .btn:hover {
             background-color: #2980b9;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
         }
         
         .btn-outline {
@@ -202,6 +229,11 @@
             width: 80px;
             height: 3px;
             background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .section-header:hover h2::after {
+            width: 120px;
         }
         
         /* Experience Timeline */
@@ -220,6 +252,7 @@
             bottom: 0;
             left: 50%;
             margin-left: -3px;
+            border-radius: 3px;
         }
         
         .timeline-item {
@@ -227,6 +260,14 @@
             position: relative;
             background-color: inherit;
             width: 50%;
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(20px);
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .timeline-item::after {
@@ -240,6 +281,12 @@
             top: 15px;
             border-radius: 50%;
             z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover::after {
+            transform: scale(1.2);
+            background-color: var(--secondary);
         }
         
         .left {
@@ -286,6 +333,12 @@
             position: relative;
             border-radius: 6px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .timeline-date {
@@ -309,18 +362,33 @@
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             border: 1px solid #eee;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
-        .project-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 1px solid #eee;
+        .project-card i {
+            display: block;
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover i {
+            transform: scale(1.2);
+            color: var(--accent);
         }
         
         .project-content {
@@ -330,6 +398,11 @@
         .project-content h3 {
             margin-bottom: 0.5rem;
             color: var(--primary);
+            transition: color 0.3s ease;
+        }
+        
+        .project-card:hover .project-content h3 {
+            color: var(--secondary);
         }
         
         .tech-badge {
@@ -341,6 +414,12 @@
             font-size: 0.8rem;
             margin-right: 0.5rem;
             margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover .tech-badge {
+            background-color: var(--secondary);
+            color: white;
         }
         
         /* Code Blocks */
@@ -353,6 +432,12 @@
             margin: 1.5rem 0;
             position: relative;
             border-left: 4px solid var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .code-block:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .code-block pre {
@@ -399,6 +484,19 @@
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .skill-category.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
         .skill-category h3 {
@@ -407,6 +505,12 @@
             text-align: center;
             border-bottom: 2px solid var(--light);
             padding-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-category:hover h3 {
+            color: var(--accent);
+            border-color: var(--secondary);
         }
         
         .skill-item {
@@ -431,6 +535,12 @@
             height: 100%;
             background-color: var(--secondary);
             border-radius: 4px;
+            width: 0;
+            transition: width 1.5s ease 0.3s;
+        }
+        
+        .skill-category.visible .skill-progress {
+            width: attr(data-width);
         }
         
         /* Footer */
@@ -439,12 +549,28 @@
             color: white;
             padding: 3rem 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+            opacity: 0.2;
+            z-index: 1;
         }
         
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            position: relative;
+            z-index: 2;
         }
         
         .social-links {
@@ -458,11 +584,37 @@
             color: white;
             font-size: 1.5rem;
             transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
         }
         
         .social-links a:hover {
             color: var(--secondary);
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.1);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-links a::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--secondary);
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover::after {
+            opacity: 1;
+            transform: scale(1.2);
         }
         
         .copyright {
@@ -491,6 +643,21 @@
             }
             100% {
                 transform: scale(1);
+            }
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            20% {
+                transform: scale(25, 25);
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(40, 40);
             }
         }
         
@@ -526,9 +693,23 @@
         }
         
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
             }
             
             .nav-links {
@@ -539,6 +720,7 @@
                 display: block;
                 margin: 0.5rem auto;
                 width: 80%;
+                max-width: 250px;
             }
             
             .btn-outline {
@@ -569,6 +751,34 @@
             .right {
                 left: 0%;
             }
+            
+            .skill-category {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .project-card {
+                min-width: 100%;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
         }
         
         /* Dark mode toggle */
@@ -591,7 +801,7 @@
         }
         
         .dark-mode-toggle:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(30deg);
         }
         
         body.dark-mode {
@@ -622,16 +832,35 @@
             background-color: #252525;
         }
         
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transition: opacity 0.6s ease, transform 0.6s ease;
-            transform: translateY(20px);
+        body.dark-mode .skill-bar {
+            background-color: #333;
         }
         
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* Progress bar animation */
+        @keyframes progress {
+            from {
+                width: 0;
+            }
+            to {
+                width: attr(data-width);
+            }
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
         }
     </style>
 </head>
@@ -640,12 +869,12 @@
         <div class="header-bg"></div>
         <div class="header-content">
             <nav>
-                <a href="#" class="logo">Jonatan Hidalgo</a>
+                <a href="#" class="logo floating">Jonatan Hidalgo</a>
                 <div class="nav-links">
                     <a href="#experience">Experiencia</a>
                     <a href="#projects">Proyectos</a>
                     <a href="#skills">Habilidades</a>
-                    
+                    <a href="#contact">Contacto</a>
                 </div>
             </nav>
             <div class="hero">
@@ -653,21 +882,23 @@
                 <p>Soy desarrollador de software con enfoque en la creación de aplicaciones web, automatización de procesos, integración de APIs y 
                     diseño de sistemas que optimizan la experiencia del usuario. Me especializo en construir soluciones funcionales, seguras y adaptadas a las 
                     necesidades de cada proyecto.</p>
-                <a href="#projects" class="btn">Ver Proyectos</a>
-                <a href="#contact" class="btn btn-outline">Contactar</a>
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem;">
+                    <a href="#projects" class="btn">Ver Proyectos</a>
+                    <a href="#contact" class="btn btn-outline">Contactar</a>
+                </div>
             </div>
         </div>
     </header>
 
     <main class="container">
-        <section id="about" class="fade-in">
+        <section id="about">
             <div class="section-header">
                 <h2>Sobre Mí</h2>
             </div>
             <div class="about-content">
                 <p>Licenciado en Ingeniería de Software con más de 3 años de experiencia en el área de Automatización y TI en SERVNET. Especializado en el desarrollo de soluciones tecnológicas para la optimización de procesos internos, gestión de información y mejora de la experiencia de usuarios.</p>
                 
-                <div style="background-color: #f8f9fa; padding: 1.5rem; border-left: 4px solid var(--secondary); margin: 1.5rem 0;">
+                <div class="academic-info" style="background-color: #f8f9fa; padding: 1.5rem; border-left: 4px solid var(--secondary); margin: 1.5rem 0; border-radius: 8px;">
                     <h3 style="margin-bottom: 0.5rem; color: var(--primary);">Información Académica:</h3>
                     <p><strong>Licenciatura en Ingeniería de Software</strong><br>
                     Universidad Autónoma de la Ciudad de México (UACM)<br>
@@ -676,7 +907,7 @@
             </div>
         </section>
 
-        <section id="experience" class="fade-in">
+        <section id="experience">
             <div class="section-header">
                 <h2>Trayectoria Profesional</h2>
             </div>
@@ -735,7 +966,7 @@
             </div>
         </section>
 
-        <section id="projects" class="fade-in">
+        <section id="projects">
             <div class="section-header">
                 <h2>Proyectos Desarrollados</h2>
             </div>
@@ -867,7 +1098,7 @@ LEFT JOIN log_tiempos lt ON lt.ticket_id = t.id;</pre>
             </div>
         </section>
 
-        <section id="skills" class="fade-in">
+        <section id="skills">
             <div class="section-header">
                 <h2>Habilidades Técnicas</h2>
             </div>
@@ -877,19 +1108,19 @@ LEFT JOIN log_tiempos lt ON lt.ticket_id = t.id;</pre>
                     <h3>Lenguajes de Programación</h3>
                     <div class="skill-item">
                         <div class="skill-name">PHP</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%" data-width="90%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">JavaScript</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%" data-width="85%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">SQL</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 88%" data-width="88%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">HTML/CSS</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%" data-width="80%"></div></div>
                     </div>
                 </div>
                 
@@ -897,19 +1128,19 @@ LEFT JOIN log_tiempos lt ON lt.ticket_id = t.id;</pre>
                     <h3>Tecnologías y Frameworks</h3>
                     <div class="skill-item">
                         <div class="skill-name">WHMCS</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 92%"></div></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 92%" data-width="92%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">FullCalendar</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 75%" data-width="75%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">GoJS</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 70%" data-width="70%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">PHPMailer</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%" data-width="85%"></div></div>
                     </div>
                 </div>
                 
@@ -917,63 +1148,84 @@ LEFT JOIN log_tiempos lt ON lt.ticket_id = t.id;</pre>
                     <h3>Herramientas y Metodologías</h3>
                     <div class="skill-item">
                         <div class="skill-name">MySQL</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 87%"></div></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 87%" data-width="87%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">Git</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 78%"></div></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 78%" data-width="78%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">SSH</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 82%"></div></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 82%" data-width="82%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">Cronjobs</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%" data-width="85%"></div></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="methodology" class="fade-in">
+        <section id="methodology">
             <div class="section-header">
                 <h2>Metodología de Trabajo</h2>
             </div>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; transition: all 0.3s ease;">
                     <h3 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-terminal" style="margin-right: 0.5rem;"></i> Desarrollo Iterativo</h3>
                     <p>Enfoque incremental con ciclos cortos de desarrollo y retroalimentación constante.</p>
                 </div>
                 
-                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; transition: all 0.3s ease;">
                     <h3 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-code-branch" style="margin-right: 0.5rem;"></i> Control de Versiones</h3>
                     <p>Uso de Git para el manejo de versiones y colaboración en equipo.</p>
                 </div>
                 
-                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; transition: all 0.3s ease;">
                     <h3 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-shield-alt" style="margin-right: 0.5rem;"></i> Pruebas Manuales</h3>
                     <p>Pruebas exhaustivas en entornos controlados antes de implementación.</p>
                 </div>
                 
-                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; transition: all 0.3s ease;">
                     <h3 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-book" style="margin-right: 0.5rem;"></i> Documentación</h3>
                     <p>Documentación técnica detallada de todos los proyectos desarrollados.</p>
                 </div>
             </div>
+        </section>
+
+        <section id="contact">
+            <div class="section-header">
+                <h2>Contacto</h2>
+            </div>
+            <form id="contact-form" style="max-width: 600px; margin: 0 auto;">
+                <div style="margin-bottom: 1rem;">
+                    <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Nombre:</label>
+                    <input type="text" id="name" name="name" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; transition: all 0.3s ease;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email:</label>
+                    <input type="email" id="email" name="email" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; transition: all 0.3s ease;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Mensaje:</label>
+                    <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; transition: all 0.3s ease;"></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Enviar Mensaje</button>
+            </form>
         </section>
     </main>
 
     <footer>
         <div class="footer-content">
             <h2 style="margin-bottom: 1rem;">Jonatan Joaquín Hidalgo Ledesma</h2>
-            <p>Ingeniero de Software </p>
+            <p>Ingeniero de Software</p>
             
             <div class="social-links">
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fas fa-envelope"></i></a>
+                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
             </div>
             
             <div class="copyright">
@@ -987,49 +1239,81 @@ LEFT JOIN log_tiempos lt ON lt.ticket_id = t.id;</pre>
     </div>
 
     <script>
-        // Dark mode toggle
+        // Dark mode toggle with localStorage
         const darkModeToggle = document.getElementById('darkModeToggle');
         const body = document.body;
+        
+        // Check for saved user preference
+        if (localStorage.getItem('dark-mode')) {
+            body.classList.add('dark-mode');
+            darkModeToggle.querySelector('i').classList.remove('fa-moon');
+            darkModeToggle.querySelector('i').classList.add('fa-sun');
+        }
         
         darkModeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             const icon = darkModeToggle.querySelector('i');
+            
             if (body.classList.contains('dark-mode')) {
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
+                localStorage.setItem('dark-mode', 'enabled');
             } else {
                 icon.classList.remove('fa-sun');
                 icon.classList.add('fa-moon');
+                localStorage.removeItem('dark-mode');
             }
         });
         
-        // Scroll animations
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+        // Scroll animations with Intersection Observer
+        const animateOnScroll = (elements, className) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add(className);
+                    }
+                });
+            }, {
+                threshold: 0.1
             });
-        }, {
-            threshold: 0.1
-        });
-      
+            
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        };
         
-        fadeElements.forEach(element => {
-            observer.observe(element);
+        // Animate timeline items
+        animateOnScroll(document.querySelectorAll('.timeline-item'), 'visible');
+        
+        // Animate project cards
+        animateOnScroll(document.querySelectorAll('.project-card'), 'visible');
+        
+        // Animate skill categories
+        animateOnScroll(document.querySelectorAll('.skill-category'), 'visible');
+        
+        // Animate skill bars
+        document.querySelectorAll('.skill-progress').forEach(bar => {
+            const width = bar.getAttribute('data-width');
+            bar.style.width = width;
         });
         
-        // Copy code function
+        // Copy code function with improved feedback
         function copyCode(button) {
             const codeBlock = button.parentElement.parentElement;
             const code = codeBlock.querySelector('pre').textContent;
+            const originalIcon = button.innerHTML;
             
             navigator.clipboard.writeText(code).then(() => {
-                const originalIcon = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-check"></i>';
+                button.innerHTML = '<i class="fas fa-check"></i> Copiado!';
                 button.style.backgroundColor = 'rgba(46, 204, 113, 0.2)';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalIcon;
+                    button.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+                }, 2000);
+            }).catch(err => {
+                button.innerHTML = '<i class="fas fa-times"></i> Error';
+                button.style.backgroundColor = 'rgba(231, 76, 60, 0.2)';
                 
                 setTimeout(() => {
                     button.innerHTML = originalIcon;
@@ -1038,13 +1322,124 @@ LEFT JOIN log_tiempos lt ON lt.ticket_id = t.id;</pre>
             });
         }
         
-        // Form submission
+        // Form submission with validation
         const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.');
-            contactForm.reset();
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Simple validation
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                
+                if (!name || !email || !message) {
+                    alert('Por favor completa todos los campos');
+                    return;
+                }
+                
+                // Simulate form submission
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado!';
+                    
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        contactForm.reset();
+                        
+                        // Show success message
+                        const successMsg = document.createElement('div');
+                        successMsg.style.backgroundColor = 'rgba(46, 204, 113, 0.2)';
+                        successMsg.style.color = '#155724';
+                        successMsg.style.padding = '1rem';
+                        successMsg.style.borderRadius = '4px';
+                        successMsg.style.marginTop = '1rem';
+                        successMsg.style.textAlign = 'center';
+                        successMsg.innerHTML = '¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.';
+                        
+                        contactForm.appendChild(successMsg);
+                        
+                        setTimeout(() => {
+                            successMsg.style.opacity = '0';
+                            setTimeout(() => successMsg.remove(), 300);
+                        }, 5000);
+                    }, 1000);
+                }, 1500);
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update URL without jumping
+                    if (history.pushState) {
+                        history.pushState(null, null, targetId);
+                    } else {
+                        location.hash = targetId;
+                    }
+                }
+            });
         });
+        
+        // Floating animation for elements
+        const floatingElements = document.querySelectorAll('.floating');
+        floatingElements.forEach(el => {
+            el.style.animationDelay = `${Math.random() * 2}s`;
+        });
+        
+        // Responsive navigation for mobile
+        const setupMobileNav = () => {
+            if (window.innerWidth <= 768) {
+                const nav = document.querySelector('nav');
+                const navLinks = document.querySelector('.nav-links');
+                const menuToggle = document.createElement('button');
+                
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                menuToggle.style.background = 'none';
+                menuToggle.style.border = 'none';
+                menuToggle.style.color = 'white';
+                menuToggle.style.fontSize = '1.5rem';
+                menuToggle.style.cursor = 'pointer';
+                menuToggle.style.padding = '0.5rem';
+                
+                nav.insertBefore(menuToggle, navLinks);
+                navLinks.style.display = 'none';
+                
+                menuToggle.addEventListener('click', () => {
+                    if (navLinks.style.display === 'none' || navLinks.style.display === '') {
+                        navLinks.style.display = 'flex';
+                        menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+                    } else {
+                        navLinks.style.display = 'none';
+                        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            }
+        };
+        
+        // Initialize mobile nav
+        setupMobileNav();
+        
+        // Update on resize
+        window.addEventListener('resize', setupMobileNav);
     </script>
 </body>
 </html>
