@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SQL Quest: El Camino del UPDATE</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      color: #4ec9b0;
+    }
+    #mapa {
+      margin-top: 2rem;
+    }
+    .bloque {
+      padding: 1rem;
+      background-color: #2d2d2d;
+      margin-bottom: 1rem;
+      border-left: 4px solid #4ec9b0;
+    }
+    .bloque p {
+      margin: 0.3rem 0;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.6rem;
+      font-family: monospace;
+      font-size: 1rem;
+      border: none;
+      background-color: #252526;
+      color: #d4d4d4;
+      border: 1px solid #555;
+      margin-top: 1rem;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.6rem 1rem;
+      background-color: #4ec9b0;
+      color: #1e1e1e;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    #mensaje {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    .correcto {
+      color: #4ec9b0;
+    }
+    .error {
+      color: #f44747;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>SQL Quest: El Camino del UPDATE</h1>
+
+  <div id="mapa" class="bloque">
+    <p><strong>Ubicación actual:</strong> <span id="ubicacion"></span></p>
+    <p><strong>Caminos posibles:</strong> <span id="caminos"></span></p>
+  </div>
+
+  <div class="bloque">
+    <p>Ingresa un comando SQL para avanzar:</p>
+    <code>UPDATE posicion SET id = [id del camino];</code>
+    <input type="text" id="comando" placeholder="Ej: UPDATE posicion SET id = 2;">
+    <button onclick="ejecutarComando()">Ejecutar</button>
+    <p id="mensaje"></p>
+  </div>
+
+  <script>
+    const mapa = [
+      { id: 1, nombre: "Inicio", caminos: [2] },
+      { id: 2, nombre: "Puente", caminos: [3, 4] },
+      { id: 3, nombre: "Bosque", caminos: [5] },
+      { id: 4, nombre: "Cueva", caminos: [5] },
+      { id: 5, nombre: "Tesoro", caminos: [] },
+    ];
+
+    let posicion = 1;
+
+    function obtenerNodo(id) {
+      return mapa.find(n => n.id === id);
+    }
+
+    function mostrarEstado() {
+      const nodo = obtenerNodo(posicion);
+      document.getElementById("ubicacion").textContent = `${nodo.nombre} (id: ${nodo.id})`;
+      const caminos = nodo.caminos.map(id => `id: ${id}`).join(', ');
+      document.getElementById("caminos").textContent = caminos || "Ninguno (¡has llegado al final!)";
+    }
+
+    function ejecutarComando() {
+      const entrada = document.getElementById("comando").value.trim();
+      const regex = /^UPDATE\s+posicion\s+SET\s+id\s*=\s*(\d+);?$/i;
+      const match = entrada.match(regex);
+
+      const mensaje = document.getElementById("mensaje");
+
+      if (!match) {
+        mensaje.textContent = "❌ Comando inválido. Usa: UPDATE posicion SET id = X;";
+        mensaje.className = "error";
+        return;
+      }
+
+      const destino = parseInt(match[1]);
+      const nodoActual = obtenerNodo(posicion);
+
+      if (nodoActual.caminos.includes(destino)) {
+        posicion = destino;
+        mostrarEstado();
+        mensaje.textContent = "✅ Movimiento exitoso.";
+        mensaje.className = "correcto";
+        if (obtenerNodo(posicion).caminos.length === 0) {
+          mensaje.textContent += " ¡Has llegado al TESORO!";
+        }
+      } else {
+        mensaje.textContent = "❌ Ese camino no es válido desde tu posición actual.";
+        mensaje.className = "error";
+      }
+
+      document.getElementById("comando").value = "";
+    }
+
+    // Mostrar estado inicial
+    mostrarEstado();
+  </script>
+
+</body>
+</html>
