@@ -970,7 +970,35 @@
             <div class="section-header">
                 <h2>Proyectos Desarrollados</h2>
             </div>
-            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <i class="fa-solid fa-face-smile fa-2x"></i>
+                    <div class="project-content">
+                        <h3>Reconocimiento Facial de Emociones</h3>
+                        <p>Sistema de clasificación de emociones (feliz, enojado, serio) usando OpenCV y Python con un modelo preentrenado. Procesamiento de imágenes y cálculo de métricas de precisión.</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">OpenCV</span>
+                            <span class="tech-badge">numpy</span>
+                            <span class="tech-badge">matplotlib</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <i class="fa-solid fa-chart-line fa-2x"></i>
+                    <div class="project-content">
+                        <h3>Dashboard de Métricas con Chart.js</h3>
+                        <p>Visualización interactiva de datos financieros usando Chart.js. Gráficos dinámicos que muestran tendencias y patrones en datos de transacciones.</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">Chart.js</span>
+                            <span class="tech-badge">API REST</span>
+                            <span class="tech-badge">HTML/CSS</span>
+                        </div>
+                    </div>
+                </div>
+             </div>
             <div class="projects-grid">
                 <div class="project-card">
                     <i class="fa-brands fa-whmcs fa-2x" alt="Módulo WHMCS"></i>
@@ -1046,52 +1074,121 @@
                         <div style="margin-top: 1rem;">
                             <span class="tech-badge">JavaScript</span>
                             <span class="tech-badge">PHP</span>
+                            <span class="tech-badge">WHMCS API</span>
+                            <span class="tech-badge">MySQL</span>
                         </div>
                     </div>
                 </div>
-                
-            </div>
-            <div class="project-card">
+
+                 <div class="project-card">
                     <a href="https://jonatanjhl.github.io/PaginaWeb/sqlquest.html">
                     <i class="fa-solid fa-gamepad fa-2x" lt="Game"></i>
                     <div class="project-content">
-                        <h3>ejemplo de aplicacion de concimientos</h3>
-                        <p>SQL Adventure es un pequeño juego educativo e interactivo construido con HTML y JavaScript, en el que el jugador avanza a través de diferentes escenarios utilizando comandos SQL reales.</p>
+                        <h3>Juegos Roll and Ball</h3>
+                        <p>Uso de Unity para crear un juego para sistema Android usando gestos tactiles, giroscopio y sistema de objetivos.</p>
                         <div style="margin-top: 1rem;">
-                            <span class="tech-badge">JavaScript</span>
-                            <span class="tech-badge">SQL</span>
-                            <span class="tech-badge">CS</span>
+                            <span class="tech-badge">C#</span>
+                            <span class="tech-badge">Blender</span>
                         </div>
                     </div>
                     </a>
                 </div>
-            
-            <div style="margin-top: 3rem;">
-                <h3 style="color: var(--secondary); margin-bottom: 1rem;">Fragmentos de Código Destacados</h3>
                 
+            </div>
+            
+            
+               
+          
+                
+        </section>
+         <h3 style="color: var(--secondary); margin-bottom: 1rem;">Fragmentos de Código Destacados</h3>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Detección Facial con OpenCV (Python)</span>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre>import cv2
+import numpy as np
+
+# Cargar modelo preentrenado
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+emotion_model = load_emotion_model()
+
+def detect_emotions(frame):
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+    
+    for (x,y,w,h) in faces:
+        roi = gray[y:y+h, x:x+w]
+        roi = cv2.resize(roi, (48,48))
+        emotion = emotion_model.predict(roi[np.newaxis,:,:,np.newaxis])
+        
+        # Dibujar rectángulo y etiqueta
+        cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
+        cv2.putText(frame, emotion, (x,y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2)
+    
+    return frame</pre>
+                </div>
+                
+                <!-- Código Chart.js -->
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Gráfico con Chart.js (JavaScript)</span>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre>const ctx = document.getElementById('financialChart').getContext('2d');
+const financialChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+        datasets: [{
+            label: 'Transacciones Mensuales',
+            data: [12000, 19000, 15000, 21000, 18000, 24000],
+            borderColor: '#3498db',
+            tension: 0.1,
+            fill: true,
+            backgroundColor: 'rgba(52, 152, 219, 0.1)'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            tooltip: {
+                mode: 'index',
+                intersect: false
+            }
+        }
+    }
+});</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- [Las secciones de habilidades y metodología se mantienen igual] -->
+        <section id="skills">
                 <div class="code-block">
                     <div class="code-header">
                         <span>Consulta SQL para Reportes NOC</span>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copiar</button>
                     </div>
                     <pre>WITH log_tiempos AS (
-    SELECT 
-        ticket_id,
-        MIN(CASE WHEN accion LIKE '%Nuevo%' THEN fecha END) AS fecha_inicio,
-        MAX(CASE WHEN accion LIKE '%Resuelto%' THEN fecha END) AS fecha_fin
-    FROM sistema.logs_tickets
-    GROUP BY ticket_id
-)
-SELECT
-    t.id AS ID_Ticket,
-    c.nombre_empresa AS Cliente,
-    t.prioridad,
-    t.estado,
-    TIMESTAMPDIFF(SECOND, lt.fecha_inicio, lt.fecha_fin) AS tiempo_respuesta_segundos
-FROM 
-    sistema.tickets t
-JOIN sistema.clientes c ON t.cliente_id = c.id
-LEFT JOIN log_tiempos lt ON lt.ticket_id = t.id;</pre>
+                            SELECT 
+                                ticket_id,
+                                MIN(CASE WHEN accion LIKE '%Nuevo%' THEN fecha END) AS fecha_inicio,
+                                MAX(CASE WHEN accion LIKE '%Resuelto%' THEN fecha END) AS fecha_fin
+                            FROM sistema.logs_tickets
+                            GROUP BY ticket_id
+                        )
+                        SELECT
+                            t.id AS ID_Ticket,
+                            c.nombre_empresa AS Cliente,
+                            t.prioridad,
+                            t.estado,
+                            TIMESTAMPDIFF(SECOND, lt.fecha_inicio, lt.fecha_fin) AS tiempo_respuesta_segundos
+                        FROM 
+                            sistema.tickets t
+                        JOIN sistema.clientes c ON t.cliente_id = c.id
+                        LEFT JOIN log_tiempos lt ON lt.ticket_id = t.id;</pre>
                 </div>
                 
                 <div class="code-block">
@@ -1100,17 +1197,15 @@ LEFT JOIN log_tiempos lt ON lt.ticket_id = t.id;</pre>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copiar</button>
                     </div>
                     <pre>&lt;div class="account-status"&gt;
-    {foreach from=$invoices item=invoice}
-        &lt;div class="invoice {if $invoice.status == 'Unpaid'}unpaid{/if}"&gt;
-            &lt;span&gt;{$invoice.date}&lt;/span&gt;
-            &lt;span&gt;{$invoice.total}&lt;/span&gt;
-            &lt;span&gt;{$invoice.status}&lt;/span&gt;
-        &lt;/div&gt;
-    {/foreach}
-&lt;/div&gt;</pre>
+                        {foreach from=$invoices item=invoice}
+                            &lt;div class="invoice {if $invoice.status == 'Unpaid'}unpaid{/if}"&gt;
+                                &lt;span&gt;{$invoice.date}&lt;/span&gt;
+                                &lt;span&gt;{$invoice.total}&lt;/span&gt;
+                                &lt;span&gt;{$invoice.status}&lt;/span&gt;
+                            &lt;/div&gt;
+                        {/foreach}
+                    &lt;/div&gt;</pre>
                 </div>
-            </div>
-        </section>
 
         <section id="skills">
             <div class="section-header">
