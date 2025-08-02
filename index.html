@@ -30,7 +30,7 @@
             overflow-x: hidden;
         }
         
-        /* Header Styles */
+ 
         header {
             background: linear-gradient(135deg, var(--primary), var(--dark));
             color: white;
@@ -186,7 +186,7 @@
             color: var(--primary);
         }
         
-        /* Main Content */
+ 
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -347,7 +347,7 @@
             margin-bottom: 0.5rem;
         }
         
-        /* Projects Grid */
+ 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -422,7 +422,7 @@
             color: white;
         }
         
-        /* Code Blocks */
+       
         .code-block {
             background-color: #f5f5f5;
             padding: 1.5rem;
@@ -468,7 +468,7 @@
             background-color: rgba(0, 0, 0, 0.2);
         }
         
-        /* Skills Section */
+
         .skills-container {
             display: flex;
             flex-wrap: wrap;
@@ -543,7 +543,7 @@
             width: attr(data-width);
         }
         
-        /* Footer */
+
         footer {
             background-color: var(--dark);
             color: white;
@@ -622,7 +622,7 @@
             font-size: 0.9rem;
         }
         
-        /* Animations */
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -661,7 +661,7 @@
             }
         }
         
-        /* Tooltip */
+
         .tooltip {
             position: relative;
             display: inline-block;
@@ -781,7 +781,7 @@
             }
         }
         
-        /* Dark mode toggle */
+
         .dark-mode-toggle {
             position: fixed;
             bottom: 20px;
@@ -836,7 +836,7 @@
             background-color: #333;
         }
         
-        /* Progress bar animation */
+
         @keyframes progress {
             from {
                 width: 0;
@@ -846,7 +846,6 @@
             }
         }
         
-        /* Floating animation */
         @keyframes float {
             0% {
                 transform: translateY(0px);
@@ -1089,12 +1088,14 @@
                         <div style="margin-top: 1rem;">
                             <span class="tech-badge">C#</span>
                             <span class="tech-badge">Blender</span>
+
                         </div>
                     </div>
                     </a>
                 </div>
                 
             </div>
+           
             
             
                
@@ -1102,70 +1103,7 @@
                 
         </section>
          <h3 style="color: var(--secondary); margin-bottom: 1rem;">Fragmentos de Código Destacados</h3>
-                <div class="code-block">
-                    <div class="code-header">
-                        <span>Detección Facial con OpenCV (Python)</span>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copiar</button>
-                    </div>
-                    <pre>import cv2
-import numpy as np
-
-# Cargar modelo preentrenado
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-emotion_model = load_emotion_model()
-
-def detect_emotions(frame):
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-    
-    for (x,y,w,h) in faces:
-        roi = gray[y:y+h, x:x+w]
-        roi = cv2.resize(roi, (48,48))
-        emotion = emotion_model.predict(roi[np.newaxis,:,:,np.newaxis])
-        
-        # Dibujar rectángulo y etiqueta
-        cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
-        cv2.putText(frame, emotion, (x,y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2)
-    
-    return frame</pre>
-                </div>
                 
-                <!-- Código Chart.js -->
-                <div class="code-block">
-                    <div class="code-header">
-                        <span>Gráfico con Chart.js (JavaScript)</span>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copiar</button>
-                    </div>
-                    <pre>const ctx = document.getElementById('financialChart').getContext('2d');
-const financialChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
-        datasets: [{
-            label: 'Transacciones Mensuales',
-            data: [12000, 19000, 15000, 21000, 18000, 24000],
-            borderColor: '#3498db',
-            tension: 0.1,
-            fill: true,
-            backgroundColor: 'rgba(52, 152, 219, 0.1)'
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            tooltip: {
-                mode: 'index',
-                intersect: false
-            }
-        }
-    }
-});</pre>
-                </div>
-            </div>
-        </section>
-
-        <!-- [Las secciones de habilidades y metodología se mantienen igual] -->
-        <section id="skills">
                 <div class="code-block">
                     <div class="code-header">
                         <span>Consulta SQL para Reportes NOC</span>
@@ -1206,6 +1144,67 @@ const financialChart = new Chart(ctx, {
                         {/foreach}
                     &lt;/div&gt;</pre>
                 </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Detección Facial con OpenCV (Python)</span>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre>import cv2
+                        import numpy as np
+
+                        # Cargar modelo preentrenado
+                        face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+                        emotion_model = load_emotion_model()
+
+                        def detect_emotions(frame):
+                            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                            faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+                            
+                            for (x,y,w,h) in faces:
+                                roi = gray[y:y+h, x:x+w]
+                                roi = cv2.resize(roi, (48,48))
+                                emotion = emotion_model.predict(roi[np.newaxis,:,:,np.newaxis])
+                                
+                                # Dibujar rectángulo y etiqueta
+                                cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
+                                cv2.putText(frame, emotion, (x,y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2)
+                        
+                    return frame</pre>
+                </div>
+                
+               
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Gráfico con Chart.js (JavaScript)</span>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copiar</button>
+                    </div>
+                    <pre>const ctx = document.getElementById('financialChart').getContext('2d');
+                        const financialChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                                datasets: [{
+                                    label: 'Transacciones Mensuales',
+                                    data: [12000, 19000, 15000, 21000, 18000, 24000],
+                                    borderColor: '#3498db',
+                                    tension: 0.1,
+                                    fill: true,
+                                    backgroundColor: 'rgba(52, 152, 219, 0.1)'
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    tooltip: {
+                                        mode: 'index',
+                                        intersect: false
+                                    }
+                                }
+                            }
+                    });</pre>
+                </div>
+            </div>
 
         <section id="skills">
             <div class="section-header">
@@ -1391,22 +1390,20 @@ const financialChart = new Chart(ctx, {
             });
         };
         
-        // Animate timeline items
+
         animateOnScroll(document.querySelectorAll('.timeline-item'), 'visible');
-        
-        // Animate project cards
+
         animateOnScroll(document.querySelectorAll('.project-card'), 'visible');
-        
-        // Animate skill categories
+   
         animateOnScroll(document.querySelectorAll('.skill-category'), 'visible');
         
-        // Animate skill bars
+  
         document.querySelectorAll('.skill-progress').forEach(bar => {
             const width = bar.getAttribute('data-width');
             bar.style.width = width;
         });
         
-        // Copy code function with improved feedback
+   
         function copyCode(button) {
             const codeBlock = button.parentElement.parentElement;
             const code = codeBlock.querySelector('pre').textContent;
@@ -1430,14 +1427,13 @@ const financialChart = new Chart(ctx, {
                 }, 2000);
             });
         }
-        
-        // Form submission with validation
+
         const contactForm = document.getElementById('contact-form');
         if (contactForm) {
             contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 
-                // Simple validation
+        
                 const name = document.getElementById('name').value.trim();
                 const email = document.getElementById('email').value.trim();
                 const message = document.getElementById('message').value.trim();
@@ -1447,7 +1443,7 @@ const financialChart = new Chart(ctx, {
                     return;
                 }
                 
-                // Simulate form submission
+     
                 const submitBtn = contactForm.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
                 
@@ -1462,7 +1458,7 @@ const financialChart = new Chart(ctx, {
                         submitBtn.disabled = false;
                         contactForm.reset();
                         
-                        // Show success message
+                  
                         const successMsg = document.createElement('div');
                         successMsg.style.backgroundColor = 'rgba(46, 204, 113, 0.2)';
                         successMsg.style.color = '#155724';
@@ -1483,7 +1479,7 @@ const financialChart = new Chart(ctx, {
             });
         }
         
-        // Smooth scrolling for anchor links
+ 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1498,7 +1494,7 @@ const financialChart = new Chart(ctx, {
                         behavior: 'smooth'
                     });
                     
-                    // Update URL without jumping
+               
                     if (history.pushState) {
                         history.pushState(null, null, targetId);
                     } else {
@@ -1508,13 +1504,13 @@ const financialChart = new Chart(ctx, {
             });
         });
         
-        // Floating animation for elements
+   
         const floatingElements = document.querySelectorAll('.floating');
         floatingElements.forEach(el => {
             el.style.animationDelay = `${Math.random() * 2}s`;
         });
         
-        // Responsive navigation for mobile
+   
         const setupMobileNav = () => {
             if (window.innerWidth <= 768) {
                 const nav = document.querySelector('nav');
@@ -1544,10 +1540,10 @@ const financialChart = new Chart(ctx, {
             }
         };
         
-        // Initialize mobile nav
+  
         setupMobileNav();
         
-        // Update on resize
+
         window.addEventListener('resize', setupMobileNav);
     </script>
 </body>
