@@ -3,630 +3,720 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jonatan Hidalgo - Portafolio Profesional</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Jonatan Hidalgo | Ingeniero de Software</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --text: #333;
-            --text-light: #7f8c8d;
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --text-primary: #f0f0f5;
+            --text-secondary: #9090a0;
+            --accent-primary: #00d4aa;
+            --accent-secondary: #7c3aed;
+            --accent-gradient: linear-gradient(135deg, #00d4aa 0%, #7c3aed 100%);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --glow: 0 0 40px rgba(0, 212, 170, 0.15);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
-            background-color: var(--light);
-            color: var(--text);
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
         }
         
- 
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--dark));
-            color: white;
-            padding: 2rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        i {
-            padding: 10px;
-            transition: transform 0.3s ease;
-        }
-        
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .header-bg {
-            position: absolute;
+        /* Animated Background */
+        .bg-grid {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
-            opacity: 0.3;
-            z-index: 1;
+            background-image: 
+                linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -2;
+            animation: gridMove 20s linear infinite;
         }
         
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(60px); }
+        }
+        
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.4;
+            z-index: -1;
+        }
+        
+        .bg-glow-1 {
+            top: -200px;
+            left: -200px;
+            background: var(--accent-primary);
+            animation: floatGlow 15s ease-in-out infinite;
+        }
+        
+        .bg-glow-2 {
+            bottom: -200px;
+            right: -200px;
+            background: var(--accent-secondary);
+            animation: floatGlow 18s ease-in-out infinite reverse;
+        }
+        
+        @keyframes floatGlow {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 30px); }
+        }
+        
+        /* Navigation */
         nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 3rem;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--card-border);
             transition: all 0.3s ease;
         }
         
-        .logo:hover {
-            transform: scale(1.05);
+        nav.scrolled {
+            padding: 1rem 5%;
+            background: rgba(10, 10, 15, 0.95);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
         }
         
         .nav-links a {
-            color: white;
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
             position: relative;
-        }
-        
-        .nav-links a:hover {
-            color: var(--secondary);
         }
         
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -4px;
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--secondary);
+            background: var(--accent-gradient);
             transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--text-primary);
         }
         
         .nav-links a:hover::after {
             width: 100%;
         }
         
+        /* Hero Section */
         .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 900px;
             text-align: center;
-            padding: 4rem 0;
+            z-index: 1;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
         }
         
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.1s forwards;
+            opacity: 0;
+        }
+        
+        .hero h1 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            animation: fadeInUp 1s ease 0.2s forwards;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
             opacity: 0;
         }
         
         .btn {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: white;
-            padding: 0.8rem 1.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 1rem;
             transition: all 0.3s ease;
-            border: none;
             cursor: pointer;
-            animation: fadeInUp 1s ease 0.4s forwards;
-            opacity: 0;
-            position: relative;
-            overflow: hidden;
+            border: none;
         }
         
-        .btn:hover {
-            background-color: #2980b9;
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: var(--bg-primary);
+            box-shadow: var(--glow);
+        }
+        
+        .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 60px rgba(0, 212, 170, 0.3);
         }
         
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
+        .btn-secondary {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
         }
         
-        .btn:focus:not(:active)::after {
-            animation: ripple 1s ease-out;
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent-primary);
         }
         
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid white;
-            margin-left: 1rem;
-        }
-        
-        .btn-outline:hover {
-            background-color: white;
-            color: var(--primary);
-        }
-        
- 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
+        /* Sections */
         section {
-            margin-bottom: 4rem;
-            padding: 2rem;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
         }
         
         .section-header {
             text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
+            margin-bottom: 4rem;
         }
         
-        .section-header h2 {
-            font-size: 2.2rem;
-            color: var(--primary);
+        .section-label {
             display: inline-block;
-            padding-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
         
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--secondary);
-            transition: width 0.3s ease;
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
         
-        .section-header:hover h2::after {
-            width: 120px;
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+        }
+        
+        .about-text p strong {
+            color: var(--text-primary);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--glow);
+        }
+        
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .academic-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1.75rem;
+            margin-top: 2rem;
+        }
+        
+        .academic-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .academic-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+        
+        .academic-card strong {
+            color: var(--text-primary);
         }
         
         /* Experience Timeline */
         .timeline {
             position: relative;
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
         }
         
-        .timeline::after {
+        .timeline::before {
             content: '';
             position: absolute;
-            width: 6px;
-            background-color: var(--secondary);
-            top: 0;
-            bottom: 0;
             left: 50%;
-            margin-left: -3px;
-            border-radius: 3px;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
         }
         
         .timeline-item {
-            padding: 10px 40px;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
             position: relative;
-            background-color: inherit;
-            width: 50%;
-            opacity: 0;
-            transition: opacity 0.6s ease, transform 0.6s ease;
-            transform: translateY(20px);
+            margin-bottom: 3rem;
         }
         
-        .timeline-item.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
         }
         
-        .timeline-item::after {
+        .timeline-item::before {
             content: '';
             position: absolute;
-            width: 25px;
-            height: 25px;
-            right: -17px;
-            background-color: white;
-            border: 4px solid var(--secondary);
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-            transition: all 0.3s ease;
-        }
-        
-        .timeline-item:hover::after {
-            transform: scale(1.2);
-            background-color: var(--secondary);
-        }
-        
-        .left {
-            left: 0;
-        }
-        
-        .right {
             left: 50%;
-        }
-        
-        .left::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
             z-index: 1;
-            right: 30px;
-            border: medium solid var(--light);
-            border-width: 10px 0 10px 10px;
-            border-color: transparent transparent transparent white;
-        }
-        
-        .right::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            left: 30px;
-            border: medium solid var(--light);
-            border-width: 10px 10px 10px 0;
-            border-color: transparent white transparent transparent;
-        }
-        
-        .right::after {
-            left: -16px;
         }
         
         .timeline-content {
-            padding: 20px 30px;
-            background-color: white;
-            position: relative;
-            border-radius: 6px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            max-width: 420px;
             transition: all 0.3s ease;
         }
         
         .timeline-content:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--glow);
         }
         
         .timeline-date {
-            font-weight: bold;
-            color: var(--secondary);
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .timeline-content h3 {
+            font-size: 1.15rem;
             margin-bottom: 0.5rem;
         }
         
- 
+        .timeline-content > p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .timeline-content ul {
+            list-style: none;
+        }
+        
+        .timeline-content ul li {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding-left: 1.2rem;
+            position: relative;
+            margin-bottom: 0.3rem;
+        }
+        
+        .timeline-content ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+        }
+        
+        /* Projects Grid */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 1.75rem;
         }
         
         .project-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border: 1px solid #eee;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
-        }
-        
-        .project-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .project-card i {
-            display: block;
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin: 1rem 0;
-            transition: all 0.3s ease;
-        }
-        
-        .project-card:hover i {
-            transform: scale(1.2);
-            color: var(--accent);
-        }
-        
-        .project-content {
-            padding: 1.5rem;
-        }
-        
-        .project-content h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-            transition: color 0.3s ease;
-        }
-        
-        .project-card:hover .project-content h3 {
-            color: var(--secondary);
-        }
-        
-        .tech-badge {
-            display: inline-block;
-            background-color: var(--light);
-            color: var(--primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .project-card:hover .tech-badge {
-            background-color: var(--secondary);
-            color: white;
-        }
-        
-       
-        .code-block {
-            background-color: #f5f5f5;
-            padding: 1.5rem;
-            border-radius: 5px;
-            font-family: 'Courier New', Courier, monospace;
-            overflow-x: auto;
-            margin: 1.5rem 0;
-            position: relative;
-            border-left: 4px solid var(--secondary);
-            transition: all 0.3s ease;
-        }
-        
-        .code-block:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .code-block pre {
-            margin: 0;
-            white-space: pre-wrap;
-        }
-        
-        .code-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        
-        .copy-btn {
-            background-color: rgba(0, 0, 0, 0.1);
-            border: none;
-            border-radius: 3px;
-            padding: 0.3rem 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 0.8rem;
-        }
-        
-        .copy-btn:hover {
-            background-color: rgba(0, 0, 0, 0.2);
-        }
-        
-
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-        
-        .skill-category {
-            flex: 1;
-            min-width: 250px;
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .skill-category.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .skill-category h3 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            text-align: center;
-            border-bottom: 2px solid var(--light);
-            padding-bottom: 0.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .skill-category:hover h3 {
-            color: var(--accent);
-            border-color: var(--secondary);
-        }
-        
-        .skill-item {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .skill-name {
-            flex: 1;
-        }
-        
-        .skill-bar {
-            height: 8px;
-            background-color: var(--light);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 0.3rem;
-        }
-        
-        .skill-progress {
-            height: 100%;
-            background-color: var(--secondary);
-            border-radius: 4px;
-            width: 0;
-            transition: width 1.5s ease 0.3s;
-        }
-        
-        .skill-category.visible .skill-progress {
-            width: attr(data-width);
-        }
-        
-
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
         
-        footer::before {
+        .project-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
-            opacity: 0.2;
-            z-index: 1;
+            height: 3px;
+            background: var(--accent-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
         
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 170, 0.3);
+            box-shadow: var(--glow);
+        }
+        
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            background: var(--accent-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--bg-primary);
+        }
+        
+        .project-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .project-card > p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        
+        .tag {
+            padding: 0.35rem 0.7rem;
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-category {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1.75rem;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 170, 0.3);
+        }
+        
+        .skill-category h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .skill-category h3 i {
+            color: var(--accent-primary);
+        }
+        
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+        
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.4rem;
+        }
+        
+        .skill-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .skill-percent {
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+        
+        .skill-bar {
+            height: 5px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: var(--accent-gradient);
+            border-radius: 3px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+        
+        /* Methodology */
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.25rem;
+        }
+        
+        .method-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+        }
+        
+        .method-card i {
+            font-size: 1.75rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .method-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+        
+        .method-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 5%;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--card-border);
+            text-align: center;
+        }
+        
+        .footer-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-content p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
         
         .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 50%;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
         
         .social-links a:hover {
-            color: var(--secondary);
-            transform: translateY(-3px) scale(1.1);
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .social-links a::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 2px solid var(--secondary);
-            border-radius: 50%;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover::after {
-            opacity: 1;
-            transform: scale(1.2);
+            background: var(--accent-gradient);
+            color: var(--bg-primary);
+            border-color: transparent;
+            transform: translateY(-3px);
         }
         
         .copyright {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
         
-
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -635,895 +725,551 @@
         }
         
         @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
         
-        @keyframes ripple {
-            0% {
-                transform: scale(0, 0);
-                opacity: 1;
-            }
-            20% {
-                transform: scale(25, 25);
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                transform: scale(40, 40);
-            }
-        }
-        
-
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            border-bottom: 1px dotted var(--text-light);
-            cursor: help;
-        }
-        
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: var(--dark);
-            color: white;
-            text-align: center;
-            border-radius: 6px;
-            padding: 0.5rem;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 0.9rem;
-        }
-        
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-        
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 3rem;
+            .about-grid {
+                grid-template-columns: 1fr;
             }
             
-            .projects-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 50px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+            
+            .timeline-item::before,
+            .timeline-item:nth-child(even)::before {
+                left: 20px;
+                transform: translateX(-50%);
             }
         }
         
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
             .hero h1 {
                 font-size: 2.5rem;
             }
             
-            .hero p {
-                font-size: 1.1rem;
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
             
-            .nav-links {
-                gap: 1rem;
+            section {
+                padding: 4rem 5%;
             }
-            
-            .btn {
-                display: block;
-                margin: 0.5rem auto;
-                width: 80%;
-                max-width: 250px;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
-            }
-            
-            .timeline::after {
-                left: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-item::before {
-                left: 60px;
-                border: medium solid white;
-                border-width: 10px 10px 10px 0;
-                border-color: transparent white transparent transparent;
-            }
-            
-            .left::after, .right::after {
-                left: 15px;
-            }
-            
-            .right {
-                left: 0%;
-            }
-            
-            .skill-category {
-                min-width: 100%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-                padding: 0 1rem;
-            }
-            
-            .section-header h2 {
-                font-size: 1.8rem;
-            }
-            
-            .project-card {
-                min-width: 100%;
-            }
-            
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-        
-
-        .dark-mode-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--primary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-        
-        .dark-mode-toggle:hover {
-            transform: scale(1.1) rotate(30deg);
-        }
-        
-        body.dark-mode {
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-        
-        body.dark-mode section {
-            background-color: #1e1e1e;
-            color: #e0e0e0;
-        }
-        
-        body.dark-mode .project-card {
-            background-color: #252525;
-            border-color: #444;
-        }
-        
-        body.dark-mode .code-block {
-            background-color: #252525;
-            color: #e0e0e0;
-        }
-        
-        body.dark-mode .skill-category {
-            background-color: #252525;
-        }
-        
-        body.dark-mode .timeline-content {
-            background-color: #252525;
-        }
-        
-        body.dark-mode .skill-bar {
-            background-color: #333;
-        }
-        
-
-        @keyframes progress {
-            from {
-                width: 0;
-            }
-            to {
-                width: attr(data-width);
-            }
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
-        }
-        
-        .floating {
-            animation: float 3s ease-in-out infinite;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-bg"></div>
-        <div class="header-content">
-            <nav>
-                <a href="#" class="logo floating">Jonatan Hidalgo</a>
-                <div class="nav-links">
-                    <a href="#experience">Experiencia</a>
-                    <a href="#projects">Proyectos</a>
-                    <a href="#skills">Habilidades</a>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">&lt;JH /&gt;</a>
+        <div class="nav-links">
+            <a href="#about">Sobre Mí</a>
+            <a href="#experience">Experiencia</a>
+            <a href="#projects">Proyectos</a>
+            <a href="#skills">Habilidades</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                Disponible para nuevos proyectos
+            </div>
+            <h1>Hola, soy <span>Jonatan Hidalgo</span><br>Ingeniero de Software</h1>
+            <p>Desarrollador especializado en soluciones para gestión empresarial, automatización de procesos e integración de sistemas. Transformo procesos manuales en herramientas eficientes y confiables.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-code"></i>
+                    Ver Proyectos
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    Contactar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-header">
+            <span class="section-label">Sobre Mí</span>
+            <h2 class="section-title">Conóceme mejor</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Licenciado en Ingeniería de Software con más de 3 años de experiencia en el área de <strong>Automatización y TI en SERVNET</strong>. Mi enfoque se centra en transformar procesos manuales en soluciones automatizadas, robustas y confiables.</p>
+                <p>He desarrollado herramientas que han permitido reducir la dependencia de intervención humana en tareas repetitivas, minimizando errores y liberando al personal para enfocarse en actividades de mayor valor estratégico.</p>
+                <p>Mis proyectos incluyen sistemas de gestión de clientes, automatización de facturación, lectura de documentos fiscales, reportes financieros y administración de colaboradores.</p>
+            </div>
+            <div class="about-info">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">3+</div>
+                        <div class="stat-label">Años de experiencia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Módulos principales</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Compromiso</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Aprendizaje continuo</div>
+                    </div>
                 </div>
-            </nav>
-            <div class="hero">
-                <h1>Ingeniero de Software</h1>
-                <p>Soy desarrollador de software con enfoque en la creación de aplicaciones web, automatización de procesos, integración de APIs y 
-                    diseño de sistemas que optimizan la experiencia del usuario. Me especializo en construir soluciones funcionales, seguras y adaptadas a las 
-                    necesidades de cada proyecto.</p>
-                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem;">
-                    <a href="#projects" class="btn">Ver Proyectos</a>
-                    <a href="#contact" class="btn btn-outline">Contactar</a>
+                <div class="academic-card">
+                    <h3><i class="fas fa-graduation-cap"></i> Formación Académica</h3>
+                    <p><strong>Lic. en Ingeniería de Software</strong></p>
+                    <p>Universidad Autónoma de la Ciudad de México</p>
+                    <p>Matrícula: 15-011-1224</p>
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <main class="container">
-        <section id="about">
-            <div class="section-header">
-                <h2>Sobre Mí</h2>
-            </div>
-            <div class="about-content">
-                <p>Licenciado en Ingeniería de Software con más de 3 años de experiencia en el área de Automatización y TI en SERVNET. Especializado en el desarrollo de soluciones tecnológicas para la optimización de procesos internos, gestión de información y mejora de la experiencia de usuarios.</p>
-                
-                <div class="academic-info" style="background-color: #f8f9fa; padding: 1.5rem; border-left: 4px solid var(--secondary); margin: 1.5rem 0; border-radius: 8px;">
-                    <h3 style="margin-bottom: 0.5rem; color: var(--primary);">Información Académica:</h3>
-                    <p><strong>Licenciatura en Ingeniería de Software</strong><br>
-                    Universidad Autónoma de la Ciudad de México (UACM)<br>
-                    Matrícula: 15-011-1224</p>
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="section-header">
+            <span class="section-label">Trayectoria</span>
+            <h2 class="section-title">Mi camino en SERVNET</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">Marzo 2022 - Presente</div>
+                    <h3>Desarrollador Jr. | Automatización y TI</h3>
+                    <p>Rol actual con responsabilidades ampliadas en desarrollo y automatización.</p>
+                    <ul>
+                        <li>Desarrollo de módulos en WHMCS (WSAS)</li>
+                        <li>Automatización de procesos con scripts PHP</li>
+                        <li>Gestión y optimización de bases de datos MySQL</li>
+                        <li>Integración de APIs nativas de WHMCS</li>
+                    </ul>
                 </div>
             </div>
-        </section>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">Becario de Automatización</div>
+                    <h3>Inicio Profesional</h3>
+                    <p>Primeras experiencias creando consultas y vistas en la base de datos.</p>
+                    <ul>
+                        <li>Consultas SQL para reportes de servicios</li>
+                        <li>Vistas de tickets de soporte</li>
+                        <li>Módulos informativos en WHMCS</li>
+                        <li>Filtrado y descarga de datos en Excel</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">Crecimiento Profesional</div>
+                    <h3>Evolución Técnica</h3>
+                    <p>Participación en proyectos más complejos y soluciones integrales.</p>
+                    <ul>
+                        <li>Actualización masiva de campos en BD</li>
+                        <li>Sistemas de validación de datos fiscales</li>
+                        <li>Reportes financieros automatizados</li>
+                        <li>Integración con servicios externos</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">Impacto</div>
+                    <h3>Logros y Resultados</h3>
+                    <p>Contribuciones que mejoraron la eficiencia operativa.</p>
+                    <ul>
+                        <li>Reducción de tiempo en validación de datos</li>
+                        <li>Disminución de errores en facturación</li>
+                        <li>Automatización de notificaciones</li>
+                        <li>Mejora en experiencia de clientes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <section id="experience">
-            <div class="section-header">
-                <h2>Trayectoria Profesional</h2>
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-header">
+            <span class="section-label">Portafolio</span>
+            <h2 class="section-title">Proyectos destacados</h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-file-invoice"></i></div>
+                    <div>
+                        <h3>CFDI 4.0 - Actualización de Datos Fiscales</h3>
+                    </div>
+                </div>
+                <p>Sistema de autoservicio para que clientes actualicen sus datos fiscales. Incluye tokens de seguridad MD5, validación administrativa y sincronización con WHMCS mediante API.</p>
+                <div class="project-tags">
+                    <span class="tag">PHP</span>
+                    <span class="tag">WHMCS API</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">PHPMailer</span>
+                    <span class="tag">MD5</span>
+                </div>
             </div>
             
-            <div class="timeline">
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Marzo 2022 - Presente</div>
-                        <h3>SERVNET - Automatización y TI</h3>
-                        <p>Ingresé como becario y evolucioné a roles más técnicos, desarrollando soluciones para la gestión de clientes y colaboradores.</p>
-                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                            <li>Desarrollo de módulos en WHMCS (WSAS)</li>
-                            <li>Automatización de procesos con scripts PHP</li>
-                            <li>Gestión de bases de datos MySQL</li>
-                        </ul>
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-file-pdf"></i></div>
+                    <div>
+                        <h3>Lectura de Constancia de Situación Fiscal</h3>
                     </div>
                 </div>
-                
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Primeros Meses</div>
-                        <h3>Aprendizaje y Adaptación</h3>
-                        <p>Tareas iniciales que me permitieron familiarizarme con la infraestructura tecnológica de la empresa:</p>
-                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                            <li>Consultas SQL básicas para informes</li>
-                            <li>Uso de phpMyAdmin y MySQL Workbench</li>
-                            <li>Conexiones SSH con Termius/MobaXterm</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Evolución Profesional</div>
-                        <h3>Proyectos Destacados</h3>
-                        <p>Participación en proyectos más complejos y técnicos:</p>
-                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                            <li>Homologación de información en bases de datos</li>
-                            <li>Scripts SQL complejos para limpieza de datos</li>
-                            <li>Implementación de módulos WHMCS</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Logros Principales</div>
-                        <h3>Impacto en la Organización</h3>
-                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                            <li>Sistema web para gestión integral de colaboradores</li>
-                            <li>Automatización de procesos internos</li>
-                            <li>Mejora de experiencia para clientes y colaboradores</li>
-                        </ul>
-                    </div>
+                <p>Automatización que lee PDFs de constancias fiscales usando PDF.js. Extrae RFC, razón social, dirección y completa automáticamente el formulario de registro.</p>
+                <div class="project-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">PDF.js</span>
+                    <span class="tag">RegEx</span>
+                    <span class="tag">HTML5</span>
                 </div>
             </div>
-        </section>
-
-        <section id="projects">
-            <div class="section-header">
-                <h2>Proyectos Desarrollados</h2>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <i class="fa-solid fa-face-smile fa-2x"></i>
-                    <div class="project-content">
-                        <h3>Reconocimiento Facial de Emociones</h3>
-                        <p>Sistema de clasificación de emociones (feliz, enojado, serio) usando OpenCV y Python con un modelo preentrenado. Procesamiento de imágenes y cálculo de métricas de precisión.</p>
-                        <div style="margin-top: 1rem;">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">OpenCV</span>
-                            <span class="tech-badge">numpy</span>
-                            <span class="tech-badge">matplotlib</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <i class="fa-solid fa-chart-line fa-2x"></i>
-                    <div class="project-content">
-                        <h3>Dashboard de Métricas con Chart.js</h3>
-                        <p>Visualización interactiva de datos financieros usando Chart.js. Gráficos dinámicos que muestran tendencias y patrones en datos de transacciones.</p>
-                        <div style="margin-top: 1rem;">
-                            <span class="tech-badge">JavaScript</span>
-                            <span class="tech-badge">Chart.js</span>
-                            <span class="tech-badge">API REST</span>
-                            <span class="tech-badge">HTML/CSS</span>
-                        </div>
-                    </div>
-                </div>
-             </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <i class="fa-brands fa-whmcs fa-2x" alt="Módulo WHMCS"></i>
-                    <div class="project-content">
-                        <h3>Módulo de Actualización de Datos</h3>
-                        <p>Permite a clientes actualizar su información de contacto y fiscal mediante enlaces enviados por correo.</p>
-                        <div style="margin-top: 1rem;">
-                            <span class="tech-badge">PHP</span>
-                            <span class="tech-badge">WHMCS API</span>
-                            <span class="tech-badge">MySQL</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <i class="fa-solid fa-users-gear fa-2x" alt="Gestión Colaboradores"></i>
-                    <div class="project-content">
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-users"></i></div>
+                    <div>
                         <h3>Sistema de Gestión de Colaboradores</h3>
-                        <p>Sistema interno completo con control de vacaciones, solicitudes y organigramas visuales.</p>
-                        <div style="margin-top: 1rem;">
-                            <span class="tech-badge">PHP</span>
-                            <span class="tech-badge">FullCalendar</span>
-                            <span class="tech-badge">GoJS</span>
-                            <span class="tech-badge">OAuth</span>
-                        </div>
                     </div>
                 </div>
-                
-                <div class="project-card">
-                    <i class="fa-brands fa-mailchimp fa-2x" alt="Mailchimp NPS"></i>
-                    <div class="project-content">
+                <p>Sistema integral con login OAuth de Google, control de vacaciones con FullCalendar, органigramas visuales con GoJS, y gestión de asignación de equipos.</p>
+                <div class="project-tags">
+                    <span class="tag">PHP</span>
+                    <span class="tag">OAuth</span>
+                    <span class="tag">FullCalendar</span>
+                    <span class="tag">GoJS</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-chart-pie"></i></div>
+                    <div>
+                        <h3>Módulo de Cancelaciones Abiertas</h3>
+                    </div>
+                </div>
+                <p>Dashboard con gráfica interactiva de pastel usando GoJS. Muestra distribución de solicitudes por área (CDMX, MTY, QRO) con navegación jerárquica al detalle.</p>
+                <div class="project-tags">
+                    <span class="tag">PHP</span>
+                    <span class="tag">GoJS</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">SQL</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <div>
+                        <h3>Módulo de Facturación con Adeudo</h3>
+                    </div>
+                </div>
+                <p>Reporte de facturas pendientes con cálculo en MXN y USD. Clasificación por días vencidos (0-30, 31-60, 61-90, 91-120, 121+) y exportación a Excel.</p>
+                <div class="project-tags">
+                    <span class="tag">PHP</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">Excel</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-bell"></i></div>
+                    <div>
+                        <h3>Sistema de Notificaciones Automáticas</h3>
+                    </div>
+                </div>
+                <p>Scripts PHP ejecutados por cronjobs para recordatorios de facturas próximas a vencer y notificaciones de tareas pendientes. Integración con PHPMailer.</p>
+                <div class="project-tags">
+                    <span class="tag">PHP</span>
+                    <span class="tag">Cronjobs</span>
+                    <span class="tag">PHPMailer</span>
+                    <span class="tag">SSH</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-envelope"></i></div>
+                    <div>
                         <h3>Encuesta NPS con Mailchimp</h3>
-                        <p>Integración entre Mailchimp y WHMCS para envío de encuestas NPS con visualización en tiempo real.</p>
-                        <div style="margin-top: 1rem;">
-                            <span class="tech-badge">Mailchimp API</span>
-                            <span class="tech-badge">JavaScript</span>
-                            <span class="tech-badge">WHMCS</span>
-                        </div>
                     </div>
                 </div>
-                
-                <div class="project-card">
-                    <i class="fa-solid fa-file-invoice-dollar fa-2x" alt="Estado de Cuenta"></i>
-                    <div class="project-content">
-                        <h3>Visualización de Estado de Cuenta</h3>
-                        <p>Vista personalizada del estado de cuenta en el portal de clientes de WHMCS.</p>
-                        <div style="margin-top: 1rem;">
-                            <span class="tech-badge">Smarty</span>
-                            <span class="tech-badge">CSS</span>
-                            <span class="tech-badge">WHMCS</span>
-                        </div>
-                    </div>
+                <p>Integración entre Mailchimp y WHMCS para envío automático de encuestas NPS. Visualización de resultados en tiempo real.</p>
+                <div class="project-tags">
+                    <span class="tag">Mailchimp API</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">WHMCS</span>
                 </div>
-                
-                <div class="project-card">
-                    <i class="fa-solid fa-bell fa-2x"></i>
-                    <div class="project-content">
-                        <h3>Automatización de Notificaciones</h3>
-                        <p>Scripts PHP ejecutados por cronjobs para recordatorios de facturas próximas a vencer.</p>
-                        <div style="margin-top: 1rem;">
-                            <span class="tech-badge">PHP</span>
-                            <span class="tech-badge">Cronjobs</span>
-                            <span class="tech-badge">PHPMailer</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <i class="fa-solid fa-user-plus fa-2x" alt="Alta Clientes"></i>
-                    <div class="project-content">
-                        <h3>Módulo de Alta de Clientes</h3>
-                        <p>Sistema para registro de nuevos clientes con validación de datos fiscales mediante JavaScript.</p>
-                        <div style="margin-top: 1rem;">
-                            <span class="tech-badge">JavaScript</span>
-                            <span class="tech-badge">PHP</span>
-                            <span class="tech-badge">WHMCS API</span>
-                            <span class="tech-badge">MySQL</span>
-                        </div>
-                    </div>
-                </div>
-
-                 <div class="project-card">
-                    <!-- a href="https://jonatanjhl.github.io/PaginaWeb/sqlquest.html" -->
-                    <i class="fa-solid fa-gamepad fa-2x" lt="Game"></i>
-                    <div class="project-content">
-                        <h3>Juegos Roll and Ball</h3>
-                        <p>Uso de Unity para crear un juego para sistema Android usando gestos tactiles, giroscopio y sistema de objetivos.</p>
-                        <div style="margin-top: 1rem;">
-                            <span class="tech-badge">C#</span>
-                            <span class="tech-badge">Blender</span>
-
-                        </div>
-                    </div>
-                 <!-- /a -->
-                </div>
-                
-            </div>
-           
-            
-            
-               
-          
-                
-        </section>
-         <h3 style="color: var(--secondary); margin-bottom: 1rem;">Fragmentos de Código Destacados</h3>
-                
-                <div class="code-block">
-                    <div class="code-header">
-                        <span>Consulta SQL para Reportes NOC</span>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copiar</button>
-                    </div>
-                    <pre>WITH log_tiempos AS (
-                            SELECT 
-                                ticket_id,
-                                MIN(CASE WHEN accion LIKE '%Nuevo%' THEN fecha END) AS fecha_inicio,
-                                MAX(CASE WHEN accion LIKE '%Resuelto%' THEN fecha END) AS fecha_fin
-                            FROM sistema.logs_tickets
-                            GROUP BY ticket_id
-                        )
-                        SELECT
-                            t.id AS ID_Ticket,
-                            c.nombre_empresa AS Cliente,
-                            t.prioridad,
-                            t.estado,
-                            TIMESTAMPDIFF(SECOND, lt.fecha_inicio, lt.fecha_fin) AS tiempo_respuesta_segundos
-                        FROM 
-                            sistema.tickets t
-                        JOIN sistema.clientes c ON t.cliente_id = c.id
-                        LEFT JOIN log_tiempos lt ON lt.ticket_id = t.id;</pre>
-                </div>
-                
-                <div class="code-block">
-                    <div class="code-header">
-                        <span>Plantilla .tpl para Estado de Cuenta</span>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copiar</button>
-                    </div>
-                    <pre>&lt;div class="account-status"&gt;
-                        {foreach from=$invoices item=invoice}
-                            &lt;div class="invoice {if $invoice.status == 'Unpaid'}unpaid{/if}"&gt;
-                                &lt;span&gt;{$invoice.date}&lt;/span&gt;
-                                &lt;span&gt;{$invoice.total}&lt;/span&gt;
-                                &lt;span&gt;{$invoice.status}&lt;/span&gt;
-                            &lt;/div&gt;
-                        {/foreach}
-                    &lt;/div&gt;</pre>
-                </div>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span>Detección Facial con OpenCV (Python)</span>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copiar</button>
-                    </div>
-                    <pre>import cv2
-                        import numpy as np
-
-                        # Cargar modelo preentrenado
-                        face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-                        emotion_model = load_emotion_model()
-
-                        def detect_emotions(frame):
-                            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-                            faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-                            
-                            for (x,y,w,h) in faces:
-                                roi = gray[y:y+h, x:x+w]
-                                roi = cv2.resize(roi, (48,48))
-                                emotion = emotion_model.predict(roi[np.newaxis,:,:,np.newaxis])
-                                
-                                # Dibujar rectángulo y etiqueta
-                                cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
-                                cv2.putText(frame, emotion, (x,y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2)
-                        
-                    return frame</pre>
-                </div>
-                
-               
-                <div class="code-block">
-                    <div class="code-header">
-                        <span>Gráfico con Chart.js (JavaScript)</span>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Copiar</button>
-                    </div>
-                    <pre>const ctx = document.getElementById('financialChart').getContext('2d');
-                        const financialChart = new Chart(ctx, {
-                            type: 'line',
-                            data: {
-                                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
-                                datasets: [{
-                                    label: 'Transacciones Mensuales',
-                                    data: [12000, 19000, 15000, 21000, 18000, 24000],
-                                    borderColor: '#3498db',
-                                    tension: 0.1,
-                                    fill: true,
-                                    backgroundColor: 'rgba(52, 152, 219, 0.1)'
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                                plugins: {
-                                    tooltip: {
-                                        mode: 'index',
-                                        intersect: false
-                                    }
-                                }
-                            }
-                    });</pre>
-                </div>
-            </div>
-
-        <section id="skills">
-            <div class="section-header">
-                <h2>Habilidades Técnicas</h2>
             </div>
             
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>Lenguajes de Programación</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">PHP</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 90%" data-width="90%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">JavaScript</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%" data-width="85%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">SQL</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 88%" data-width="88%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">HTML/CSS</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 80%" data-width="80%"></div></div>
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-gamepad"></i></div>
+                    <div>
+                        <h3>Roll and Ball - Juego Android</h3>
                     </div>
                 </div>
-                
-                <div class="skill-category">
-                    <h3>Tecnologías y Frameworks</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">WHMCS</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 92%" data-width="92%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">FullCalendar</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 75%" data-width="75%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">GoJS</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 70%" data-width="70%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">PHPMailer</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%" data-width="85%"></div></div>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Herramientas y Metodologías</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">MySQL</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 87%" data-width="87%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">Git</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 78%" data-width="78%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">SSH</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 82%" data-width="82%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">Cronjobs</div>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%" data-width="85%"></div></div>
-                    </div>
+                <p>Juego móvil desarrollado en Unity usando gestos táctiles, giroscopio y sistema de objetivos. Modelos 3D creados en Blender.</p>
+                <div class="project-tags">
+                    <span class="tag">C#</span>
+                    <span class="tag">Unity</span>
+                    <span class="tag">Blender</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="methodology">
-            <div class="section-header">
-                <h2>Metodología de Trabajo</h2>
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-header">
+            <span class="section-label">Conocimientos</span>
+            <h2 class="section-title">Habilidades técnicas</h2>
+        </div>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3><i class="fas fa-code"></i> Lenguajes</h3>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">PHP</span>
+                        <span class="skill-percent">92%</span>
+                    </div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="92%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">JavaScript</span>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">SQL / MySQL</span>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Python</span>
+                        <span class="skill-percent">70%</span>
+                    </div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div>
+                </div>
             </div>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; transition: all 0.3s ease;">
-                    <h3 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-terminal" style="margin-right: 0.5rem;"></i> Desarrollo Iterativo</h3>
-                    <p>Enfoque incremental con ciclos cortos de desarrollo y retroalimentación constante.</p>
+            <div class="skill-category">
+                <h3><i class="fas fa-cube"></i> Tecnologías</h3>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">WHMCS / WSAS</span>
+                        <span class="skill-percent">95%</span>
+                    </div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="95%"></div></div>
                 </div>
-                
-                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; transition: all 0.3s ease;">
-                    <h3 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-code-branch" style="margin-right: 0.5rem;"></i> Control de Versiones</h3>
-                    <p>Uso de Git para el manejo de versiones y colaboración en equipo.</p>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Smarty PHP</span>
+                        <span class="skill-percent">88%</span>
+                    </div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="88%"></div></div>
                 </div>
-                
-                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; transition: all 0.3s ease;">
-                    <h3 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-shield-alt" style="margin-right: 0.5rem;"></i> Pruebas Manuales</h3>
-                    <p>Pruebas exhaustivas en entornos controlados antes de implementación.</p>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">PDF.js</span>
+                        <span class="skill-percent">75%</span>
+                    </div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="75%"></div></div>
                 </div>
-                
-                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; transition: all 0.3s ease;">
-                    <h3 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-book" style="margin-right: 0.5rem;"></i> Documentación</h3>
-                    <p>Documentación técnica detallada de todos los proyectos desarrollados.</p>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">GoJS</span>
+                        <span class="skill-percent">72%</span>
+                    </div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="72%"></div></div>
                 </div>
             </div>
-        </section>
+            
+            <div class="skill-category">
+                <h3><i class="fas fa-tools"></i> Herramientas</h3>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Git</span>
+                        <span class="skill-percent">78%</span>
+                    </div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="78%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">SSH / Terminal</span>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Cronjobs</span>
+                        <span class="skill-percent">88%</span>
+                    </div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="88%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">PHPMailer</span>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Methodology -->
+        <div class="section-header" style="margin-top: 4rem;">
+            <span class="section-label">Enfoque</span>
+            <h2 class="section-title">Metodología de trabajo</h2>
+        </div>
+        <div class="methodology-grid">
+            <div class="method-card">
+                <i class="fas fa-terminal"></i>
+                <h4>Desarrollo Iterativo</h4>
+                <p>Ciclos cortos con retroalimentación constante.</p>
+            </div>
+            <div class="method-card">
+                <i class="fas fa-code-branch"></i>
+                <h4>Control de Versiones</h4>
+                <p>Git para gestión y colaboración.</p>
+            </div>
+            <div class="method-card">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Pruebas Manuales</h4>
+                <p>Validación exhaustiva antes de producción.</p>
+            </div>
+            <div class="method-card">
+                <i class="fas fa-book"></i>
+                <h4>Documentación</h4>
+                <p>Documentación técnica detallada.</p>
+            </div>
+        </div>
+    </section>
 
-       
-    </main>
-
-    <footer>
+    <!-- Footer -->
+    <footer id="contact">
         <div class="footer-content">
-            <h2 style="margin-bottom: 1rem;">Jonatan Joaquín Hidalgo Ledesma</h2>
-            <p>Ingeniero de Software</p>
-            
+            <h2>Jonatan Joaquin Hidalgo Ledesma</h2>
+            <p>Ingeniero de Software | SERVNET</p>
             <div class="social-links">
-                
-                <a href="https://www.linkedin.com/in/jonatan-joaquin-hidalgo-ledesma/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="jonatanhidalgoledesma@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/jonatan-joaquin-hidalgo-ledesma/" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="mailto:jonatanhidalgoledesma@gmail.com" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
             </div>
-            
-            <div class="copyright">
-                &copy; 2025 Portafolio Profesional. Todos los derechos reservados.
-            </div>
+            <p class="copyright">© 2025 Portafolio Profesional. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <div class="dark-mode-toggle" id="darkModeToggle">
-        <i class="fas fa-moon"></i>
-    </div>
-
     <script>
-        // Dark mode toggle with localStorage
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
-        
-        // Check for saved user preference
-        if (localStorage.getItem('dark-mode')) {
-            body.classList.add('dark-mode');
-            darkModeToggle.querySelector('i').classList.remove('fa-moon');
-            darkModeToggle.querySelector('i').classList.add('fa-sun');
-        }
-        
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const icon = darkModeToggle.querySelector('i');
-            
-            if (body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-                localStorage.setItem('dark-mode', 'enabled');
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
             } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-                localStorage.removeItem('dark-mode');
+                navbar.classList.remove('scrolled');
             }
         });
-        
-        // Scroll animations with Intersection Observer
-        const animateOnScroll = (elements, className) => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add(className);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            
-            elements.forEach(element => {
-                observer.observe(element);
-            });
-        };
-        
 
-        animateOnScroll(document.querySelectorAll('.timeline-item'), 'visible');
-
-        animateOnScroll(document.querySelectorAll('.project-card'), 'visible');
-   
-        animateOnScroll(document.querySelectorAll('.skill-category'), 'visible');
-        
-  
-        document.querySelectorAll('.skill-progress').forEach(bar => {
-            const width = bar.getAttribute('data-width');
-            bar.style.width = width;
-        });
-        
-   
-        function copyCode(button) {
-            const codeBlock = button.parentElement.parentElement;
-            const code = codeBlock.querySelector('pre').textContent;
-            const originalIcon = button.innerHTML;
-            
-            navigator.clipboard.writeText(code).then(() => {
-                button.innerHTML = '<i class="fas fa-check"></i> Copiado!';
-                button.style.backgroundColor = 'rgba(46, 204, 113, 0.2)';
-                
-                setTimeout(() => {
-                    button.innerHTML = originalIcon;
-                    button.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
-                }, 2000);
-            }).catch(err => {
-                button.innerHTML = '<i class="fas fa-times"></i> Error';
-                button.style.backgroundColor = 'rgba(231, 76, 60, 0.2)';
-                
-                setTimeout(() => {
-                    button.innerHTML = originalIcon;
-                    button.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
-                }, 2000);
-            });
-        }
-
-        const contactForm = document.getElementById('contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-        
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const message = document.getElementById('message').value.trim();
-                
-                if (!name || !email || !message) {
-                    alert('Por favor completa todos los campos');
-                    return;
-                }
-                
-     
-                const submitBtn = contactForm.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerHTML;
-                
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-                submitBtn.disabled = true;
-                
-                setTimeout(() => {
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado!';
-                    
-                    setTimeout(() => {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                        contactForm.reset();
-                        
-                  
-                        const successMsg = document.createElement('div');
-                        successMsg.style.backgroundColor = 'rgba(46, 204, 113, 0.2)';
-                        successMsg.style.color = '#155724';
-                        successMsg.style.padding = '1rem';
-                        successMsg.style.borderRadius = '4px';
-                        successMsg.style.marginTop = '1rem';
-                        successMsg.style.textAlign = 'center';
-                        successMsg.innerHTML = '¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.';
-                        
-                        contactForm.appendChild(successMsg);
-                        
-                        setTimeout(() => {
-                            successMsg.style.opacity = '0';
-                            setTimeout(() => successMsg.remove(), 300);
-                        }, 5000);
-                    }, 1000);
-                }, 1500);
-            });
-        }
-        
- 
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-               
-                    if (history.pushState) {
-                        history.pushState(null, null, targetId);
-                    } else {
-                        location.hash = targetId;
-                    }
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
-        
-   
-        const floatingElements = document.querySelectorAll('.floating');
-        floatingElements.forEach(el => {
-            el.style.animationDelay = `${Math.random() * 2}s`;
-        });
-        
-   
-        const setupMobileNav = () => {
-            if (window.innerWidth <= 768) {
-                const nav = document.querySelector('nav');
-                const navLinks = document.querySelector('.nav-links');
-                const menuToggle = document.createElement('button');
-                
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                menuToggle.style.background = 'none';
-                menuToggle.style.border = 'none';
-                menuToggle.style.color = 'white';
-                menuToggle.style.fontSize = '1.5rem';
-                menuToggle.style.cursor = 'pointer';
-                menuToggle.style.padding = '0.5rem';
-                
-                nav.insertBefore(menuToggle, navLinks);
-                navLinks.style.display = 'none';
-                
-                menuToggle.addEventListener('click', () => {
-                    if (navLinks.style.display === 'none' || navLinks.style.display === '') {
-                        navLinks.style.display = 'flex';
-                        menuToggle.innerHTML = '<i class="fas fa-times"></i>';
-                    } else {
-                        navLinks.style.display = 'none';
-                        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                    }
-                });
-            }
-        };
-        
-  
-        setupMobileNav();
-        
 
-        window.addEventListener('resize', setupMobileNav);
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animate skill bars
+                    if (entry.target.classList.contains('skill-category')) {
+                        const bars = entry.target.querySelectorAll('.skill-progress');
+                        bars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            bar.style.width = width;
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.timeline-content, .project-card, .skill-category, .method-card, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add visible class styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .timeline-content.visible, .project-card.visible, .skill-category.visible, .method-card.visible, .stat-card.visible {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add stagger delay to timeline items
+        document.querySelectorAll('.timeline-item').forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.15}s`;
+        });
+
+        // Add stagger delay to project cards
+        document.querySelectorAll('.project-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.08}s`;
+        });
     </script>
 </body>
 </html>
