@@ -1,1110 +1,1405 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jonatan Hidalgo | Software Engineer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-tertiary: #1a1a25;
-            --text-primary: #f0f0f5;
-            --text-secondary: #9090a0;
-            --accent-primary: #00d4aa;
-            --accent-secondary: #7c3aed;
-            --accent-gradient: linear-gradient(135deg, #00d4aa 0%, #7c3aed 100%);
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --glow: 0 0 40px rgba(0, 212, 170, 0.15);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        .bg-grid {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image:
-                linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            z-index: -2;
-            animation: gridMove 20s linear infinite;
-        }
-        @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(60px); } }
-        .bg-glow {
-            position: fixed; width: 600px; height: 600px;
-            border-radius: 50%; filter: blur(120px); opacity: 0.4; z-index: -1;
-        }
-        .bg-glow-1 { top: -200px; left: -200px; background: var(--accent-primary); animation: floatGlow 15s ease-in-out infinite; }
-        .bg-glow-2 { bottom: -200px; right: -200px; background: var(--accent-secondary); animation: floatGlow 18s ease-in-out infinite reverse; }
-        @keyframes floatGlow { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(50px,30px); } }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jonatan Hidalgo — Software Engineer</title>
+<meta name="description" content="Backend engineer especializado en automatización, integración de APIs y sistemas con IA. 4+ años en producción. CDMX.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────────────────────────── */
+:root {
+  --bg:        #080b10;
+  --bg2:       #0d1117;
+  --bg3:       #141b24;
+  --border:    rgba(255,255,255,0.07);
+  --accent:    #00d4ff;
+  --amber:     #f59e0b;
+  --violet:    #7c3aed;
+  --text:      #e2e8f0;
+  --muted:     #5a6a80;
+  --card:      rgba(255,255,255,0.025);
+  --glow:      rgba(0,212,255,0.18);
+  --font-head: 'Syne', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --ease:      cubic-bezier(.16,1,.3,1);
+}
 
-        /* NAV */
-        nav {
-            position: fixed; top: 0; left: 0; width: 100%;
-            padding: 1.5rem 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000;
-            background: rgba(10,10,15,0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--card-border);
-            transition: all 0.3s ease;
-        }
-        nav.scrolled { padding: 1rem 5%; background: rgba(10,10,15,0.95); }
-        .logo {
-            font-size: 1.5rem; font-weight: 700;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            text-decoration: none;
-        }
-        .nav-right { display: flex; align-items: center; gap: 2.5rem; }
-        .nav-links { display: flex; gap: 2.5rem; }
-        .nav-links a {
-            color: var(--text-secondary); text-decoration: none;
-            font-weight: 500; font-size: 0.95rem;
-            transition: all 0.3s ease; position: relative;
-        }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 2px; background: var(--accent-gradient); transition: width 0.3s ease;
-        }
-        .nav-links a:hover { color: var(--text-primary); }
-        .nav-links a:hover::after { width: 100%; }
+/* ─── RESET ──────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--font-mono);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+img{display:block;max-width:100%}
 
-        /* LANGUAGE TOGGLE */
-        .lang-toggle {
-            display: flex; align-items: center; gap: 0.4rem;
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: 50px; padding: 0.3rem 0.5rem;
-            cursor: pointer;
-        }
-        .lang-btn {
-            padding: 0.25rem 0.6rem; border-radius: 50px;
-            font-size: 0.78rem; font-weight: 700; cursor: pointer;
-            border: none; background: transparent;
-            color: var(--text-secondary); transition: all 0.2s ease;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        .lang-btn.active {
-            background: var(--accent-gradient); color: var(--bg-primary);
-        }
+/* ─── SCROLLBAR ──────────────────────────────────────────────── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
 
-        /* HERO */
-        .hero {
-            min-height: 100vh; display: flex; align-items: center;
-            justify-content: center; padding: 8rem 5% 4rem; position: relative;
-        }
-        .hero-content { max-width: 900px; text-align: center; z-index: 1; }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.5rem 1.2rem;
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: 50px; font-size: 0.85rem; color: var(--accent-primary);
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        .hero-badge::before {
-            content: ''; width: 8px; height: 8px;
-            background: var(--accent-primary); border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 700;
-            line-height: 1.1; margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease 0.1s forwards; opacity: 0;
-        }
-        .hero h1 span {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .hero p {
-            font-size: 1.25rem; color: var(--text-secondary);
-            max-width: 600px; margin: 0 auto 2.5rem;
-            animation: fadeInUp 0.8s ease 0.2s forwards; opacity: 0;
-        }
-        .hero-buttons {
-            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.3s forwards; opacity: 0;
-        }
+/* ─── NOISE OVERLAY ──────────────────────────────────────────── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity:0.025;
+  pointer-events:none;
+  z-index:9999;
+}
 
-        /* BUTTONS */
-        .btn {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 1rem 2rem; border-radius: 50px; text-decoration: none;
-            font-weight: 600; font-size: 1rem; transition: all 0.3s ease;
-            cursor: pointer; border: none; font-family: 'Space Grotesk', sans-serif;
-        }
-        .btn-primary { background: var(--accent-gradient); color: var(--bg-primary); box-shadow: var(--glow); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 60px rgba(0,212,170,0.3); }
-        .btn-secondary { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-primary); }
-        .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: var(--accent-primary); }
+/* ─── NAV ────────────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;width:100%;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.25rem 5%;
+  background:rgba(8,11,16,0.75);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  z-index:1000;
+  transition:padding .3s var(--ease);
+}
+nav.scrolled{padding:.9rem 5%}
+.logo{
+  font-family:var(--font-head);
+  font-size:1.25rem;
+  font-weight:800;
+  color:var(--accent);
+  letter-spacing:-.02em;
+}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{
+  font-size:.8rem;
+  font-weight:500;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  transition:color .2s;
+  position:relative;
+}
+.nav-links a::after{
+  content:'';
+  position:absolute;bottom:-3px;left:0;
+  width:0;height:1px;
+  background:var(--accent);
+  transition:width .3s var(--ease);
+}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  font-family:var(--font-head);
+  font-size:.8rem;
+  font-weight:700;
+  padding:.5rem 1.25rem;
+  border:1px solid var(--accent);
+  border-radius:4px;
+  color:var(--accent);
+  transition:all .2s;
+}
+.nav-cta:hover{background:var(--accent);color:var(--bg)}
 
-        /* SECTIONS */
-        section { padding: 6rem 5%; max-width: 1400px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 4rem; }
-        .section-label {
-            display: inline-block; font-size: 0.85rem; color: var(--accent-primary);
-            text-transform: uppercase; letter-spacing: 3px;
-            margin-bottom: 1rem; font-weight: 600;
-        }
-        .section-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 1rem; }
+/* ─── HERO ───────────────────────────────────────────────────── */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+#hero-canvas{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  opacity:.65;
+}
+.hero-content{
+  position:relative;z-index:2;
+  max-width:860px;
+  padding:8rem 5% 5rem;
+  text-align:center;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.4rem 1rem;
+  border:1px solid rgba(0,212,255,.25);
+  border-radius:2px;
+  font-size:.72rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:2rem;
+  opacity:0;
+  animation:fadeUp .8s var(--ease) .1s forwards;
+}
+.badge-dot{
+  width:6px;height:6px;
+  background:var(--accent);
+  border-radius:50%;
+  animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
-        /* ABOUT */
-        .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start; }
-        .about-text p { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 1.25rem; line-height: 1.8; }
-        .about-text p strong { color: var(--text-primary); }
-        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-        .stat-card {
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: 16px; padding: 1.5rem; text-align: center; transition: all 0.3s ease;
-        }
-        .stat-card:hover { transform: translateY(-5px); border-color: var(--accent-primary); box-shadow: var(--glow); }
-        .stat-number {
-            font-size: 2.2rem; font-weight: 700;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .stat-label { font-size: 0.85rem; color: var(--text-secondary); }
-        .academic-card {
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: 20px; padding: 1.75rem; margin-top: 2rem;
-        }
-        .academic-card h3 { font-size: 1.1rem; margin-bottom: 1rem; color: var(--accent-primary); display: flex; align-items: center; gap: 0.5rem; }
-        .academic-card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.4rem; }
-        .academic-card strong { color: var(--text-primary); }
+.hero h1{
+  font-family:var(--font-head);
+  font-size:clamp(2.6rem,8vw,5.5rem);
+  font-weight:800;
+  line-height:1.05;
+  letter-spacing:-.03em;
+  margin-bottom:1.5rem;
+  opacity:0;
+  animation:fadeUp .9s var(--ease) .2s forwards;
+}
+.hero h1 em{
+  font-style:normal;
+  color:var(--accent);
+  position:relative;
+}
+.hero h1 em::after{
+  content:'';
+  position:absolute;bottom:4px;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--accent),var(--violet));
+  border-radius:2px;
+}
+.hero-sub{
+  font-size:1rem;
+  color:var(--muted);
+  max-width:600px;
+  margin:0 auto 2.5rem;
+  line-height:1.8;
+  opacity:0;
+  animation:fadeUp .9s var(--ease) .35s forwards;
+}
+.hero-sub strong{color:var(--text)}
+.hero-actions{
+  display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+  opacity:0;
+  animation:fadeUp .9s var(--ease) .5s forwards;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.85rem 2rem;
+  font-family:var(--font-head);
+  font-size:.9rem;
+  font-weight:700;
+  border-radius:4px;
+  transition:all .25s var(--ease);
+  cursor:pointer;border:none;
+}
+.btn-primary{
+  background:var(--accent);
+  color:var(--bg);
+  box-shadow:0 0 32px rgba(0,212,255,.25);
+}
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 48px rgba(0,212,255,.4);
+}
+.btn-ghost{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--text);
+}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 
-        /* TIMELINE */
-        .timeline { position: relative; max-width: 900px; margin: 0 auto; }
-        .timeline::before {
-            content: ''; position: absolute; left: 50%; transform: translateX(-50%);
-            width: 2px; height: 100%;
-            background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
-        }
-        .timeline-item { display: flex; justify-content: flex-end; padding-right: 50%; position: relative; margin-bottom: 3rem; }
-        .timeline-item:nth-child(even) { justify-content: flex-start; padding-right: 0; padding-left: 50%; }
-        .timeline-item::before {
-            content: ''; position: absolute; left: 50%; transform: translateX(-50%);
-            width: 16px; height: 16px; background: var(--accent-primary);
-            border-radius: 50%; border: 3px solid var(--bg-primary); z-index: 1;
-        }
-        .timeline-content {
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: 16px; padding: 1.5rem 2rem; max-width: 420px; transition: all 0.3s ease;
-        }
-        .timeline-content:hover { transform: translateY(-5px); border-color: var(--accent-primary); box-shadow: var(--glow); }
-        .timeline-date { font-size: 0.8rem; color: var(--accent-primary); font-weight: 600; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
-        .timeline-content h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
-        .timeline-content > p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.75rem; }
-        .timeline-content ul { list-style: none; }
-        .timeline-content ul li { color: var(--text-secondary); font-size: 0.85rem; padding-left: 1.2rem; position: relative; margin-bottom: 0.3rem; }
-        .timeline-content ul li::before { content: '▹'; position: absolute; left: 0; color: var(--accent-primary); }
+/* scroll indicator */
+.scroll-hint{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  color:var(--muted);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  opacity:0;animation:fadeUp .8s var(--ease) 1s forwards;
+}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.8)}50%{opacity:1;transform:scaleY(1)}}
 
-        /* PROJECTS */
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.75rem; }
-        .project-card {
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: 20px; padding: 2rem; transition: all 0.4s ease;
-            position: relative; overflow: hidden;
-        }
-        .project-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
-            background: var(--accent-gradient); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
-        }
-        .project-card:hover { transform: translateY(-10px); border-color: rgba(0,212,170,0.3); box-shadow: var(--glow); }
-        .project-card:hover::before { transform: scaleX(1); }
-        .project-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
-        .project-icon {
-            width: 50px; height: 50px; min-width: 50px;
-            background: var(--accent-gradient); border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.3rem; color: var(--bg-primary);
-        }
-        .project-card h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
-        .project-card > p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.7; }
-        .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
-        .tag {
-            padding: 0.35rem 0.7rem;
-            background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.2);
-            border-radius: 20px; font-size: 0.75rem; color: var(--accent-primary);
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .project-links { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
-        .project-link {
-            display: inline-flex; align-items: center; gap: 0.4rem;
-            padding: 0.4rem 0.9rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600;
-            text-decoration: none; transition: all 0.3s ease;
-            border: 1px solid var(--card-border); color: var(--text-secondary);
-            background: var(--card-bg);
-        }
-        .project-link:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
-        .project-link.primary { background: var(--accent-gradient); color: var(--bg-primary); border-color: transparent; }
-        .project-link.primary:hover { transform: translateY(-2px); box-shadow: var(--glow); }
+/* ─── SECTION BASICS ─────────────────────────────────────────── */
+.section{
+  max-width:1200px;
+  margin:0 auto;
+  padding:7rem 5%;
+}
+.section-eyebrow{
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:.75rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.section-eyebrow::before{
+  content:'';
+  width:32px;height:1px;
+  background:var(--accent);
+  flex-shrink:0;
+}
+.section-title{
+  font-family:var(--font-head);
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:800;
+  letter-spacing:-.03em;
+  line-height:1.1;
+  margin-bottom:4rem;
+}
+.section-title span{color:var(--accent)}
 
-        /* SKILLS */
-        .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .skill-category {
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: 20px; padding: 1.75rem; transition: all 0.3s ease;
-        }
-        .skill-category:hover { transform: translateY(-5px); border-color: rgba(0,212,170,0.3); }
-        .skill-category h3 { font-size: 1.1rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
-        .skill-category h3 i { color: var(--accent-primary); }
-        .skill-item { margin-bottom: 1rem; }
-        .skill-header { display: flex; justify-content: space-between; margin-bottom: 0.4rem; }
-        .skill-name { font-weight: 500; font-size: 0.9rem; }
-        .skill-percent { color: var(--accent-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
-        .skill-bar { height: 5px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; }
-        .skill-progress { height: 100%; background: var(--accent-gradient); border-radius: 3px; width: 0; transition: width 1.5s ease; }
+/* reveal on scroll */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease);
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
-        /* METHODOLOGY */
-        .methodology-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; }
-        .method-card {
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: 16px; padding: 1.5rem; transition: all 0.3s ease;
-        }
-        .method-card:hover { transform: translateY(-5px); border-color: var(--accent-primary); }
-        .method-card i { font-size: 1.75rem; color: var(--accent-primary); margin-bottom: 0.75rem; }
-        .method-card h4 { font-size: 1rem; margin-bottom: 0.4rem; }
-        .method-card p { color: var(--text-secondary); font-size: 0.85rem; }
+/* ─── ABOUT ──────────────────────────────────────────────────── */
+.about-grid{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:5rem;
+  align-items:start;
+}
+.about-text p{
+  color:var(--muted);
+  font-size:.95rem;
+  line-height:1.9;
+  margin-bottom:1.25rem;
+}
+.about-text p strong{color:var(--text);font-weight:500}
 
-        /* CONTACT SECTION */
-        #contact-section {
-            padding: 6rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
-        .contact-info h3 { font-size: 1.4rem; margin-bottom: 1rem; }
-        .contact-info p { color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.8; }
-        .contact-detail {
-            display: flex; align-items: center; gap: 1rem;
-            margin-bottom: 1.25rem; padding: 1rem 1.25rem;
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: 12px; transition: all 0.3s ease;
-        }
-        .contact-detail:hover { border-color: var(--accent-primary); }
-        .contact-detail i { color: var(--accent-primary); font-size: 1.2rem; width: 24px; text-align: center; }
-        .contact-detail a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
-        .contact-detail a:hover { color: var(--accent-primary); }
+.stats-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:.75rem;
+  margin-bottom:1.5rem;
+}
+.stat-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:1.25rem;
+  text-align:center;
+  transition:border-color .25s,transform .25s;
+}
+.stat-card:hover{border-color:rgba(0,212,255,.3);transform:translateY(-4px)}
+.stat-num{
+  font-family:var(--font-head);
+  font-size:2rem;
+  font-weight:800;
+  color:var(--accent);
+  display:block;
+  line-height:1;
+  margin-bottom:.25rem;
+}
+.stat-lbl{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
 
-        /* CONTACT FORM */
-        .contact-form {
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: 20px; padding: 2.5rem;
-        }
-        .contact-form h3 { font-size: 1.3rem; margin-bottom: 1.75rem; }
-        .form-group { margin-bottom: 1.25rem; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-secondary); }
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%; padding: 0.85rem 1rem;
-            background: rgba(255,255,255,0.04); border: 1px solid var(--card-border);
-            border-radius: 10px; color: var(--text-primary);
-            font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem;
-            transition: all 0.3s ease; outline: none;
-        }
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus { border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(0,212,170,0.1); }
-        .form-group textarea { resize: vertical; min-height: 130px; }
-        .form-group select option { background: #1a1a25; }
-        .form-submit {
-            width: 100%; padding: 1rem; border: none;
-            background: var(--accent-gradient); color: var(--bg-primary);
-            border-radius: 50px; font-size: 1rem; font-weight: 700;
-            cursor: pointer; transition: all 0.3s ease;
-            font-family: 'Space Grotesk', sans-serif;
-            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-        }
-        .form-submit:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(0,212,170,0.3); }
-        .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-        .form-message {
-            margin-top: 1rem; padding: 0.85rem 1.25rem;
-            border-radius: 10px; font-size: 0.9rem; display: none;
-        }
-        .form-message.success { background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.3); color: var(--accent-primary); }
-        .form-message.error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #f87171; }
+.academic-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-left:3px solid var(--accent);
+  border-radius:8px;
+  padding:1.25rem 1.5rem;
+}
+.academic-card h4{
+  font-family:var(--font-head);
+  font-size:.8rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:.75rem;
+}
+.academic-card p{font-size:.85rem;color:var(--muted);margin-bottom:.25rem}
+.academic-card p strong{color:var(--text);font-weight:500}
 
-        /* FOOTER */
-        footer {
-            padding: 4rem 5%; background: var(--bg-secondary);
-            border-top: 1px solid var(--card-border); text-align: center;
-        }
-        .footer-content h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .footer-content p { color: var(--text-secondary); margin-bottom: 2rem; }
-        .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
-        .social-links a {
-            width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: 50%; color: var(--text-secondary); font-size: 1.2rem;
-            transition: all 0.3s ease; text-decoration: none;
-        }
-        .social-links a:hover { background: var(--accent-gradient); color: var(--bg-primary); border-color: transparent; transform: translateY(-3px); }
-        .copyright { color: var(--text-secondary); font-size: 0.9rem; }
+/* ─── EXPERIENCE TIMELINE ────────────────────────────────────── */
+.timeline{
+  position:relative;
+  padding-left:2.5rem;
+}
+.timeline::before{
+  content:'';
+  position:absolute;left:0;top:8px;bottom:8px;
+  width:1px;
+  background:linear-gradient(to bottom,var(--accent),var(--violet),transparent);
+}
+.tl-item{
+  position:relative;
+  margin-bottom:3rem;
+  padding-bottom:3rem;
+  border-bottom:1px solid var(--border);
+}
+.tl-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.tl-dot{
+  position:absolute;
+  left:-2.5rem;
+  top:4px;
+  width:12px;height:12px;
+  background:var(--accent);
+  border-radius:50%;
+  border:2px solid var(--bg);
+  transform:translateX(-5.5px);
+  box-shadow:0 0 12px var(--accent);
+}
+.tl-period{
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:.4rem;
+}
+.tl-role{
+  font-family:var(--font-head);
+  font-size:1.2rem;
+  font-weight:700;
+  margin-bottom:.35rem;
+}
+.tl-company{
+  font-size:.82rem;
+  color:var(--muted);
+  margin-bottom:.9rem;
+}
+.tl-bullets li{
+  font-size:.88rem;
+  color:var(--muted);
+  padding-left:1.25rem;
+  position:relative;
+  margin-bottom:.4rem;
+  line-height:1.6;
+}
+.tl-bullets li::before{
+  content:'▸';
+  position:absolute;left:0;
+  color:var(--accent);font-size:.75rem;top:.05rem;
+}
+.tl-bullets li strong{color:var(--text);font-weight:500}
 
-        /* ANIMATIONS */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+/* ─── PROJECTS ───────────────────────────────────────────────── */
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(360px,1fr));
+  gap:1.5rem;
+}
+.project-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:1.75rem;
+  position:relative;
+  overflow:hidden;
+  transition:transform .3s var(--ease),border-color .3s,box-shadow .3s;
+  display:flex;flex-direction:column;
+}
+.project-card::after{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--violet));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease);
+}
+.project-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(0,212,255,.2);
+  box-shadow:0 24px 48px rgba(0,0,0,.4),0 0 0 1px rgba(0,212,255,.08);
+}
+.project-card:hover::after{transform:scaleX(1)}
+.project-card.featured{
+  grid-column:span 2;
+  border-color:rgba(0,212,255,.15);
+  background:linear-gradient(135deg,rgba(0,212,255,.04),rgba(124,58,237,.04));
+}
+.proj-top{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  margin-bottom:.75rem;gap:1rem;
+}
+.proj-icon{
+  width:44px;height:44px;min-width:44px;
+  background:linear-gradient(135deg,var(--accent),var(--violet));
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;color:var(--bg);
+}
+.proj-badge{
+  font-size:.65rem;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:.25rem .6rem;
+  border-radius:2px;
+  background:rgba(245,158,11,.1);
+  border:1px solid rgba(245,158,11,.25);
+  color:var(--amber);
+  white-space:nowrap;
+}
+.project-card h3{
+  font-family:var(--font-head);
+  font-size:1.05rem;
+  font-weight:700;
+  margin-bottom:.6rem;
+  line-height:1.3;
+}
+.project-card p{
+  font-size:.85rem;
+  color:var(--muted);
+  line-height:1.75;
+  margin-bottom:1.25rem;
+  flex:1;
+}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.tag{
+  font-size:.68rem;
+  padding:.2rem .55rem;
+  border-radius:2px;
+  background:rgba(0,212,255,.06);
+  border:1px solid rgba(0,212,255,.15);
+  color:var(--accent);
+  letter-spacing:.04em;
+}
+.proj-links{display:flex;gap:.75rem;margin-top:auto}
+.proj-link{
+  font-size:.75rem;
+  font-weight:600;
+  color:var(--muted);
+  display:flex;align-items:center;gap:.3rem;
+  transition:color .2s;
+}
+.proj-link:hover{color:var(--accent)}
+.proj-link i{font-size:.8rem}
 
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .about-grid, .contact-grid { grid-template-columns: 1fr; }
-            .timeline::before { left: 20px; }
-            .timeline-item, .timeline-item:nth-child(even) { padding-left: 50px; padding-right: 0; justify-content: flex-start; }
-            .timeline-item::before, .timeline-item:nth-child(even)::before { left: 20px; transform: translateX(-50%); }
-        }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 2.5rem; }
-            .projects-grid { grid-template-columns: 1fr; }
-            section { padding: 4rem 5%; }
-            .form-row { grid-template-columns: 1fr; }
-        }
-    </style>
+/* ─── SKILLS (CANVAS) ────────────────────────────────────────── */
+.skills-wrapper{max-width:800px}
+.skills-group{margin-bottom:3.5rem}
+.group-label{
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:1.75rem;
+  padding-bottom:.75rem;
+  border-bottom:1px solid var(--border);
+}
+.skill-row{
+  margin-bottom:1.6rem;
+  opacity:0;
+  transform:translateX(-16px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease);
+}
+.skill-row.visible{opacity:1;transform:translateX(0)}
+.skill-meta{
+  display:flex;justify-content:space-between;
+  align-items:baseline;
+  margin-bottom:.5rem;
+}
+.skill-name{font-size:.82rem;font-weight:500;color:var(--text);letter-spacing:.04em}
+.skill-context{font-size:.72rem;color:var(--muted)}
+canvas.skill-bar{display:block;width:100%;height:8px;border-radius:4px}
+
+/* ─── METHODOLOGY ────────────────────────────────────────────── */
+.method-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:1.25rem;
+}
+.method-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:1.5rem;
+  transition:border-color .25s,transform .25s;
+}
+.method-card:hover{border-color:rgba(0,212,255,.25);transform:translateY(-4px)}
+.method-num{
+  font-family:var(--font-head);
+  font-size:2.5rem;
+  font-weight:800;
+  color:rgba(0,212,255,.12);
+  line-height:1;
+  margin-bottom:.75rem;
+}
+.method-card h4{
+  font-family:var(--font-head);
+  font-size:1rem;
+  font-weight:700;
+  margin-bottom:.5rem;
+}
+.method-card p{font-size:.82rem;color:var(--muted);line-height:1.7}
+
+/* ─── CONTACT ────────────────────────────────────────────────── */
+.contact-wrapper{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5rem;
+  align-items:start;
+}
+.contact-info h3{
+  font-family:var(--font-head);
+  font-size:1.75rem;
+  font-weight:800;
+  margin-bottom:1rem;
+  line-height:1.2;
+}
+.contact-info p{font-size:.9rem;color:var(--muted);line-height:1.8;margin-bottom:2rem}
+.contact-links{display:flex;flex-direction:column;gap:.75rem}
+.contact-link{
+  display:flex;align-items:center;gap:.75rem;
+  font-size:.85rem;color:var(--muted);
+  transition:color .2s;
+}
+.contact-link:hover{color:var(--accent)}
+.contact-link i{width:20px;color:var(--accent);font-size:.9rem}
+
+.form-group{margin-bottom:1.25rem}
+.form-group label{
+  display:block;
+  font-size:.72rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.45rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:.75rem 1rem;
+  color:var(--text);
+  font-family:var(--font-mono);
+  font-size:.85rem;
+  transition:border-color .2s;
+  outline:none;
+  resize:vertical;
+}
+.form-group select option{background:var(--bg2)}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{border-color:var(--accent)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+/* ─── FOOTER ─────────────────────────────────────────────────── */
+footer{
+  border-top:1px solid var(--border);
+  padding:3rem 5%;
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:1.5rem;
+}
+.footer-left p{font-size:.82rem;color:var(--muted)}
+.footer-left strong{color:var(--text);font-family:var(--font-head);font-weight:700}
+.social-links{display:flex;gap:.75rem}
+.social-link{
+  width:38px;height:38px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--border);border-radius:6px;
+  color:var(--muted);font-size:.9rem;
+  transition:all .2s;
+}
+.social-link:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.06)}
+.copy{font-size:.72rem;color:var(--muted)}
+
+/* ─── ANIMATIONS ─────────────────────────────────────────────── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media(max-width:1024px){
+  .about-grid,.contact-wrapper{grid-template-columns:1fr;gap:3rem}
+  .project-card.featured{grid-column:span 1}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero h1{font-size:2.4rem}
+  .projects-grid{grid-template-columns:1fr}
+  .timeline{padding-left:1.75rem}
+  footer{flex-direction:column;text-align:center}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
-    <div class="bg-grid"></div>
-    <div class="bg-glow bg-glow-1"></div>
-    <div class="bg-glow bg-glow-2"></div>
 
-    <!-- NAV -->
-    <nav id="navbar">
-        <a href="#" class="logo">&lt;JH /&gt;</a>
-        <div class="nav-right">
-            <div class="nav-links">
-                <a href="#about" data-i18n="nav.about">Sobre Mí</a>
-                <a href="#experience" data-i18n="nav.experience">Experiencia</a>
-                <a href="#projects" data-i18n="nav.projects">Proyectos</a>
-                <a href="#skills" data-i18n="nav.skills">Habilidades</a>
-                <a href="#contact-section" data-i18n="nav.contact">Contacto</a>
-            </div>
-            <div class="lang-toggle">
-                <button class="lang-btn active" onclick="setLang('es')">ES</button>
-                <button class="lang-btn" onclick="setLang('en')">EN</button>
-            </div>
+<!-- ─── NAV ──────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <a href="#" class="logo">&lt;JH /&gt;</a>
+  <div class="nav-links">
+    <a href="#about">Sobre mí</a>
+    <a href="#experience">Experiencia</a>
+    <a href="#projects">Proyectos</a>
+    <a href="#skills">Stack</a>
+    <a href="#contact" class="nav-cta">Contactar</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ──────────────────────────────────────────────────── -->
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Disponible para freelance · Remoto · CDMX
+    </div>
+    <h1>
+      Construyo sistemas<br>
+      que <em>automatizan</em><br>
+      lo que importa.
+    </h1>
+    <p class="hero-sub">
+      Backend engineer con <strong>4+ años en producción</strong>. Especializado en automatización de procesos,
+      integración de APIs y sistemas con <strong>IA para empresas SaaS y telecomunicaciones</strong>.
+      De PHP y Node.js hasta LLMs en producción.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">
+        <i class="fas fa-code"></i> Ver proyectos
+      </a>
+      <a href="#contact" class="btn btn-ghost">
+        <i class="fas fa-paper-plane"></i> Hablemos
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</section>
+
+<!-- ─── ABOUT ─────────────────────────────────────────────────── -->
+<div class="section" id="about">
+  <div class="reveal">
+    <p class="section-eyebrow">Sobre mí</p>
+    <h2 class="section-title">El dev detrás<br>del <span>código</span></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        Soy desarrollador backend con enfoque en <strong>automatización real</strong>: sistemas que eliminan trabajo manual, integran plataformas y procesan información sin intervención humana. Llevo 4+ años construyendo esto en producción en <strong>SERVNET</strong>, empresa de telecomunicaciones en CDMX.
+      </p>
+      <p>
+        He diseñado e implementado desde cero un <strong>asistente de datos con LLMs</strong> que genera SQL dinámico en lenguaje natural, un módulo de validación fiscal CFDI 4.0 con sincronización automática a WHMCS, una integración omnicanal WSAS–Slack vía webhooks, y un sistema completo de RRHH con OAuth y control de vacaciones.
+      </p>
+      <p>
+        Trabajo mejor en el cruce entre <strong>backend sólido e integración inteligente</strong>: APIs, automatización, bases de datos y, cada vez más, sistemas que usan IA como herramienta real, no como buzzword.
+      </p>
+    </div>
+    <div class="reveal">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-num">4+</span>
+          <span class="stat-lbl">Años en producción</span>
         </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge" data-i18n="hero.badge">Disponible para nuevos proyectos</div>
-            <h1 data-i18n-html="hero.title">Hola, soy <span>Jonatan Hidalgo</span><br>Ingeniero de Software</h1>
-            <p data-i18n="hero.subtitle">Desarrollador especializado en soluciones para gestión empresarial, automatización de procesos e integración de sistemas. Transformo procesos manuales en herramientas eficientes y confiables.</p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">
-                    <i class="fas fa-code"></i>
-                    <span data-i18n="hero.btn1">Ver Proyectos</span>
-                </a>
-                <a href="#contact-section" class="btn btn-secondary">
-                    <i class="fas fa-envelope"></i>
-                    <span data-i18n="hero.btn2">Contactar</span>
-                </a>
-            </div>
+        <div class="stat-card">
+          <span class="stat-num">8+</span>
+          <span class="stat-lbl">Sistemas en producción</span>
         </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about">
-        <div class="section-header">
-            <span class="section-label" data-i18n="about.label">Sobre Mí</span>
-            <h2 class="section-title" data-i18n="about.title">Conóceme mejor</h2>
+        <div class="stat-card">
+          <span class="stat-num">3</span>
+          <span class="stat-lbl">APIs empresariales activas</span>
         </div>
-        <div class="about-grid">
-            <div class="about-text">
-                <p data-i18n-html="about.p1">Licenciado en Ingeniería de Software con más de <strong>4 años de experiencia</strong> en el área de <strong>Automatización y TI en SERVNET</strong>. Mi enfoque se centra en transformar procesos manuales en soluciones automatizadas, robustas y confiables.</p>
-                <p data-i18n="about.p2">He desarrollado herramientas que han permitido reducir la dependencia de intervención humana en tareas repetitivas, minimizando errores y liberando al personal para enfocarse en actividades de mayor valor estratégico.</p>
-                <p data-i18n="about.p3">Mis proyectos incluyen sistemas de gestión de colaboradores con IA, automatización de facturación, lectura de documentos fiscales, reportes financieros, integraciones omnicanal y desarrollo full-stack con Node.js y React.</p>
-            </div>
-            <div class="about-info">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">4+</div>
-                        <div class="stat-label" data-i18n="about.stat1">Años de experiencia</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">8+</div>
-                        <div class="stat-label" data-i18n="about.stat2">Proyectos relevantes</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label" data-i18n="about.stat3">Compromiso</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">∞</div>
-                        <div class="stat-label" data-i18n="about.stat4">Aprendizaje continuo</div>
-                    </div>
-                </div>
-                <div class="academic-card">
-                    <h3><i class="fas fa-graduation-cap"></i> <span data-i18n="about.academic">Formación Académica</span></h3>
-                    <p><strong data-i18n="about.degree">Lic. en Ingeniería de Software</strong></p>
-                    <p>Universidad Autónoma de la Ciudad de México</p>
-                    <p data-i18n="about.degreeStatus">Titulación en proceso por experiencia profesional</p>
-                </div>
-            </div>
+        <div class="stat-card">
+          <span class="stat-num">1</span>
+          <span class="stat-lbl">LLM en entorno corporativo</span>
         </div>
-    </section>
+      </div>
+      <div class="academic-card">
+        <h4><i class="fas fa-graduation-cap"></i> &nbsp;Formación</h4>
+        <p><strong>Lic. en Ingeniería de Software</strong></p>
+        <p>Universidad Autónoma de la Ciudad de México</p>
+        <p>Titulación por experiencia profesional — en proceso</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- EXPERIENCE -->
-    <section id="experience">
-        <div class="section-header">
-            <span class="section-label" data-i18n="exp.label">Trayectoria</span>
-            <h2 class="section-title" data-i18n="exp.title">Mi camino en SERVNET</h2>
+<!-- ─── EXPERIENCE ────────────────────────────────────────────── -->
+<div class="section" id="experience">
+  <div class="reveal">
+    <p class="section-eyebrow">Trayectoria</p>
+    <h2 class="section-title">Mi camino</h2>
+  </div>
+  <div class="timeline">
+
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-period">Mar 2022 — Presente</div>
+      <div class="tl-role">Desarrollador de Software | Automatización & TI</div>
+      <div class="tl-company">SERVNET · Ciudad de México</div>
+      <ul class="tl-bullets">
+        <li>Diseño y desarrollo de sistemas internos en <strong>PHP y Node.js</strong>, varios actualmente en uso por el equipo operativo</li>
+        <li>Arquitectura e implementación de un <strong>asistente IA</strong> que permite consultar la BD en lenguaje natural, eliminando dependencia del equipo de datos para reportes ad-hoc</li>
+        <li>Automatización de flujos de <strong>facturación y notificaciones</strong> que eliminaron tareas manuales recurrentes del área de cobranza</li>
+        <li>Integración de <strong>WHMCS/WSAS con Slack</strong> para unificar soporte en un único canal operativo</li>
+      </ul>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-period">Proyectos de mayor complejidad</div>
+      <div class="tl-role">Evolución Técnica</div>
+      <div class="tl-company">SERVNET · Automatización & TI</div>
+      <ul class="tl-bullets">
+        <li><strong>CFDI 4.0:</strong> módulo fiscal que redujo errores de captura y sincroniza datos automáticamente con WHMCS vía API</li>
+        <li><strong>Dashboard aging:</strong> reporte de cartera vencida MXN/USD con exportación a Excel y alertas por cronjob</li>
+        <li><strong>WSAS–Slack:</strong> tickets sincronizados en tiempo real entre plataformas mediante webhooks bidireccionales</li>
+        <li><strong>CAPA 8 RRHH:</strong> OAuth Google, control de vacaciones con FullCalendar, organigramas con GoJS</li>
+      </ul>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-period">Impacto medible</div>
+      <div class="tl-role">Logros & Resultados</div>
+      <div class="tl-company">SERVNET · Operaciones</div>
+      <ul class="tl-bullets">
+        <li>Tiempo de análisis de nómina reducido de <strong>~3 horas a menos de 5 minutos</strong> con SQL avanzado y vistas materializadas</li>
+        <li><strong>Cero errores manuales</strong> en validación de datos fiscales desde el deploy del módulo CFDI 4.0</li>
+        <li>Notificaciones de cobranza <strong>100% automatizadas</strong>: 0 intervención manual en recordatorios de facturas</li>
+        <li>Reducción de tiempo de respuesta en soporte al centralizar WSAS y Slack en un único flujo</li>
+      </ul>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2021 — 2022</div>
+      <div class="tl-role">Becario de Automatización</div>
+      <div class="tl-company">SERVNET · Inicio profesional</div>
+      <ul class="tl-bullets">
+        <li>Primeras consultas SQL para reportes de servicios y tickets de soporte</li>
+        <li>Módulos informativos en WHMCS y filtrado de datos en Excel</li>
+        <li>Fundamentos de scripting PHP y manejo de bases de datos MySQL en entorno real</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── PROJECTS ───────────────────────────────────────────────── -->
+<div class="section" id="projects">
+  <div class="reveal">
+    <p class="section-eyebrow">Portafolio</p>
+    <h2 class="section-title">Proyectos <span>destacados</span></h2>
+  </div>
+  <div class="projects-grid">
+
+    <!-- FEATURED -->
+    <div class="project-card featured reveal">
+      <div class="proj-top">
+        <div class="proj-icon"><i class="fas fa-brain"></i></div>
+        <span class="proj-badge">En producción</span>
+      </div>
+      <h3>AI-Powered Data Assistant (CAPA 8)</h3>
+      <p>
+        Sistema interno de consulta de datos empresariales en lenguaje natural, deployado en producción en SERVNET.
+        Integra <strong>DeepSeek vía OpenRouter</strong> para traducir preguntas coloquiales a SQL dinámico sobre la base de datos operativa.
+        Incluye RBAC embebido en el prompt, memoria conversacional multi-turno y caché de consultas frecuentes por hash
+        para reducir latencia y costo de tokens. Permite que usuarios no técnicos obtengan reportes sin intervención del equipo de desarrollo.
+      </p>
+      <div class="proj-tags">
+        <span class="tag">PHP</span>
+        <span class="tag">OpenRouter</span>
+        <span class="tag">DeepSeek</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">LLM</span>
+        <span class="tag">RBAC</span>
+        <span class="tag">NLP</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="proj-top">
+        <div class="proj-icon"><i class="fas fa-tasks"></i></div>
+      </div>
+      <h3>Task Manager Pro</h3>
+      <p>
+        App full-stack de gestión de proyectos con tablero Kanban, drag & drop, comentarios, archivos adjuntos y analytics de productividad.
+        Backend Node.js + Express con JWT (refresh token rotation) y notificaciones por email vía Resend.
+        Frontend React + Vite con Chart.js. Containerizado con Docker.
+      </p>
+      <div class="proj-tags">
+        <span class="tag">Node.js</span>
+        <span class="tag">Express</span>
+        <span class="tag">React</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">JWT</span>
+        <span class="tag">Docker</span>
+        <span class="tag">Chart.js</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/JonatanJHL/Task_Manager_Pro-" target="_blank" class="proj-link">
+          <i class="fab fa-github"></i> Código
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="proj-top">
+        <div class="proj-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+        <span class="proj-badge">En producción</span>
+      </div>
+      <h3>CFDI 4.0 — Validación Fiscal</h3>
+      <p>
+        Módulo de autoservicio fiscal para que clientes de SERVNET actualicen su información de facturación
+        cumpliendo con los requisitos SAT. Flujo completo: captura → validación administrativa → sincronización
+        automática con WHMCS vía API. Eliminó la intervención manual del equipo de soporte en actualizaciones fiscales.
+      </p>
+      <div class="proj-tags">
+        <span class="tag">PHP</span>
+        <span class="tag">WHMCS API</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">PHPMailer</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="proj-top">
+        <div class="proj-icon"><i class="fas fa-file-pdf"></i></div>
+        <span class="proj-badge">En producción</span>
+      </div>
+      <h3>PDF Parser — Constancia Fiscal</h3>
+      <p>
+        Automatización de extracción de datos fiscales desde PDFs del SAT en el browser.
+        Lee el archivo con PDF.js, extrae RFC, razón social, régimen y dirección con regex calibradas
+        al formato oficial, y pre-llena automáticamente el formulario de registro.
+        Elimina captura manual y errores de tipeo en el onboarding de clientes.
+      </p>
+      <div class="proj-tags">
+        <span class="tag">JavaScript</span>
+        <span class="tag">PDF.js</span>
+        <span class="tag">RegEx</span>
+        <span class="tag">HTML5</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="proj-top">
+        <div class="proj-icon"><i class="fas fa-users-cog"></i></div>
+        <span class="proj-badge">En producción</span>
+      </div>
+      <h3>Sistema de Gestión de Colaboradores</h3>
+      <p>
+        Plataforma interna de RRHH construida desde cero con PHP y MySQL. Autenticación Google OAuth 2.0,
+        control de vacaciones y ausencias con FullCalendar (flujo de aprobación), organigramas dinámicos
+        con GoJS y módulo de asignación de equipos. Consolidó procesos que vivían en hojas de cálculo y emails.
+      </p>
+      <div class="proj-tags">
+        <span class="tag">PHP</span>
+        <span class="tag">OAuth 2.0</span>
+        <span class="tag">FullCalendar</span>
+        <span class="tag">GoJS</span>
+        <span class="tag">MySQL</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="proj-top">
+        <div class="proj-icon"><i class="fas fa-chart-bar"></i></div>
+        <span class="proj-badge">En producción</span>
+      </div>
+      <h3>Dashboard de Facturación con Aging</h3>
+      <p>
+        Dashboard de cartera vencida para el área de cobranza. Consolida facturas en tiempo real,
+        clasifica por antigüedad (0–30, 31–60, 61–90, 91–120, 121+ días) y calcula exposición en MXN y USD.
+        Exportación a Excel lista para dirección. Reemplazó consolidación manual que tomaba horas al mes.
+      </p>
+      <div class="proj-tags">
+        <span class="tag">PHP</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">Chart.js</span>
+        <span class="tag">Excel</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="proj-top">
+        <div class="proj-icon"><i class="fab fa-slack"></i></div>
+        <span class="proj-badge">En producción</span>
+      </div>
+      <h3>Integración Omnicanal WSAS–Slack</h3>
+      <p>
+        Integración bidireccional entre WSAS y Slack para unificar atención a clientes. Tickets y mensajes
+        sincronizados en tiempo real vía webhooks; respuestas desde Slack reflejadas en WSAS vía API.
+        El equipo de soporte opera desde Slack sin perder trazabilidad en la plataforma oficial.
+      </p>
+      <div class="proj-tags">
+        <span class="tag">PHP</span>
+        <span class="tag">Slack API</span>
+        <span class="tag">Webhooks</span>
+        <span class="tag">WHMCS</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="proj-top">
+        <div class="proj-icon"><i class="fas fa-gamepad"></i></div>
+      </div>
+      <h3>SQLQuest — SQL Learning RPG</h3>
+      <p>
+        Juego educativo browser-based donde avanzas por capítulos resolviendo retos con SQL real.
+        Motor SQL interpretado en JavaScript puro, sin backend. Base de datos ficticia con relaciones
+        realistas (héroes, misiones, items, reinos). Integración con OpenRouter planeada para narrativa generativa con IA.
+      </p>
+      <div class="proj-tags">
+        <span class="tag">JavaScript</span>
+        <span class="tag">HTML5</span>
+        <span class="tag">SQL Engine</span>
+        <span class="tag">OpenRouter</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/JonatanJHL/SQLQuest" target="_blank" class="proj-link">
+          <i class="fab fa-github"></i> Código
+        </a>
+        <a href="https://jonatanjhl.github.io/SQLQuest/" target="_blank" class="proj-link">
+          <i class="fas fa-play"></i> Jugar
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── SKILLS ────────────────────────────────────────────────── -->
+<div class="section" id="skills">
+  <div class="reveal">
+    <p class="section-eyebrow">Stack técnico</p>
+    <h2 class="section-title">Habilidades & <span>herramientas</span></h2>
+  </div>
+  <div class="skills-wrapper">
+
+    <div class="skills-group">
+      <p class="group-label">Lenguajes</p>
+      <div id="skills-langs"></div>
+    </div>
+
+    <div class="skills-group">
+      <p class="group-label">Tecnologías & Plataformas</p>
+      <div id="skills-tech"></div>
+    </div>
+
+    <div class="skills-group">
+      <p class="group-label">Herramientas & DevOps</p>
+      <div id="skills-tools"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── METHODOLOGY ───────────────────────────────────────────── -->
+<div class="section">
+  <div class="reveal">
+    <p class="section-eyebrow">Enfoque</p>
+    <h2 class="section-title">Cómo <span>trabajo</span></h2>
+  </div>
+  <div class="method-grid">
+    <div class="method-card reveal">
+      <div class="method-num">01</div>
+      <h4>Arquitectura primero</h4>
+      <p>Antes de escribir código, defino contratos de API, esquema de BD y separación de responsabilidades. Evita rewrites costosos.</p>
+    </div>
+    <div class="method-card reveal">
+      <div class="method-num">02</div>
+      <h4>Automatización sobre proceso manual</h4>
+      <p>Si algo se hace más de dos veces, se automatiza. Cronjobs, webhooks, pipelines — la intervención humana es el último recurso.</p>
+    </div>
+    <div class="method-card reveal">
+      <div class="method-num">03</div>
+      <h4>APIs como ciudadanos de primera clase</h4>
+      <p>Endpoints RESTful con contratos claros, manejo explícito de errores y documentación desde el día uno. No opcional.</p>
+    </div>
+    <div class="method-card reveal">
+      <div class="method-num">04</div>
+      <h4>Sistemas que se explican solos</h4>
+      <p>Código comentado donde importa, READMEs que permiten onboarding sin llamada, y logs que permiten debug sin acceso al servidor.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CONTACT ───────────────────────────────────────────────── -->
+<div class="section" id="contact">
+  <div class="reveal">
+    <p class="section-eyebrow">Contacto</p>
+    <h2 class="section-title">Hablemos de tu <span>proyecto</span></h2>
+  </div>
+  <div class="contact-wrapper">
+    <div class="contact-info reveal">
+      <h3>Si tienes un proceso que debería ser automático, escríbeme.</h3>
+      <p>
+        Disponible para proyectos freelance, colaboraciones y oportunidades remotas.
+        Respondo en menos de 24 horas.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:jonatanhidalgoledesma@gmail.com" class="contact-link">
+          <i class="fas fa-envelope"></i>
+          jonatanhidalgoledesma@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/jonatan-joaquin-hidalgo-ledesma" target="_blank" class="contact-link">
+          <i class="fab fa-linkedin"></i>
+          linkedin.com/in/jonatan-joaquin-hidalgo-ledesma
+        </a>
+        <a href="https://github.com/JonatanJHL" target="_blank" class="contact-link">
+          <i class="fab fa-github"></i>
+          github.com/JonatanJHL
+        </a>
+        <a href="#" class="contact-link">
+          <i class="fas fa-map-marker-alt"></i>
+          Ciudad de México, México
+        </a>
+      </div>
+    </div>
+    <div class="reveal">
+      <form id="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="tu@email.com" required>
+          </div>
         </div>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date" data-i18n="exp.t1.date">Marzo 2022 - Presente</div>
-                    <h3 data-i18n="exp.t1.role">Desarrollador Jr. | Automatización y TI</h3>
-                    <p data-i18n="exp.t1.desc">Rol actual con responsabilidades ampliadas en desarrollo y automatización.</p>
-                    <ul>
-                        <li data-i18n="exp.t1.li1">Desarrollo de módulos en WHMCS (WSAS)</li>
-                        <li data-i18n="exp.t1.li2">Automatización de procesos con scripts PHP y cron jobs</li>
-                        <li data-i18n="exp.t1.li3">Gestión y optimización de bases de datos MySQL</li>
-                        <li data-i18n="exp.t1.li4">Integración de APIs nativas de WHMCS</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date" data-i18n="exp.t2.date">Becario de Automatización</div>
-                    <h3 data-i18n="exp.t2.role">Inicio Profesional</h3>
-                    <p data-i18n="exp.t2.desc">Primeras experiencias creando consultas y vistas en la base de datos.</p>
-                    <ul>
-                        <li data-i18n="exp.t2.li1">Consultas SQL para reportes de servicios</li>
-                        <li data-i18n="exp.t2.li2">Vistas de tickets de soporte</li>
-                        <li data-i18n="exp.t2.li3">Módulos informativos en WHMCS</li>
-                        <li data-i18n="exp.t2.li4">Filtrado y descarga de datos en Excel</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date" data-i18n="exp.t3.date">Crecimiento Profesional</div>
-                    <h3 data-i18n="exp.t3.role">Evolución Técnica</h3>
-                    <p data-i18n="exp.t3.desc">Participación en proyectos más complejos y soluciones integrales.</p>
-                    <ul>
-                        <li data-i18n="exp.t3.li1">Sistemas de validación de datos fiscales (CFDI 4.0)</li>
-                        <li data-i18n="exp.t3.li2">Reportes financieros automatizados con aging</li>
-                        <li data-i18n="exp.t3.li3">Integración omnicanal WSAS–Slack</li>
-                        <li data-i18n="exp.t3.li4">Asistente de datos con IA y LLMs (DeepSeek)</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date" data-i18n="exp.t4.date">Impacto</div>
-                    <h3 data-i18n="exp.t4.role">Logros y Resultados</h3>
-                    <p data-i18n="exp.t4.desc">Contribuciones que mejoraron la eficiencia operativa.</p>
-                    <ul>
-                        <li data-i18n="exp.t4.li1">Análisis de horas reducido a minutos con SQL avanzado</li>
-                        <li data-i18n="exp.t4.li2">Disminución de errores en facturación fiscal</li>
-                        <li data-i18n="exp.t4.li3">Automatización de notificaciones con cron jobs</li>
-                        <li data-i18n="exp.t4.li4">Mejora en trazabilidad y acceso a datos</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="form-group">
+          <label>Asunto</label>
+          <select>
+            <option value="">Selecciona un tema...</option>
+            <option>Proyecto Freelance</option>
+            <option>Colaboración</option>
+            <option>Oportunidad Laboral</option>
+            <option>Consulta Técnica</option>
+            <option>Otro</option>
+          </select>
         </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects">
-        <div class="section-header">
-            <span class="section-label" data-i18n="proj.label">Portafolio</span>
-            <h2 class="section-title" data-i18n="proj.title">Proyectos destacados</h2>
+        <div class="form-group">
+          <label>Mensaje</label>
+          <textarea rows="5" placeholder="Cuéntame de tu proyecto..." required></textarea>
         </div>
-        <div class="projects-grid">
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+          <i class="fas fa-paper-plane"></i> Enviar mensaje
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
 
-            <!-- TASK MANAGER PRO -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-tasks"></i></div>
-                    <div><h3 data-i18n="proj.tm.title">Task Manager Pro</h3></div>
-                </div>
-                <p data-i18n="proj.tm.desc">Aplicación full-stack de gestión de tareas y proyectos. API REST con Node.js + Express, autenticación JWT, gestión de usuarios, proyectos y tareas. Frontend en React con dashboard interactivo, filtros dinámicos y visualización de métricas. Arquitectura desacoplada y Dockerizado.</p>
-                <div class="project-tags">
-                    <span class="tag">Node.js</span>
-                    <span class="tag">Express</span>
-                    <span class="tag">React</span>
-                    <span class="tag">MySQL</span>
-                    <span class="tag">JWT</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">Chart.js</span>
-                    <span class="tag">REST API</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/JonatanJHL/Task_Manager_Pro" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> <span data-i18n="proj.code">Código</span>
-                    </a>
-                </div>
-            </div>
+<!-- ─── FOOTER ────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-left">
+    <strong>Jonatan Joaquin Hidalgo Ledesma</strong>
+    <p>Software Engineer · Automatización & TI · CDMX</p>
+  </div>
+  <div class="social-links">
+    <a href="https://github.com/JonatanJHL" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/jonatan-joaquin-hidalgo-ledesma" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:jonatanhidalgoledesma@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+    <a href="https://www.instagram.com/jjhl_fotos" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+  </div>
+  <p class="copy">© 2025 Jonatan Hidalgo. Todos los derechos reservados.</p>
+</footer>
 
-            <!-- CAPA 8 AI -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-brain"></i></div>
-                    <div><h3 data-i18n="proj.capa8.title">AI-Powered Data Assistant (CAPA 8)</h3></div>
-                </div>
-                <p data-i18n="proj.capa8.desc">Sistema de consulta de datos en lenguaje natural usando LLMs (DeepSeek vía OpenRouter). Genera consultas SQL dinámicas, control de acceso por roles en el prompt, memoria conversacional persistente y caching de consultas por hashing.</p>
-                <div class="project-tags">
-                    <span class="tag">PHP</span>
-                    <span class="tag">OpenRouter</span>
-                    <span class="tag">DeepSeek</span>
-                    <span class="tag">MySQL</span>
-                    <span class="tag">LLM</span>
-                    <span class="tag">NLP</span>
-                </div>
-            </div>
+<!-- ─── SCRIPTS ───────────────────────────────────────────────── -->
+<script>
+// ═══════════════════════════════════════════════════════════════
+// 1. NAV SCROLL
+// ═══════════════════════════════════════════════════════════════
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
 
-            <!-- CFDI 4.0 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-file-invoice"></i></div>
-                    <div><h3 data-i18n="proj.cfdi.title">CFDI 4.0 - Datos Fiscales</h3></div>
-                </div>
-                <p data-i18n="proj.cfdi.desc">Sistema de autoservicio para que clientes actualicen sus datos fiscales. Incluye tokens de seguridad MD5, validación administrativa y sincronización con WHMCS mediante API.</p>
-                <div class="project-tags">
-                    <span class="tag">PHP</span>
-                    <span class="tag">WHMCS API</span>
-                    <span class="tag">MySQL</span>
-                    <span class="tag">PHPMailer</span>
-                    <span class="tag">MD5</span>
-                </div>
-            </div>
+// ═══════════════════════════════════════════════════════════════
+// 2. HERO CANVAS — red de partículas interactivas
+// ═══════════════════════════════════════════════════════════════
+(function () {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx    = canvas.getContext('2d');
+  const DPR    = window.devicePixelRatio || 1;
+  let W, H, mouse = { x: -9999, y: -9999 };
 
-            <!-- CONSTANCIA FISCAL -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-file-pdf"></i></div>
-                    <div><h3 data-i18n="proj.pdf.title">Lectura de Constancia Fiscal</h3></div>
-                </div>
-                <p data-i18n="proj.pdf.desc">Automatización que lee PDFs de constancias fiscales usando PDF.js. Extrae RFC, razón social, dirección y completa automáticamente el formulario de registro.</p>
-                <div class="project-tags">
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">PDF.js</span>
-                    <span class="tag">RegEx</span>
-                    <span class="tag">HTML5</span>
-                </div>
-            </div>
+  function resize() {
+    W = canvas.offsetWidth;
+    H = canvas.offsetHeight;
+    canvas.width  = W * DPR;
+    canvas.height = H * DPR;
+    ctx.scale(DPR, DPR);
+    initParticles();
+  }
 
-            <!-- GESTIÓN COLABORADORES -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-users"></i></div>
-                    <div><h3 data-i18n="proj.hr.title">Sistema de Gestión de Colaboradores</h3></div>
-                </div>
-                <p data-i18n="proj.hr.desc">Sistema integral con login OAuth de Google, control de vacaciones con FullCalendar, organigramas visuales con GoJS y gestión de asignación de equipos.</p>
-                <div class="project-tags">
-                    <span class="tag">PHP</span>
-                    <span class="tag">OAuth</span>
-                    <span class="tag">FullCalendar</span>
-                    <span class="tag">GoJS</span>
-                    <span class="tag">MySQL</span>
-                </div>
-            </div>
+  // Particles
+  const PARTICLE_COUNT = 90;
+  const MAX_DIST       = 140;
+  let particles        = [];
 
-            <!-- FACTURACIÓN -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-money-bill-wave"></i></div>
-                    <div><h3 data-i18n="proj.billing.title">Dashboard de Facturación con Aging</h3></div>
-                </div>
-                <p data-i18n="proj.billing.desc">Reporte de facturas pendientes con cálculo en MXN y USD. Clasificación por días vencidos (0-30, 31-60, 61-90, 91-120, 121+) y exportación a Excel con Chart.js.</p>
-                <div class="project-tags">
-                    <span class="tag">PHP</span>
-                    <span class="tag">MySQL</span>
-                    <span class="tag">Chart.js</span>
-                    <span class="tag">Excel</span>
-                </div>
-            </div>
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x:  Math.random() * W,
+        y:  Math.random() * H,
+        vx: (Math.random() - .5) * .35,
+        vy: (Math.random() - .5) * .35,
+        r:  Math.random() * 1.5 + .5,
+      });
+    }
+  }
 
-            <!-- NOTIFICACIONES -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-bell"></i></div>
-                    <div><h3 data-i18n="proj.notif.title">Sistema de Notificaciones Automáticas</h3></div>
-                </div>
-                <p data-i18n="proj.notif.desc">Scripts PHP ejecutados por cronjobs para recordatorios de facturas próximas a vencer y notificaciones de tareas pendientes. Integración con PHPMailer.</p>
-                <div class="project-tags">
-                    <span class="tag">PHP</span>
-                    <span class="tag">Cronjobs</span>
-                    <span class="tag">PHPMailer</span>
-                    <span class="tag">SSH</span>
-                </div>
-            </div>
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
 
-            <!-- WSAS SLACK -->
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fab fa-slack"></i></div>
-                    <div><h3 data-i18n="proj.slack.title">Integración Omnicanal WSAS–Slack</h3></div>
-                </div>
-                <p data-i18n="proj.slack.desc">Integración entre la plataforma WSAS y Slack para soporte omnicanal. Mensajes y tickets sincronizados en tiempo real entre ambas plataformas mediante webhooks y API.</p>
-                <div class="project-tags">
-                    <span class="tag">PHP</span>
-                    <span class="tag">Slack API</span>
-                    <span class="tag">Webhooks</span>
-                    <span class="tag">WHMCS</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-        <div class="section-header">
-            <span class="section-label" data-i18n="skills.label">Conocimientos</span>
-            <h2 class="section-title" data-i18n="skills.title">Habilidades técnicas</h2>
-        </div>
-        <div class="skills-container">
-            <div class="skill-category">
-                <h3><i class="fas fa-code"></i> <span data-i18n="skills.lang">Lenguajes</span></h3>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">PHP</span><span class="skill-percent">92%</span></div><div class="skill-bar"><div class="skill-progress" data-width="92%"></div></div></div>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">JavaScript</span><span class="skill-percent">85%</span></div><div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div></div>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">SQL / MySQL</span><span class="skill-percent">90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div></div>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">Node.js</span><span class="skill-percent">80%</span></div><div class="skill-bar"><div class="skill-progress" data-width="80%"></div></div></div>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">Python</span><span class="skill-percent">70%</span></div><div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div></div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-cube"></i> <span data-i18n="skills.tech">Tecnologías</span></h3>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">React</span><span class="skill-percent">78%</span></div><div class="skill-bar"><div class="skill-progress" data-width="78%"></div></div></div>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">WHMCS / WSAS</span><span class="skill-percent">95%</span></div><div class="skill-bar"><div class="skill-progress" data-width="95%"></div></div></div>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">Laravel</span><span class="skill-percent">75%</span></div><div class="skill-bar"><div class="skill-progress" data-width="75%"></div></div></div>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">Oracle PL/SQL</span><span class="skill-percent">72%</span></div><div class="skill-bar"><div class="skill-progress" data-width="72%"></div></div></div>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">LLM / OpenRouter</span><span class="skill-percent">70%</span></div><div class="skill-bar"><div class="skill-progress" data-width="70%"></div></div></div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-tools"></i> <span data-i18n="skills.tools">Herramientas</span></h3>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">Docker</span><span class="skill-percent">75%</span></div><div class="skill-bar"><div class="skill-progress" data-width="75%"></div></div></div>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">Git</span><span class="skill-percent">78%</span></div><div class="skill-bar"><div class="skill-progress" data-width="78%"></div></div></div>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">SSH / Terminal</span><span class="skill-percent">85%</span></div><div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div></div>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">Cronjobs</span><span class="skill-percent">88%</span></div><div class="skill-bar"><div class="skill-progress" data-width="88%"></div></div></div>
-                <div class="skill-item"><div class="skill-header"><span class="skill-name">REST APIs</span><span class="skill-percent">90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div></div>
-            </div>
-        </div>
-
-        <div class="section-header" style="margin-top: 4rem;">
-            <span class="section-label" data-i18n="method.label">Enfoque</span>
-            <h2 class="section-title" data-i18n="method.title">Metodología de trabajo</h2>
-        </div>
-        <div class="methodology-grid">
-            <div class="method-card"><i class="fas fa-terminal"></i><h4 data-i18n="method.m1.title">Desarrollo Iterativo</h4><p data-i18n="method.m1.desc">Ciclos cortos con retroalimentación constante.</p></div>
-            <div class="method-card"><i class="fas fa-code-branch"></i><h4 data-i18n="method.m2.title">Control de Versiones</h4><p data-i18n="method.m2.desc">Git para gestión y colaboración.</p></div>
-            <div class="method-card"><i class="fas fa-shield-alt"></i><h4 data-i18n="method.m3.title">Pruebas Manuales</h4><p data-i18n="method.m3.desc">Validación exhaustiva antes de producción.</p></div>
-            <div class="method-card"><i class="fas fa-book"></i><h4 data-i18n="method.m4.title">Documentación</h4><p data-i18n="method.m4.desc">Documentación técnica detallada.</p></div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact-section">
-        <div class="section-header">
-            <span class="section-label" data-i18n="contact.label">Contacto</span>
-            <h2 class="section-title" data-i18n="contact.title">Hablemos</h2>
-        </div>
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h3 data-i18n="contact.info.title">¿Tienes un proyecto en mente?</h3>
-                <p data-i18n="contact.info.desc">Estoy disponible para proyectos freelance, colaboraciones y oportunidades de trabajo remoto. Escríbeme y te respondo en menos de 24 horas.</p>
-                <div class="contact-detail">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:jonatanhidalgoledesma@gmail.com">jonatanhidalgoledesma@gmail.com</a>
-                </div>
-                <div class="contact-detail">
-                    <i class="fab fa-linkedin"></i>
-                    <a href="https://www.linkedin.com/in/jonatan-joaquin-hidalgo-ledesma/" target="_blank">LinkedIn</a>
-                </div>
-                <div class="contact-detail">
-                    <i class="fab fa-github"></i>
-                    <a href="https://github.com/JonatanJHL" target="_blank">github.com/JonatanJHL</a>
-                </div>
-                <div class="contact-detail">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <a>Ciudad de México, México</a>
-                </div>
-            </div>
-
-            <div class="contact-form">
-                <h3 data-i18n="contact.form.title">Envíame un mensaje</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label data-i18n="contact.form.name">Nombre</label>
-                        <input type="text" id="contact-name" placeholder="Tu nombre" />
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="contact.form.email">Email</label>
-                        <input type="email" id="contact-email" placeholder="tu@email.com" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label data-i18n="contact.form.subject">Asunto</label>
-                    <select id="contact-subject">
-                        <option value="" data-i18n="contact.form.subjectDefault">Selecciona un tema...</option>
-                        <option value="Proyecto Freelance" data-i18n="contact.form.s1">Proyecto Freelance</option>
-                        <option value="Colaboración" data-i18n="contact.form.s2">Colaboración</option>
-                        <option value="Oportunidad Laboral" data-i18n="contact.form.s3">Oportunidad Laboral</option>
-                        <option value="Consulta Técnica" data-i18n="contact.form.s4">Consulta Técnica</option>
-                        <option value="Otro" data-i18n="contact.form.s5">Otro</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label data-i18n="contact.form.message">Mensaje</label>
-                    <textarea id="contact-message" placeholder="Cuéntame sobre tu proyecto o consulta..."></textarea>
-                </div>
-                <button class="form-submit" id="submit-btn" onclick="sendContactEmail()">
-                    <i class="fas fa-paper-plane"></i>
-                    <span data-i18n="contact.form.send">Enviar Mensaje</span>
-                </button>
-                <div class="form-message" id="form-message"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="contact">
-        <div class="footer-content">
-            <h2>Jonatan Joaquin Hidalgo Ledesma</h2>
-            <p data-i18n="footer.role">Ingeniero de Software | SERVNET · CDMX</p>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/jonatan-joaquin-hidalgo-ledesma/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/JonatanJHL" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="mailto:jonatanhidalgoledesma@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-            </div>
-            <p class="copyright">© 2025 Portafolio Profesional. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-    <script>
-    // =============================================
-    //  TRANSLATIONS
-    // =============================================
-    const translations = {
-        es: {
-            'nav.about': 'Sobre Mí', 'nav.experience': 'Experiencia',
-            'nav.projects': 'Proyectos', 'nav.skills': 'Habilidades', 'nav.contact': 'Contacto',
-            'hero.badge': 'Disponible para nuevos proyectos',
-            'hero.title': 'Hola, soy <span>Jonatan Hidalgo</span><br>Ingeniero de Software',
-            'hero.subtitle': 'Desarrollador especializado en soluciones para gestión empresarial, automatización de procesos e integración de sistemas. Transformo procesos manuales en herramientas eficientes y confiables.',
-            'hero.btn1': 'Ver Proyectos', 'hero.btn2': 'Contactar',
-            'about.label': 'Sobre Mí', 'about.title': 'Conóceme mejor',
-            'about.p1': 'Licenciado en Ingeniería de Software con más de <strong>3 años de experiencia</strong> en el área de <strong>Automatización y TI en SERVNET</strong>. Mi enfoque se centra en transformar procesos manuales en soluciones automatizadas, robustas y confiables.',
-            'about.p2': 'He desarrollado herramientas que han permitido reducir la dependencia de intervención humana en tareas repetitivas, minimizando errores y liberando al personal para enfocarse en actividades de mayor valor estratégico.',
-            'about.p3': 'Mis proyectos incluyen sistemas de gestión de colaboradores con IA, automatización de facturación, lectura de documentos fiscales, reportes financieros, integraciones omnicanal y desarrollo full-stack con Node.js y React.',
-            'about.stat1': 'Años de experiencia', 'about.stat2': 'Proyectos relevantes',
-            'about.stat3': 'Compromiso', 'about.stat4': 'Aprendizaje continuo',
-            'about.academic': 'Formación Académica', 'about.degree': 'Lic. en Ingeniería de Software',
-            'about.degreeStatus': 'Titulación en proceso por experiencia profesional',
-            'exp.label': 'Trayectoria', 'exp.title': 'Mi camino en SERVNET',
-            'exp.t1.date': 'Marzo 2022 - Presente', 'exp.t1.role': 'Desarrollador Jr. | Automatización y TI',
-            'exp.t1.desc': 'Rol actual con responsabilidades ampliadas en desarrollo y automatización.',
-            'exp.t1.li1': 'Desarrollo de módulos en WHMCS (WSAS)', 'exp.t1.li2': 'Automatización de procesos con scripts PHP y cron jobs',
-            'exp.t1.li3': 'Gestión y optimización de bases de datos MySQL', 'exp.t1.li4': 'Integración de APIs nativas de WHMCS',
-            'exp.t2.date': 'Becario de Automatización', 'exp.t2.role': 'Inicio Profesional',
-            'exp.t2.desc': 'Primeras experiencias creando consultas y vistas en la base de datos.',
-            'exp.t2.li1': 'Consultas SQL para reportes de servicios', 'exp.t2.li2': 'Vistas de tickets de soporte',
-            'exp.t2.li3': 'Módulos informativos en WHMCS', 'exp.t2.li4': 'Filtrado y descarga de datos en Excel',
-            'exp.t3.date': 'Crecimiento Profesional', 'exp.t3.role': 'Evolución Técnica',
-            'exp.t3.desc': 'Participación en proyectos más complejos y soluciones integrales.',
-            'exp.t3.li1': 'Sistemas de validación de datos fiscales (CFDI 4.0)', 'exp.t3.li2': 'Reportes financieros automatizados con aging',
-            'exp.t3.li3': 'Integración omnicanal WSAS–Slack', 'exp.t3.li4': 'Asistente de datos con IA y LLMs (DeepSeek)',
-            'exp.t4.date': 'Impacto', 'exp.t4.role': 'Logros y Resultados',
-            'exp.t4.desc': 'Contribuciones que mejoraron la eficiencia operativa.',
-            'exp.t4.li1': 'Análisis de horas reducido a minutos con SQL avanzado', 'exp.t4.li2': 'Disminución de errores en facturación fiscal',
-            'exp.t4.li3': 'Automatización de notificaciones con cron jobs', 'exp.t4.li4': 'Mejora en trazabilidad y acceso a datos',
-            'proj.label': 'Portafolio', 'proj.title': 'Proyectos destacados', 'proj.code': 'Código',
-            'proj.tm.title': 'Task Manager Pro',
-            'proj.tm.desc': 'Aplicación full-stack de gestión de tareas y proyectos. API REST con Node.js + Express, autenticación JWT, gestión de usuarios, proyectos y tareas. Frontend en React con dashboard interactivo, filtros dinámicos y visualización de métricas. Arquitectura desacoplada y Dockerizado.',
-            'proj.capa8.title': 'AI-Powered Data Assistant (CAPA 8)',
-            'proj.capa8.desc': 'Sistema de consulta de datos en lenguaje natural usando LLMs (DeepSeek vía OpenRouter). Genera consultas SQL dinámicas, control de acceso por roles en el prompt, memoria conversacional persistente y caching de consultas por hashing.',
-            'proj.cfdi.title': 'CFDI 4.0 - Datos Fiscales',
-            'proj.cfdi.desc': 'Sistema de autoservicio para que clientes actualicen sus datos fiscales. Incluye tokens de seguridad MD5, validación administrativa y sincronización con WHMCS mediante API.',
-            'proj.pdf.title': 'Lectura de Constancia Fiscal',
-            'proj.pdf.desc': 'Automatización que lee PDFs de constancias fiscales usando PDF.js. Extrae RFC, razón social, dirección y completa automáticamente el formulario de registro.',
-            'proj.hr.title': 'Sistema de Gestión de Colaboradores',
-            'proj.hr.desc': 'Sistema integral con login OAuth de Google, control de vacaciones con FullCalendar, organigramas visuales con GoJS y gestión de asignación de equipos.',
-            'proj.billing.title': 'Dashboard de Facturación con Aging',
-            'proj.billing.desc': 'Reporte de facturas pendientes con cálculo en MXN y USD. Clasificación por días vencidos (0-30, 31-60, 61-90, 91-120, 121+) y exportación a Excel con Chart.js.',
-            'proj.notif.title': 'Sistema de Notificaciones Automáticas',
-            'proj.notif.desc': 'Scripts PHP ejecutados por cronjobs para recordatorios de facturas próximas a vencer y notificaciones de tareas pendientes. Integración con PHPMailer.',
-            'proj.slack.title': 'Integración Omnicanal WSAS–Slack',
-            'proj.slack.desc': 'Integración entre la plataforma WSAS y Slack para soporte omnicanal. Mensajes y tickets sincronizados en tiempo real entre ambas plataformas mediante webhooks y API.',
-            'skills.label': 'Conocimientos', 'skills.title': 'Habilidades técnicas',
-            'skills.lang': 'Lenguajes', 'skills.tech': 'Tecnologías', 'skills.tools': 'Herramientas',
-            'method.label': 'Enfoque', 'method.title': 'Metodología de trabajo',
-            'method.m1.title': 'Desarrollo Iterativo', 'method.m1.desc': 'Ciclos cortos con retroalimentación constante.',
-            'method.m2.title': 'Control de Versiones', 'method.m2.desc': 'Git para gestión y colaboración.',
-            'method.m3.title': 'Pruebas Manuales', 'method.m3.desc': 'Validación exhaustiva antes de producción.',
-            'method.m4.title': 'Documentación', 'method.m4.desc': 'Documentación técnica detallada.',
-            'contact.label': 'Contacto', 'contact.title': 'Hablemos',
-            'contact.info.title': '¿Tienes un proyecto en mente?',
-            'contact.info.desc': 'Estoy disponible para proyectos freelance, colaboraciones y oportunidades de trabajo remoto. Escríbeme y te respondo en menos de 24 horas.',
-            'contact.form.title': 'Envíame un mensaje',
-            'contact.form.name': 'Nombre', 'contact.form.email': 'Email',
-            'contact.form.subject': 'Asunto', 'contact.form.subjectDefault': 'Selecciona un tema...',
-            'contact.form.s1': 'Proyecto Freelance', 'contact.form.s2': 'Colaboración',
-            'contact.form.s3': 'Oportunidad Laboral', 'contact.form.s4': 'Consulta Técnica', 'contact.form.s5': 'Otro',
-            'contact.form.message': 'Mensaje', 'contact.form.send': 'Enviar Mensaje',
-            'contact.form.sending': 'Enviando...', 'contact.form.success': '✅ ¡Mensaje enviado! Te respondo pronto.',
-            'contact.form.error': '❌ Error al enviar. Intenta de nuevo o escríbeme directamente.',
-            'contact.form.fillAll': '⚠️ Por favor completa todos los campos.',
-            'footer.role': 'Ingeniero de Software | SERVNET · CDMX',
-        },
-        en: {
-            'nav.about': 'About', 'nav.experience': 'Experience',
-            'nav.projects': 'Projects', 'nav.skills': 'Skills', 'nav.contact': 'Contact',
-            'hero.badge': 'Available for new projects',
-            'hero.title': "Hi, I'm <span>Jonatan Hidalgo</span><br>Software Engineer",
-            'hero.subtitle': 'Developer specialized in business management solutions, process automation, and system integrations. I turn manual processes into efficient, reliable tools.',
-            'hero.btn1': 'View Projects', 'hero.btn2': 'Contact Me',
-            'about.label': 'About Me', 'about.title': 'Get to know me',
-            'about.p1': 'Software Engineering graduate with over <strong>3 years of experience</strong> in <strong>Automation & IT at SERVNET</strong>. My focus is on transforming manual processes into automated, robust, and reliable solutions.',
-            'about.p2': 'I have built tools that reduced human intervention in repetitive tasks, minimizing errors and freeing teams to focus on higher-value activities.',
-            'about.p3': 'My projects include AI-powered HR management systems, billing automation, fiscal document parsing, financial dashboards, omnichannel integrations, and full-stack development with Node.js and React.',
-            'about.stat1': 'Years of experience', 'about.stat2': 'Relevant projects',
-            'about.stat3': 'Commitment', 'about.stat4': 'Continuous learning',
-            'about.academic': 'Education', 'about.degree': 'B.Eng. in Software Engineering',
-            'about.degreeStatus': 'Degree in progress via professional experience pathway',
-            'exp.label': 'Career', 'exp.title': 'My journey at SERVNET',
-            'exp.t1.date': 'March 2022 - Present', 'exp.t1.role': 'Jr. Developer | Automation & IT',
-            'exp.t1.desc': 'Current role with expanded responsibilities in development and automation.',
-            'exp.t1.li1': 'WHMCS module development (WSAS)', 'exp.t1.li2': 'Process automation with PHP scripts and cron jobs',
-            'exp.t1.li3': 'MySQL database management and optimization', 'exp.t1.li4': 'Native WHMCS API integrations',
-            'exp.t2.date': 'Automation Intern', 'exp.t2.role': 'Professional Start',
-            'exp.t2.desc': 'First professional experiences building queries and database views.',
-            'exp.t2.li1': 'SQL queries for service reports', 'exp.t2.li2': 'Support ticket views',
-            'exp.t2.li3': 'Informational WHMCS modules', 'exp.t2.li4': 'Data filtering and Excel exports',
-            'exp.t3.date': 'Professional Growth', 'exp.t3.role': 'Technical Evolution',
-            'exp.t3.desc': 'Involvement in more complex projects and end-to-end solutions.',
-            'exp.t3.li1': 'Fiscal data validation systems (CFDI 4.0)', 'exp.t3.li2': 'Automated financial reports with aging',
-            'exp.t3.li3': 'Omnichannel WSAS–Slack integration', 'exp.t3.li4': 'AI data assistant with LLMs (DeepSeek)',
-            'exp.t4.date': 'Impact', 'exp.t4.role': 'Achievements & Results',
-            'exp.t4.desc': 'Contributions that improved operational efficiency.',
-            'exp.t4.li1': 'Analysis time reduced from hours to minutes with advanced SQL', 'exp.t4.li2': 'Reduced billing errors',
-            'exp.t4.li3': 'Automated notifications via cron jobs', 'exp.t4.li4': 'Improved data traceability and access',
-            'proj.label': 'Portfolio', 'proj.title': 'Featured Projects', 'proj.code': 'Code',
-            'proj.tm.title': 'Task Manager Pro',
-            'proj.tm.desc': 'Full-stack task and project management app. REST API built with Node.js + Express, JWT authentication, user/project/task management. React frontend with interactive dashboard, dynamic filters, and metric visualization. Decoupled architecture, fully Dockerized.',
-            'proj.capa8.title': 'AI-Powered Data Assistant (CAPA 8)',
-            'proj.capa8.desc': 'Natural language data query system using LLMs (DeepSeek via OpenRouter). Generates dynamic SQL queries, implements role-based access control in the prompt, persistent conversational memory, and hash-based query caching.',
-            'proj.cfdi.title': 'CFDI 4.0 - Fiscal Data Module',
-            'proj.cfdi.desc': 'Self-service system for clients to update their fiscal data. Features MD5 security tokens, admin validation, and WHMCS API synchronization.',
-            'proj.pdf.title': 'Fiscal Document PDF Reader',
-            'proj.pdf.desc': 'Automation that reads fiscal certificate PDFs using PDF.js. Extracts RFC, business name, address, and auto-fills the registration form.',
-            'proj.hr.title': 'HR Management System',
-            'proj.hr.desc': 'Comprehensive system with Google OAuth login, vacation tracking via FullCalendar, visual org charts with GoJS, and equipment assignment management.',
-            'proj.billing.title': 'Billing Dashboard with Aging Reports',
-            'proj.billing.desc': 'Pending invoice report in MXN and USD. Categorized by overdue days (0-30, 31-60, 61-90, 91-120, 121+) with Excel export and Chart.js visualization.',
-            'proj.notif.title': 'Automated Notification System',
-            'proj.notif.desc': 'PHP scripts executed by cron jobs for upcoming invoice reminders and pending task notifications. PHPMailer integration.',
-            'proj.slack.title': 'WSAS–Slack Omnichannel Integration',
-            'proj.slack.desc': 'Integration between the WSAS platform and Slack for omnichannel support. Messages and tickets synchronized in real time via webhooks and API.',
-            'skills.label': 'Knowledge', 'skills.title': 'Technical Skills',
-            'skills.lang': 'Languages', 'skills.tech': 'Technologies', 'skills.tools': 'Tools',
-            'method.label': 'Approach', 'method.title': 'Work Methodology',
-            'method.m1.title': 'Iterative Development', 'method.m1.desc': 'Short cycles with constant feedback.',
-            'method.m2.title': 'Version Control', 'method.m2.desc': 'Git for management and collaboration.',
-            'method.m3.title': 'Manual Testing', 'method.m3.desc': 'Thorough validation before production.',
-            'method.m4.title': 'Documentation', 'method.m4.desc': 'Detailed technical documentation.',
-            'contact.label': 'Contact', 'contact.title': "Let's Talk",
-            'contact.info.title': 'Have a project in mind?',
-            'contact.info.desc': "I'm available for freelance projects, collaborations, and remote work opportunities. Send me a message and I'll get back to you within 24 hours.",
-            'contact.form.title': 'Send me a message',
-            'contact.form.name': 'Name', 'contact.form.email': 'Email',
-            'contact.form.subject': 'Subject', 'contact.form.subjectDefault': 'Select a topic...',
-            'contact.form.s1': 'Freelance Project', 'contact.form.s2': 'Collaboration',
-            'contact.form.s3': 'Job Opportunity', 'contact.form.s4': 'Technical Inquiry', 'contact.form.s5': 'Other',
-            'contact.form.message': 'Message', 'contact.form.send': 'Send Message',
-            'contact.form.sending': 'Sending...', 'contact.form.success': '✅ Message sent! I will get back to you soon.',
-            'contact.form.error': '❌ Failed to send. Try again or email me directly.',
-            'contact.form.fillAll': '⚠️ Please fill in all fields.',
-            'footer.role': 'Software Engineer | SERVNET · Mexico City',
+    // connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx   = particles[i].x - particles[j].x;
+        const dy   = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          const alpha = (1 - dist / MAX_DIST) * 0.35;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(0,212,255,${alpha})`;
+          ctx.lineWidth   = .6;
+          ctx.stroke();
         }
-    };
-
-    let currentLang = 'es';
-
-    function setLang(lang) {
-        currentLang = lang;
-        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
-        document.documentElement.lang = lang;
-
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[lang][key]) el.textContent = translations[lang][key];
-        });
-
-        document.querySelectorAll('[data-i18n-html]').forEach(el => {
-            const key = el.getAttribute('data-i18n-html');
-            if (translations[lang][key]) el.innerHTML = translations[lang][key];
-        });
-
-        // Update placeholders
-        const placeholders = {
-            es: { name: 'Tu nombre', email: 'tu@email.com', msg: 'Cuéntame sobre tu proyecto o consulta...' },
-            en: { name: 'Your name', email: 'you@email.com', msg: 'Tell me about your project or question...' }
-        };
-        document.getElementById('contact-name').placeholder = placeholders[lang].name;
-        document.getElementById('contact-email').placeholder = placeholders[lang].email;
-        document.getElementById('contact-message').placeholder = placeholders[lang].msg;
+      }
     }
 
-    // =============================================
-    //  CONTACT FORM — RESEND via fetch
-    //  ⚠️  Requiere un backend/proxy para producción
-    //  Para GitHub Pages usa un serverless function
-    // =============================================
-    async function sendContactEmail() {
-        const name = document.getElementById('contact-name').value.trim();
-        const email = document.getElementById('contact-email').value.trim();
-        const subject = document.getElementById('contact-subject').value;
-        const message = document.getElementById('contact-message').value.trim();
-        const btn = document.getElementById('submit-btn');
-        const msgEl = document.getElementById('form-message');
-        const t = translations[currentLang];
+    // mouse connections
+    particles.forEach(p => {
+      const dx   = p.x - mouse.x;
+      const dy   = p.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 180) {
+        const alpha = (1 - dist / 180) * 0.6;
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.strokeStyle = `rgba(0,212,255,${alpha})`;
+        ctx.lineWidth   = 1;
+        ctx.stroke();
+      }
+    });
 
-        if (!name || !email || !subject || !message) {
-            msgEl.textContent = t['contact.form.fillAll'];
-            msgEl.className = 'form-message error';
-            msgEl.style.display = 'block';
-            return;
-        }
+    // dots
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0,212,255,0.7)';
+      ctx.fill();
 
-        btn.disabled = true;
-        btn.querySelector('span').textContent = t['contact.form.sending'];
-        msgEl.style.display = 'none';
+      // move
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+    });
 
-        const htmlBody = `
-            <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0f;color:#f0f0f5;border-radius:12px;overflow:hidden;">
-                <div style="background:linear-gradient(135deg,#00d4aa,#7c3aed);padding:24px 32px;">
-                    <h2 style="margin:0;color:#0a0a0f;">📬 Nuevo mensaje desde tu portafolio</h2>
-                </div>
-                <div style="padding:32px;">
-                    <p style="margin-bottom:8px;color:#9090a0;font-size:13px;">DE</p>
-                    <p style="margin-bottom:24px;font-size:16px;font-weight:600;">${name} &lt;${email}&gt;</p>
-                    <p style="margin-bottom:8px;color:#9090a0;font-size:13px;">ASUNTO</p>
-                    <p style="margin-bottom:24px;font-size:16px;">${subject}</p>
-                    <p style="margin-bottom:8px;color:#9090a0;font-size:13px;">MENSAJE</p>
-                    <p style="font-size:15px;line-height:1.7;background:rgba(255,255,255,0.05);padding:16px;border-radius:8px;border-left:3px solid #00d4aa;">${message.replace(/\n/g, '<br>')}</p>
-                </div>
-                <div style="padding:16px 32px;background:rgba(255,255,255,0.03);text-align:center;color:#9090a0;font-size:12px;">
-                    Enviado desde jonatanjhl.github.io/PaginaWeb
-                </div>
-            </div>
-        `;
+    requestAnimationFrame(draw);
+  }
 
-        try {
-            // ⚠️ INSTRUCCIONES PARA ACTIVAR EL ENVÍO REAL:
-            // Opción A (recomendada para GitHub Pages):
-            //   Despliega una Vercel/Netlify Function con tu RESEND_API_KEY y apunta la URL aquí.
-            // Opción B (si tienes backend Node.js corriendo):
-            //   Cambia la URL por tu endpoint, ej: 'http://localhost:3000/api/contact'
-            //
-            // La función backend debe recibir { name, email, subject, message }
-            // y llamar a Resend con tu API key de forma segura.
-            //
-            // Por ahora simula el envío para desarrollo:
+  window.addEventListener('mousemove', e => {
+    const rect    = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+  window.addEventListener('resize', resize);
 
-            const BACKEND_URL = ''; // ← Pon aquí tu URL cuando tengas backend/serverless
+  resize();
+  draw();
+})();
 
-            if (!BACKEND_URL) {
-                // Simulación para desarrollo — reemplaza con tu endpoint real
-                await new Promise(resolve => setTimeout(resolve, 1200));
-                // Abre el cliente de mail como fallback
-                window.location.href = `mailto:jonatanhidalgoledesma@gmail.com?subject=${encodeURIComponent('[Portfolio] ' + subject)}&body=${encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\n\n${message}`)}`;
-                throw new Error('BACKEND_URL not configured - opening email client');
-            }
+// ═══════════════════════════════════════════════════════════════
+// 3. SCROLL REVEAL
+// ═══════════════════════════════════════════════════════════════
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (!e.isIntersecting) return;
+    const idx = [...e.target.parentElement.querySelectorAll('.reveal')].indexOf(e.target);
+    setTimeout(() => e.target.classList.add('visible'), idx * 80);
+    revealObs.unobserve(e.target);
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-            const res = await fetch(BACKEND_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, subject, message, html: htmlBody })
-            });
+// ═══════════════════════════════════════════════════════════════
+// 4. CANVAS SKILL BARS
+// ═══════════════════════════════════════════════════════════════
+const SKILL_GROUPS = [
+  {
+    id: 'skills-langs',
+    skills: [
+      { name: 'PHP',          context: '4 años en producción · sistemas fiscales y WHMCS', pct: 92 },
+      { name: 'SQL / MySQL',  context: 'queries complejos, vistas, procedimientos almacenados', pct: 90 },
+      { name: 'JavaScript',   context: 'vanilla + Node.js · frontend y automatización', pct: 85 },
+      { name: 'Node.js',      context: 'APIs REST, JWT, Resend, Docker', pct: 80 },
+      { name: 'Python',       context: 'scripting, procesamiento de imágenes, data', pct: 70 },
+    ]
+  },
+  {
+    id: 'skills-tech',
+    skills: [
+      { name: 'WHMCS / WSAS',   context: 'módulos nativos, API nativa, automatización', pct: 95 },
+      { name: 'React',          context: 'dashboards, SPA, Chart.js, Vite', pct: 78 },
+      { name: 'LLM / OpenRouter', context: 'DeepSeek, prompting, RBAC, memoria conversacional', pct: 75 },
+      { name: 'Oracle PL/SQL',  context: 'reportes, procedures, consultas analíticas', pct: 72 },
+      { name: 'Laravel',        context: 'MVC, Eloquent, Artisan', pct: 70 },
+    ]
+  },
+  {
+    id: 'skills-tools',
+    skills: [
+      { name: 'REST APIs',     context: 'diseño, consumo e integración de APIs', pct: 90 },
+      { name: 'Cronjobs / SSH', context: 'automatización en servidor Linux', pct: 88 },
+      { name: 'Git',           context: 'flujo de trabajo en solitario y equipo', pct: 78 },
+      { name: 'Docker',        context: 'containerización, compose, deploy', pct: 75 },
+    ]
+  }
+];
 
-            if (!res.ok) throw new Error('Server error');
+function buildSkillRow(skill, delay) {
+  const row = document.createElement('div');
+  row.className = 'skill-row';
+  row.style.transitionDelay = `${delay}ms`;
 
-            msgEl.textContent = t['contact.form.success'];
-            msgEl.className = 'form-message success';
-            msgEl.style.display = 'block';
-            document.getElementById('contact-name').value = '';
-            document.getElementById('contact-email').value = '';
-            document.getElementById('contact-subject').value = '';
-            document.getElementById('contact-message').value = '';
+  const meta = document.createElement('div');
+  meta.className = 'skill-meta';
 
-        } catch (err) {
-            if (err.message.includes('BACKEND_URL not configured')) {
-                msgEl.textContent = currentLang === 'es'
-                    ? '📧 Abriendo tu cliente de correo...'
-                    : '📧 Opening your email client...';
-                msgEl.className = 'form-message success';
-            } else {
-                msgEl.textContent = t['contact.form.error'];
-                msgEl.className = 'form-message error';
-            }
-            msgEl.style.display = 'block';
-        } finally {
-            btn.disabled = false;
-            btn.querySelector('span').textContent = t['contact.form.send'];
-        }
+  const nameEl = document.createElement('span');
+  nameEl.className = 'skill-name';
+  nameEl.textContent = skill.name;
+
+  const ctx2El = document.createElement('span');
+  ctx2El.className = 'skill-context';
+  ctx2El.textContent = skill.context;
+
+  meta.appendChild(nameEl);
+  meta.appendChild(ctx2El);
+
+  const cvs = document.createElement('canvas');
+  cvs.className = 'skill-bar';
+  cvs.height = 8;
+
+  row.appendChild(meta);
+  row.appendChild(cvs);
+  row._skill   = skill;
+  row._canvas  = cvs;
+  row._done    = false;
+  return row;
+}
+
+function animateSkillBar(cvs, pct) {
+  const DPR  = window.devicePixelRatio || 1;
+  const W    = cvs.offsetWidth;
+  const H    = cvs.offsetHeight;
+  cvs.width  = W * DPR;
+  cvs.height = H * DPR;
+  const ctx  = cvs.getContext('2d');
+  ctx.scale(DPR, DPR);
+
+  const DURATION = 1000;
+  const ease = t => 1 - Math.pow(2, -10 * t);
+  let start  = null;
+
+  function frame(ts) {
+    if (!start) start = ts;
+    const t   = Math.min((ts - start) / DURATION, 1);
+    const p   = ease(t);
+
+    ctx.clearRect(0, 0, W, H);
+
+    // track
+    ctx.beginPath();
+    ctx.roundRect(0, 0, W, H, H / 2);
+    ctx.fillStyle = 'rgba(255,255,255,0.05)';
+    ctx.fill();
+
+    // fill
+    const fillW = Math.max(H, W * (pct / 100) * p);
+    const grad  = ctx.createLinearGradient(0, 0, fillW, 0);
+    grad.addColorStop(0,    '#7c3aed');
+    grad.addColorStop(0.5,  '#00d4ff');
+    grad.addColorStop(1,    '#00ffb3');
+    ctx.beginPath();
+    ctx.roundRect(0, 0, fillW, H, H / 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // glow tip
+    if (p > 0.05) {
+      const gx = fillW - H;
+      const sg = ctx.createRadialGradient(gx, H/2, 0, gx, H/2, H * 3);
+      sg.addColorStop(0, 'rgba(0,255,200,.5)');
+      sg.addColorStop(1, 'rgba(0,255,200,0)');
+      ctx.beginPath();
+      ctx.roundRect(Math.max(0, gx - H), 0, H * 2, H, H / 2);
+      ctx.fillStyle = sg;
+      ctx.fill();
     }
 
-    // =============================================
-    //  NAVBAR SCROLL
-    // =============================================
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    if (t < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+// Build DOM
+SKILL_GROUPS.forEach(group => {
+  const container = document.getElementById(group.id);
+  group.skills.forEach((skill, i) => {
+    container.appendChild(buildSkillRow(skill, i * 70));
+  });
+});
+
+// Observe
+const skillObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const row = entry.target;
+    row.classList.add('visible');
+    if (!row._done) {
+      row._done = true;
+      const delay = parseFloat(row.style.transitionDelay) || 0;
+      setTimeout(() => animateSkillBar(row._canvas, row._skill.pct), delay + 250);
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.skill-row').forEach(r => skillObs.observe(r));
+
+// Redraw on resize
+let rt;
+window.addEventListener('resize', () => {
+  clearTimeout(rt);
+  rt = setTimeout(() => {
+    document.querySelectorAll('.skill-row').forEach(r => {
+      if (r._done) animateSkillBar(r._canvas, r._skill.pct);
     });
+  }, 200);
+});
 
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
-
-    // =============================================
-    //  INTERSECTION OBSERVER — ANIMATIONS
-    // =============================================
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                if (entry.target.classList.contains('skill-category')) {
-                    entry.target.querySelectorAll('.skill-progress').forEach(bar => {
-                        bar.style.width = bar.getAttribute('data-width');
-                    });
-                }
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    document.querySelectorAll('.timeline-content, .project-card, .skill-category, .method-card, .stat-card, .contact-detail, .contact-form').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.6s ease';
-        observer.observe(el);
-    });
-
-    const style = document.createElement('style');
-    style.textContent = `.timeline-content.visible,.project-card.visible,.skill-category.visible,.method-card.visible,.stat-card.visible,.contact-detail.visible,.contact-form.visible{opacity:1!important;transform:translateY(0)!important;}`;
-    document.head.appendChild(style);
-
-    document.querySelectorAll('.timeline-item').forEach((item, i) => item.style.transitionDelay = `${i*0.15}s`);
-    document.querySelectorAll('.project-card').forEach((card, i) => card.style.transitionDelay = `${i*0.07}s`);
-    document.querySelectorAll('.contact-detail').forEach((el, i) => el.style.transitionDelay = `${i*0.1}s`);
-    </script>
+// ═══════════════════════════════════════════════════════════════
+// 5. SMOOTH ACTIVE NAV
+// ═══════════════════════════════════════════════════════════════
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 200) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--accent)' : '';
+  });
+});
+</script>
 </body>
 </html>
