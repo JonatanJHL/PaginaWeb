@@ -7,6 +7,9 @@
 <meta name="description" content="Backend engineer especializado en automatización, integración de APIs y sistemas con IA. 4+ años en producción. CDMX.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('ZUwIAsNWzxzeXWG-w');</script>
 <style>
 /* ─── TOKENS ─────────────────────────────────────────────────── */
 :root {
@@ -297,6 +300,18 @@ nav.scrolled{padding:.9rem 5%}
 }
 .stat-lbl{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
 
+/* ─── COUNTER ANIMATION ──────────────────────────────────────── */
+.counter-num{
+  font-family:var(--font-head);
+  font-size:2rem;
+  font-weight:800;
+  color:var(--accent);
+  display:block;
+  line-height:1;
+  margin-bottom:.25rem;
+  transition: color .2s;
+}
+
 .academic-card{
   background:var(--card);
   border:1px solid var(--border);
@@ -582,6 +597,34 @@ canvas.skill-bar{display:block;width:100%;height:8px;border-radius:4px}
 .form-group textarea:focus{border-color:var(--accent)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 
+/* ─── FORM FEEDBACK ──────────────────────────────────────────── */
+.form-status{
+  display:none;
+  padding:.85rem 1rem;
+  border-radius:6px;
+  font-size:.82rem;
+  font-weight:500;
+  margin-top:.75rem;
+  text-align:center;
+}
+.form-status.success{
+  display:block;
+  background:rgba(0,212,255,.08);
+  border:1px solid rgba(0,212,255,.25);
+  color:var(--accent);
+}
+.form-status.error{
+  display:block;
+  background:rgba(239,68,68,.08);
+  border:1px solid rgba(239,68,68,.25);
+  color:#f87171;
+}
+.btn-primary:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+  transform:none !important;
+}
+
 /* ─── FOOTER ─────────────────────────────────────────────────── */
 footer{
   border-top:1px solid var(--border);
@@ -696,19 +739,19 @@ footer{
     <div class="reveal">
       <div class="stats-grid">
         <div class="stat-card">
-          <span class="stat-num">4+</span>
+          <span class="counter-num" data-target="4" data-suffix="+">0</span>
           <span class="stat-lbl">Años en producción</span>
         </div>
         <div class="stat-card">
-          <span class="stat-num">8+</span>
+          <span class="counter-num" data-target="8" data-suffix="+">0</span>
           <span class="stat-lbl">Sistemas en producción</span>
         </div>
         <div class="stat-card">
-          <span class="stat-num">3</span>
+          <span class="counter-num" data-target="3" data-suffix="">0</span>
           <span class="stat-lbl">APIs empresariales activas</span>
         </div>
         <div class="stat-card">
-          <span class="stat-num">1</span>
+          <span class="counter-num" data-target="1" data-suffix="">0</span>
           <span class="stat-lbl">LLM en entorno corporativo</span>
         </div>
       </div>
@@ -792,7 +835,6 @@ footer{
   </div>
   <div class="projects-grid">
 
-    <!-- FEATURED -->
     <div class="project-card featured reveal">
       <div class="proj-top">
         <div class="proj-icon"><i class="fas fa-brain"></i></div>
@@ -975,22 +1017,18 @@ footer{
     <h2 class="section-title">Habilidades & <span>herramientas</span></h2>
   </div>
   <div class="skills-wrapper">
-
     <div class="skills-group">
       <p class="group-label">Lenguajes</p>
       <div id="skills-langs"></div>
     </div>
-
     <div class="skills-group">
       <p class="group-label">Tecnologías & Plataformas</p>
       <div id="skills-tech"></div>
     </div>
-
     <div class="skills-group">
       <p class="group-label">Herramientas & DevOps</p>
       <div id="skills-tools"></div>
     </div>
-
   </div>
 </div>
 
@@ -1061,16 +1099,16 @@ footer{
         <div class="form-row">
           <div class="form-group">
             <label>Nombre</label>
-            <input type="text" placeholder="Tu nombre" required>
+            <input type="text" id="cf-name" placeholder="Tu nombre" required>
           </div>
           <div class="form-group">
             <label>Email</label>
-            <input type="email" placeholder="tu@email.com" required>
+            <input type="email" id="cf-email" placeholder="tu@email.com" required>
           </div>
         </div>
         <div class="form-group">
           <label>Asunto</label>
-          <select>
+          <select id="cf-subject">
             <option value="">Selecciona un tema...</option>
             <option>Proyecto Freelance</option>
             <option>Colaboración</option>
@@ -1081,11 +1119,12 @@ footer{
         </div>
         <div class="form-group">
           <label>Mensaje</label>
-          <textarea rows="5" placeholder="Cuéntame de tu proyecto..." required></textarea>
+          <textarea id="cf-message" rows="5" placeholder="Cuéntame de tu proyecto..." required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+        <button type="submit" id="cf-submit" class="btn btn-primary" style="width:100%;justify-content:center">
           <i class="fas fa-paper-plane"></i> Enviar mensaje
         </button>
+        <div id="form-status" class="form-status"></div>
       </form>
     </div>
   </div>
@@ -1134,7 +1173,6 @@ window.addEventListener('scroll', () => {
     initParticles();
   }
 
-  // Particles
   const PARTICLE_COUNT = 90;
   const MAX_DIST       = 140;
   let particles        = [];
@@ -1154,8 +1192,6 @@ window.addEventListener('scroll', () => {
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
-
-    // connections
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx   = particles[i].x - particles[j].x;
@@ -1172,8 +1208,6 @@ window.addEventListener('scroll', () => {
         }
       }
     }
-
-    // mouse connections
     particles.forEach(p => {
       const dx   = p.x - mouse.x;
       const dy   = p.y - mouse.y;
@@ -1188,32 +1222,26 @@ window.addEventListener('scroll', () => {
         ctx.stroke();
       }
     });
-
-    // dots
     particles.forEach(p => {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fillStyle = 'rgba(0,212,255,0.7)';
       ctx.fill();
-
-      // move
       p.x += p.vx;
       p.y += p.vy;
       if (p.x < 0 || p.x > W) p.vx *= -1;
       if (p.y < 0 || p.y > H) p.vy *= -1;
     });
-
     requestAnimationFrame(draw);
   }
 
   window.addEventListener('mousemove', e => {
-    const rect    = canvas.getBoundingClientRect();
+    const rect = canvas.getBoundingClientRect();
     mouse.x = e.clientX - rect.left;
     mouse.y = e.clientY - rect.top;
   });
   window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
   window.addEventListener('resize', resize);
-
   resize();
   draw();
 })();
@@ -1232,7 +1260,38 @@ const revealObs = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
 // ═══════════════════════════════════════════════════════════════
-// 4. CANVAS SKILL BARS
+// 4. ANIMATED COUNTERS
+// ═══════════════════════════════════════════════════════════════
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target, 10);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1800;
+  const ease = t => 1 - Math.pow(1 - t, 4);
+  let start = null;
+
+  function step(ts) {
+    if (!start) start = ts;
+    const t = Math.min((ts - start) / duration, 1);
+    const current = Math.round(ease(t) * target);
+    el.textContent = current + suffix;
+    if (t < 1) requestAnimationFrame(step);
+    else el.textContent = target + suffix;
+  }
+  requestAnimationFrame(step);
+}
+
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    animateCounter(entry.target);
+    counterObs.unobserve(entry.target);
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.counter-num').forEach(el => counterObs.observe(el));
+
+// ═══════════════════════════════════════════════════════════════
+// 5. CANVAS SKILL BARS
 // ═══════════════════════════════════════════════════════════════
 const SKILL_GROUPS = [
   {
@@ -1270,30 +1329,24 @@ function buildSkillRow(skill, delay) {
   const row = document.createElement('div');
   row.className = 'skill-row';
   row.style.transitionDelay = `${delay}ms`;
-
   const meta = document.createElement('div');
   meta.className = 'skill-meta';
-
   const nameEl = document.createElement('span');
   nameEl.className = 'skill-name';
   nameEl.textContent = skill.name;
-
   const ctx2El = document.createElement('span');
   ctx2El.className = 'skill-context';
   ctx2El.textContent = skill.context;
-
   meta.appendChild(nameEl);
   meta.appendChild(ctx2El);
-
   const cvs = document.createElement('canvas');
   cvs.className = 'skill-bar';
   cvs.height = 8;
-
   row.appendChild(meta);
   row.appendChild(cvs);
-  row._skill   = skill;
-  row._canvas  = cvs;
-  row._done    = false;
+  row._skill  = skill;
+  row._canvas = cvs;
+  row._done   = false;
   return row;
 }
 
@@ -1305,36 +1358,27 @@ function animateSkillBar(cvs, pct) {
   cvs.height = H * DPR;
   const ctx  = cvs.getContext('2d');
   ctx.scale(DPR, DPR);
-
   const DURATION = 1000;
   const ease = t => 1 - Math.pow(2, -10 * t);
   let start  = null;
-
   function frame(ts) {
     if (!start) start = ts;
     const t   = Math.min((ts - start) / DURATION, 1);
     const p   = ease(t);
-
     ctx.clearRect(0, 0, W, H);
-
-    // track
     ctx.beginPath();
     ctx.roundRect(0, 0, W, H, H / 2);
     ctx.fillStyle = 'rgba(255,255,255,0.05)';
     ctx.fill();
-
-    // fill
     const fillW = Math.max(H, W * (pct / 100) * p);
     const grad  = ctx.createLinearGradient(0, 0, fillW, 0);
-    grad.addColorStop(0,    '#7c3aed');
-    grad.addColorStop(0.5,  '#00d4ff');
-    grad.addColorStop(1,    '#00ffb3');
+    grad.addColorStop(0,   '#7c3aed');
+    grad.addColorStop(0.5, '#00d4ff');
+    grad.addColorStop(1,   '#00ffb3');
     ctx.beginPath();
     ctx.roundRect(0, 0, fillW, H, H / 2);
     ctx.fillStyle = grad;
     ctx.fill();
-
-    // glow tip
     if (p > 0.05) {
       const gx = fillW - H;
       const sg = ctx.createRadialGradient(gx, H/2, 0, gx, H/2, H * 3);
@@ -1345,13 +1389,11 @@ function animateSkillBar(cvs, pct) {
       ctx.fillStyle = sg;
       ctx.fill();
     }
-
     if (t < 1) requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
 }
 
-// Build DOM
 SKILL_GROUPS.forEach(group => {
   const container = document.getElementById(group.id);
   group.skills.forEach((skill, i) => {
@@ -1359,7 +1401,6 @@ SKILL_GROUPS.forEach(group => {
   });
 });
 
-// Observe
 const skillObs = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
@@ -1372,10 +1413,8 @@ const skillObs = new IntersectionObserver(entries => {
     }
   });
 }, { threshold: 0.2 });
-
 document.querySelectorAll('.skill-row').forEach(r => skillObs.observe(r));
 
-// Redraw on resize
 let rt;
 window.addEventListener('resize', () => {
   clearTimeout(rt);
@@ -1387,7 +1426,7 @@ window.addEventListener('resize', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════
-// 5. SMOOTH ACTIVE NAV
+// 6. SMOOTH ACTIVE NAV
 // ═══════════════════════════════════════════════════════════════
 const sections = document.querySelectorAll('[id]');
 const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
@@ -1398,6 +1437,55 @@ window.addEventListener('scroll', () => {
   });
   navLinks.forEach(a => {
     a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--accent)' : '';
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════
+// 7. EMAILJS CONTACT FORM
+// ═══════════════════════════════════════════════════════════════
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const btn    = document.getElementById('cf-submit');
+  const status = document.getElementById('form-status');
+  const name   = document.getElementById('cf-name').value.trim();
+  const email  = document.getElementById('cf-email').value.trim();
+  const subject = document.getElementById('cf-subject').value || 'Sin asunto';
+  const message = document.getElementById('cf-message').value.trim();
+
+  if (!name || !email || !message) {
+    status.className = 'form-status error';
+    status.textContent = 'Por favor completa todos los campos requeridos.';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+  status.className = 'form-status';
+  status.textContent = '';
+
+  emailjs.send('service_gl5i9yk', '61v96pf', {
+    name:    name,
+    email:   email,
+    subject: subject,
+    message: message
+  })
+  .then(() => {
+    status.className = 'form-status success';
+    status.textContent = '✓ Mensaje enviado. Te responderé en menos de 24 horas.';
+    btn.innerHTML = '<i class="fas fa-check"></i> Enviado';
+    document.getElementById('contact-form').reset();
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar mensaje';
+    }, 4000);
+  })
+  .catch((err) => {
+    console.error('EmailJS error:', err);
+    status.className = 'form-status error';
+    status.textContent = 'Error al enviar. Intenta de nuevo o escríbeme directamente a jonatanhidalgoledesma@gmail.com';
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar mensaje';
   });
 });
 </script>
