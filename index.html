@@ -52,6 +52,21 @@ nav.scrolled{padding:1rem 6%;background:rgba(4,6,10,.82);backdrop-filter:blur(32
 .nav-cta:hover{background:var(--accent);color:var(--bg);}
 .nav-cta::after{display:none!important}
 
+/* HAMBURGER */
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;background:transparent;border:1px solid var(--border2);border-radius:4px;cursor:pointer;z-index:1100;flex-shrink:0;padding:0;}
+.nav-hamburger span{display:block;width:18px;height:1px;background:var(--text);transition:all .3s var(--ease);transform-origin:center;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+/* MOBILE NAV OVERLAY */
+.mobile-nav{position:fixed;inset:0;background:rgba(4,6,10,.97);backdrop-filter:blur(24px);z-index:1050;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity .35s var(--ease);}
+.mobile-nav.open{opacity:1;pointer-events:all;}
+.mobile-nav a{font-family:var(--font-display);font-size:clamp(2rem,10vw,3.5rem);letter-spacing:.08em;color:var(--muted2);text-transform:uppercase;transition:color .2s;}
+.mobile-nav a:hover,.mobile-nav a:active{color:var(--accent);}
+.mobile-nav .nav-cta-mobile{margin-top:.5rem;font-size:1.1rem;padding:.75rem 2.5rem;border:1px solid var(--accent);color:var(--accent);border-radius:2px;letter-spacing:.14em;}
+.mobile-nav .nav-cta-mobile:hover{background:var(--accent);color:var(--bg);}
+
 /* HERO */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;}
 #three-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.7;}
@@ -59,14 +74,14 @@ nav.scrolled{padding:1rem 6%;background:rgba(4,6,10,.82);backdrop-filter:blur(32
 .hero-eyebrow{display:flex;align-items:center;gap:.75rem;margin-bottom:1.75rem;opacity:0;animation:fadeUp .8s var(--ease) .1s forwards;}
 .hero-eyebrow-dot{width:5px;height:5px;background:var(--accent);border-radius:50%;animation:blink 2s ease-in-out infinite;}
 .hero-eyebrow-text{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);}
-.hero-name{font-family:var(--font-display);font-size:clamp(5rem,14vw,13rem);line-height:.92;letter-spacing:.02em;color:#fff;opacity:0;animation:fadeUp .9s var(--ease) .15s forwards;leading-trim:both;}
+.hero-name{font-family:var(--font-display);font-size:clamp(5rem,14vw,13rem);line-height:.92;letter-spacing:.02em;color:#fff;opacity:0;animation:fadeUp .9s var(--ease) .15s forwards;}
 .hero-name-line2{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.25);}
 .hero-descriptor{display:flex;align-items:baseline;gap:1.5rem;margin-top:2rem;opacity:0;animation:fadeUp .9s var(--ease) .3s forwards;}
 .hero-descriptor-rule{width:48px;height:1px;background:var(--accent);flex-shrink:0;margin-bottom:3px;}
 .hero-descriptor-text{font-family:var(--font-serif);font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--muted2);font-weight:300;font-style:italic;line-height:1.4;}
 .hero-descriptor-text strong{color:var(--text);font-weight:400;font-style:normal;}
 .hero-actions{display:flex;gap:1rem;margin-top:3rem;opacity:0;animation:fadeUp .9s var(--ease) .45s forwards;flex-wrap:wrap;}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;font-family:var(--font-display);font-size:1rem;letter-spacing:.1em;border-radius:2px;transition:all .25s var(--ease);cursor:none;border:none;}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;font-family:var(--font-display);font-size:1rem;letter-spacing:.1em;border-radius:2px;transition:all .25s var(--ease);cursor:pointer;border:none;}
 .btn-primary{background:var(--accent);color:var(--bg);box-shadow:0 0 48px rgba(0,229,255,.2);}
 .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 48px rgba(0,229,255,.35);}
 .btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--text);}
@@ -123,7 +138,7 @@ nav.scrolled{padding:1rem 6%;background:rgba(4,6,10,.82);backdrop-filter:blur(32
 
 /* PROJECTS */
 .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
-.project-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.75rem;position:relative;overflow:hidden;transition:transform .4s var(--ease),border-color .3s,box-shadow .4s;display:flex;flex-direction:column;cursor:none;}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.75rem;position:relative;overflow:hidden;transition:transform .4s var(--ease),border-color .3s,box-shadow .4s;display:flex;flex-direction:column;cursor:pointer;}
 .project-card-glow{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,.12),transparent 70%);pointer-events:none;transform:translate(-50%,-50%);opacity:0;transition:opacity .4s;}
 .project-card:hover .project-card-glow{opacity:1}
 .project-card::before{content:'';position:absolute;inset:0;border-radius:8px;background:linear-gradient(135deg,rgba(0,229,255,.04),rgba(139,92,246,.04));opacity:0;transition:opacity .4s;}
@@ -204,9 +219,85 @@ footer{border-top:1px solid var(--border);padding:3rem 6%;max-width:100%;display
 .parallax-section{position:relative;overflow:hidden;}
 .parallax-bg{position:absolute;inset:-20%;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(139,92,246,.05) 0%,transparent 70%);pointer-events:none;transition:transform .1s linear;}
 
-/* RESPONSIVE */
-@media(max-width:1024px){.about-grid,.contact-wrapper{grid-template-columns:1fr;gap:3rem}.projects-grid{grid-template-columns:1fr 1fr}.project-card.featured{grid-column:span 2}.project-card.wide{grid-column:span 2}}
-@media(max-width:768px){.nav-links{display:none}.hero-name{font-size:clamp(3.5rem,18vw,7rem)}.hero-stats{display:none}.projects-grid{grid-template-columns:1fr}.project-card.featured,.project-card.wide{grid-column:span 1}.timeline{padding-left:1.5rem}footer{flex-direction:column;text-align:center}.form-row{grid-template-columns:1fr}}
+/* ===================== RESPONSIVE ===================== */
+
+/* Cursor: deshabilitar en touch */
+@media(hover:none){
+  body{cursor:auto!important}
+  .btn{cursor:pointer!important}
+  .project-card{cursor:pointer!important}
+  #cursor{display:none!important}
+}
+
+/* TABLET 1024px */
+@media(max-width:1024px){
+  .about-grid,.contact-wrapper{grid-template-columns:1fr;gap:3rem}
+  .projects-grid{grid-template-columns:1fr 1fr}
+  .project-card.featured{grid-column:span 2}
+  .project-card.wide{grid-column:span 2}
+  .hero-stats{right:4%;gap:1.25rem}
+  .hero-stat-num{font-size:2rem}
+}
+
+/* MOBILE 768px */
+@media(max-width:768px){
+  /* Nav */
+  .nav-links{display:none!important}
+  .nav-hamburger{display:flex}
+
+  /* Hero */
+  .hero-content{padding:0 5%;padding-top:6rem;padding-bottom:5rem;min-height:100svh;}
+  .hero-name{font-size:clamp(3.5rem,18vw,7rem)}
+  .hero-stats{
+    position:static;
+    flex-direction:row;
+    flex-wrap:wrap;
+    gap:1rem;
+    margin-top:2.5rem;
+    opacity:1;
+    animation:none;
+  }
+  .hero-stat-num{font-size:2rem}
+  .scroll-indicator{display:none}
+
+  /* Sections */
+  .section{padding:5rem 5%}
+  .section-title{font-size:clamp(2.5rem,10vw,4rem);margin-bottom:2.5rem}
+
+  /* Projects */
+  .projects-grid{grid-template-columns:1fr}
+  .project-card.featured,.project-card.wide{grid-column:span 1}
+
+  /* Timeline */
+  .timeline{padding-left:1.5rem}
+  .tl-dot{left:-1.5rem}
+
+  /* Contact */
+  .contact-wrapper{grid-template-columns:1fr;gap:3rem}
+  .form-row{grid-template-columns:1fr}
+
+  /* Footer */
+  footer{flex-direction:column;text-align:center}
+  .social-links{justify-content:center}
+
+  /* Marquee más lento */
+  .marquee-track{animation-duration:40s}
+}
+
+/* MOBILE CHICO 480px */
+@media(max-width:480px){
+  nav{padding:1.25rem 5%}
+  .hero-eyebrow-text{font-size:.6rem;letter-spacing:.14em}
+  .hero-descriptor-text{font-size:1rem}
+  .hero-actions{flex-direction:column;align-items:flex-start}
+  .btn{width:100%;justify-content:center}
+  .about-stats{grid-template-columns:1fr 1fr}
+  .counter-num{font-size:2.2rem}
+  .method-grid{grid-template-columns:1fr}
+  .proj-tags{gap:.25rem}
+  .skill-context{display:none}
+  .skill-meta{flex-direction:column;gap:.2rem}
+}
 </style>
 </head>
 <body>
@@ -223,7 +314,19 @@ footer{border-top:1px solid var(--border);padding:3rem 6%;max-width:100%;display
     <a href="#skills">Stack</a>
     <a href="#contact" class="nav-cta">Contactar</a>
   </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#about"      onclick="closeMobileNav()">About</a>
+  <a href="#experience" onclick="closeMobileNav()">Experiencia</a>
+  <a href="#projects"   onclick="closeMobileNav()">Proyectos</a>
+  <a href="#skills"     onclick="closeMobileNav()">Stack</a>
+  <a href="#contact"    onclick="closeMobileNav()" class="nav-cta-mobile">Contactar</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -249,11 +352,11 @@ footer{border-top:1px solid var(--border);padding:3rem 6%;max-width:100%;display
       <a href="#projects" class="btn btn-primary"><i class="fas fa-code"></i> Ver proyectos</a>
       <a href="#contact" class="btn btn-ghost"><i class="fas fa-paper-plane"></i> Hablemos</a>
     </div>
-  </div>
-  <div class="hero-stats">
-    <div><span class="hero-stat-num" data-target="4" data-suffix="+">0+</span><span class="hero-stat-label">Años en prod.</span></div>
-    <div><span class="hero-stat-num" data-target="8" data-suffix="+">0+</span><span class="hero-stat-label">Sistemas activos</span></div>
-    <div><span class="hero-stat-num" data-target="3" data-suffix="">0</span><span class="hero-stat-label">APIs empresariales</span></div>
+    <div class="hero-stats">
+      <div><span class="hero-stat-num" data-target="4" data-suffix="+">0+</span><span class="hero-stat-label">Años en prod.</span></div>
+      <div><span class="hero-stat-num" data-target="8" data-suffix="+">0+</span><span class="hero-stat-label">Sistemas activos</span></div>
+      <div><span class="hero-stat-num" data-target="3" data-suffix="">0</span><span class="hero-stat-label">APIs empresariales</span></div>
+    </div>
   </div>
   <div class="scroll-indicator">
     <div class="scroll-line"></div>
@@ -445,9 +548,9 @@ footer{border-top:1px solid var(--border);padding:3rem 6%;max-width:100%;display
       </div>
     </div>
 
-    <div class="project-card wide reveal" style="grid-column:span 3;">
+    <div class="project-card wide reveal">
       <div class="project-card-glow"></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;">
+      <div class="wide-inner" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;">
         <div>
           <div class="proj-top"><div class="proj-icon"><i class="fas fa-file-invoice-dollar"></i></div><span class="proj-badge prod">En producción</span></div>
           <h3>CFDI 4.0 — Fiscal</h3>
@@ -557,12 +660,21 @@ footer{border-top:1px solid var(--border);padding:3rem 6%;max-width:100%;display
 <script>
 // ── CURSOR ──────────────────────────────────────────────────────────────
 (function(){
+  if(window.matchMedia('(hover:none)').matches)return;
   const dot=document.getElementById('cursor-dot');
   const ring=document.getElementById('cursor-ring');
   let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
   (function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
 })();
+
+// ── MOBILE NAV ───────────────────────────────────────────────────────────
+const hamburger=document.getElementById('hamburger');
+const mobileNav=document.getElementById('mobile-nav');
+function openMobileNav(){hamburger.classList.add('open');mobileNav.classList.add('open');document.body.style.overflow='hidden';}
+function closeMobileNav(){hamburger.classList.remove('open');mobileNav.classList.remove('open');document.body.style.overflow='';}
+hamburger.addEventListener('click',()=>mobileNav.classList.contains('open')?closeMobileNav():openMobileNav());
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMobileNav();});
 
 // ── NAV SCROLL ───────────────────────────────────────────────────────────
 const navbar=document.getElementById('navbar');
@@ -578,57 +690,40 @@ window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',scrollY>
   renderer.setSize(W,H);
   const camera=new THREE.PerspectiveCamera(55,W/H,.1,1000);
   camera.position.z=28;
-
-  // Starfield
   const sgeo=new THREE.BufferGeometry();
   const spos=new Float32Array(2000*3);
   for(let i=0;i<spos.length;i++)spos[i]=(Math.random()-.5)*220;
   sgeo.setAttribute('position',new THREE.BufferAttribute(spos,3));
   const stars=new THREE.Points(sgeo,new THREE.PointsMaterial({color:0xffffff,size:.15,transparent:true,opacity:.55}));
   scene.add(stars);
-
-  // Grid plane (parallax deep)
   const grid=new THREE.GridHelper(100,28,0x00e5ff,0x00e5ff);
   grid.material.opacity=.04;grid.material.transparent=true;
   grid.position.y=-10;grid.rotation.x=.18;scene.add(grid);
-
-  // Wireframe icosahedron — main focal object
   const icoGeo=new THREE.IcosahedronGeometry(6,1);
   const icoMat=new THREE.MeshBasicMaterial({color:0x00e5ff,wireframe:true,opacity:.09,transparent:true});
   const ico=new THREE.Mesh(icoGeo,icoMat);
   ico.position.set(12,1,-4);scene.add(ico);
-
-  // Torus ring
   const tGeo=new THREE.TorusGeometry(10,.04,8,90);
   const tMat=new THREE.MeshBasicMaterial({color:0x8b5cf6,opacity:.08,transparent:true});
   const torus=new THREE.Mesh(tGeo,tMat);
   torus.rotation.x=1.1;torus.position.set(-4,2,-8);scene.add(torus);
-
-  // Floating particles cluster
   const pgeo=new THREE.BufferGeometry();
   const ppos=new Float32Array(400*3);
   for(let i=0;i<400;i++){ppos[i*3]=(Math.random()-.5)*55;ppos[i*3+1]=(Math.random()-.5)*35;ppos[i*3+2]=(Math.random()-.5)*22-5;}
   pgeo.setAttribute('position',new THREE.BufferAttribute(ppos,3));
   const parts=new THREE.Points(pgeo,new THREE.PointsMaterial({color:0x00e5ff,size:.09,transparent:true,opacity:.4}));
   scene.add(parts);
-
   let mx=0,my=0,tx=0,ty=0;
   document.addEventListener('mousemove',e=>{mx=(e.clientX/window.innerWidth-.5)*2;my=-(e.clientY/window.innerHeight-.5)*2;});
-
   function animate(){
     requestAnimationFrame(animate);
     tx+=(mx-tx)*.035;ty+=(my-ty)*.035;
-    stars.rotation.y+=.0003;
-    stars.position.x=tx*.6;stars.position.y=ty*.4;
+    stars.rotation.y+=.0003;stars.position.x=tx*.6;stars.position.y=ty*.4;
     grid.position.x=tx*1.1;grid.rotation.z=tx*.015;
-    ico.rotation.x+=.003;ico.rotation.y+=.005;
-    ico.position.x=12+tx*2.2;ico.position.y=1+ty*1.4;
-    torus.rotation.z+=.004;
-    torus.position.x=-4+tx*1.5;torus.position.y=2+ty*1.1;
-    parts.rotation.y+=.0008;
-    parts.position.x=tx*1.3;parts.position.y=ty*.8;
-    camera.position.x+=(tx*.6-camera.position.x)*.03;
-    camera.position.y+=(ty*.35-camera.position.y)*.03;
+    ico.rotation.x+=.003;ico.rotation.y+=.005;ico.position.x=12+tx*2.2;ico.position.y=1+ty*1.4;
+    torus.rotation.z+=.004;torus.position.x=-4+tx*1.5;torus.position.y=2+ty*1.1;
+    parts.rotation.y+=.0008;parts.position.x=tx*1.3;parts.position.y=ty*.8;
+    camera.position.x+=(tx*.6-camera.position.x)*.03;camera.position.y+=(ty*.35-camera.position.y)*.03;
     renderer.render(scene,camera);
   }
   animate();
@@ -638,7 +733,7 @@ window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',scrollY>
   });
 })();
 
-// ── HERO COUNTERS (live on load) ─────────────────────────────────────────
+// ── HERO COUNTERS ─────────────────────────────────────────────────────────
 document.querySelectorAll('.hero-stat-num').forEach(el=>{
   const t=parseInt(el.dataset.target),s=el.dataset.suffix||'',d=1600,ease=x=>1-Math.pow(1-x,4);
   let start=null;
@@ -741,14 +836,13 @@ window.addEventListener('scroll',()=>{
   navLinks.forEach(a=>{a.style.color=a.getAttribute('href')===`#${current}`?'var(--accent)':'';});
 });
 
-// ── WIDE PROJECT CARD — 3-col fix at mobile ──────────────────────────────
+// ── WIDE CARD RESPONSIVE ─────────────────────────────────────────────────
 function fixWide(){
-  const wide=document.querySelector('.project-card.wide');
-  if(!wide)return;
-  const inner=wide.querySelector('div[style*="grid-template-columns"]');
-  if(window.innerWidth<768){inner.style.gridTemplateColumns='1fr';}
-  else if(window.innerWidth<1024){inner.style.gridTemplateColumns='1fr 1fr';}
-  else{inner.style.gridTemplateColumns='1fr 1fr 1fr';}
+  const inner=document.querySelector('.wide-inner');
+  if(!inner)return;
+  if(window.innerWidth<768)inner.style.gridTemplateColumns='1fr';
+  else if(window.innerWidth<1024)inner.style.gridTemplateColumns='1fr 1fr';
+  else inner.style.gridTemplateColumns='1fr 1fr 1fr';
 }
 fixWide();window.addEventListener('resize',fixWide);
 
